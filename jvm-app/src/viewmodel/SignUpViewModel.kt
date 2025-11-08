@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.dokar.sonner.ToasterState
 import kotlinx.coroutines.launch
 import org.koin.compose.koinInject
 import org.koin.core.context.GlobalContext.get
@@ -17,6 +18,8 @@ class SignUpViewModel(
     var uiState by mutableStateOf(SignUpUiState())
         private set
 
+
+
     fun signUp() {
         viewModelScope.launch {
             uiState = uiState.copy(isAuthenticating = true)
@@ -25,6 +28,7 @@ class SignUpViewModel(
                 name = uiState.username,
                 password = uiState.password,
             )
+            println(authResultData.toString())
             println(authResultData.message)
             uiState = when (authResultData) {
                 is Result.Error -> uiState.copy(

@@ -16,6 +16,7 @@ dependencies:
   - $libs.ktor.client.json
   - $libs.ktor.client.contentNegotiation
   - $libs.ktor.serialization.kotlinx.json
+  - $libs.ktor.client.logging
   - $libs.koin.core
   - $libs.koin.compose
   - $libs.koin.compose.viewModel

@@ -14,7 +14,7 @@ class SignUpScreen: Screen {
                 navigator?.pop()
             },
             gotoHome = {
-                navigator?.popUntilRoot()
+                navigator?.push(HomeScreen())
             }
         )
     }

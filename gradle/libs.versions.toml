@@ -118,7 +118,7 @@ ktor.client.java = "io.ktor:ktor-client-java"
 ktor.client.jetty = "io.ktor:ktor-client-jetty"
 ktor.client.jetty.jakarta = "io.ktor:ktor-client-jetty-jakarta"
 ktor.client.json = { module = "io.ktor:ktor-client-json", version.ref = "ktor" }
-ktor.client.logging = "io.ktor:ktor-client-logging"
+ktor.client.logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor" }
 ktor.client.mock = "io.ktor:ktor-client-mock"
 ktor.client.okhttp = "io.ktor:ktor-client-okhttp"
 ktor.client.plugins = "io.ktor:ktor-client-plugins"

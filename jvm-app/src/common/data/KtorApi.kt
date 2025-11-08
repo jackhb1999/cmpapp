@@ -1,20 +1,22 @@
 package common.data
 
-import io.ktor.client.HttpClient
-import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
-import io.ktor.client.request.HttpRequestBuilder
-import io.ktor.http.ContentType
-import io.ktor.http.contentType
-import io.ktor.http.path
-import io.ktor.http.takeFrom
-import io.ktor.serialization.kotlinx.json.json
-import kotlinx.coroutines.flow.flow
+import io.ktor.client.*
+import io.ktor.client.plugins.contentnegotiation.*
+import io.ktor.client.plugins.logging.*
+import io.ktor.client.request.*
+import io.ktor.http.*
+import io.ktor.serialization.kotlinx.json.*
 import kotlinx.serialization.json.Json
 
 private const val BASE_URL = "http://localhost:8088"
 
 internal abstract class KtorApi {
     val client = HttpClient {
+        install(Logging){
+            logger = Logger.DEFAULT
+            level = LogLevel.ALL
+        }
+
         install(ContentNegotiation) {
             json(
                 Json {

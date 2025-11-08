@@ -6,6 +6,7 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -23,13 +24,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.dokar.sonner.ToastType
+import com.dokar.sonner.Toaster
 import com.dokar.sonner.ToasterDefaults
+import com.dokar.sonner.ToasterState
 import com.dokar.sonner.rememberToasterState
 import components.ButtonHeight
 import components.CustomTextField
 import components.LargeSpacing
 import components.MediumSpacing
+import org.koin.compose.koinInject
 import org.koin.compose.viewmodel.koinViewModel
+import util.DispatcherProvider
 import viewmodel.SignUpViewModel
 
 @Composable
@@ -40,6 +45,7 @@ fun SignUpView(
     vm: SignUpViewModel = koinViewModel(),
     modifier: Modifier = Modifier
 ) {
+    val toaster = rememberToasterState()
     Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -93,12 +99,13 @@ fun SignUpView(
                 Text("用户注册")
             }
 
+            Spacer(modifier = Modifier.padding(6.dp))
+            Toaster(state = toaster)
         }
         if (vm.uiState.isAuthenticating) {
             CircularProgressIndicator()
         }
     }
-    val toaster = rememberToasterState()
     LaunchedEffect(
         key1 = vm.uiState.authenticationSucceed,
         key2 = vm.uiState.authErrorMessage,
