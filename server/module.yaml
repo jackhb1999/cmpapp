@@ -1,0 +1,39 @@
+product: jvm/app
+
+settings:
+  ktor: enabled
+  jvm:
+    mainClass: com.hb.ApplicationKt
+  kotlin:
+    serialization: enabled
+
+dependencies:
+  - ../shared
+  - $libs.logback.classic
+  - $libs.koin.ktor
+  - $libs.koin.logger.slf4j
+  - $libs.ktor.server.core
+  - $libs.ktor.serialization.kotlinx.json
+  - $libs.kotlinx.serialization.json
+  - $libs.ktor.server.content.negotiation
+  - $libs.postgresql
+  - $libs.hikariCP
+  - $libs.exposed.core
+  - $libs.exposed.jdbc
+  - $libs.ktor.server.auth
+  - $libs.ktor.server.auth.jwt
+  - $libs.ktor.server.netty
+  - $libs.logback.classic
+  - $libs.ktor.server.config.yaml
+
+
+test-dependencies:
+  - $libs.ktor.server.test.host
+  - $libs.kotlin.test.junit
+
+
+repositories:
+  - https://repo.spring.io/ui/native/release
+  - url: https://dl.google.com/dl/android/maven2/
+  - id: jitpack
+    url: https://jitpack.io

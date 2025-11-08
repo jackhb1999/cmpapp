@@ -1,0 +1,15 @@
+product:
+  type: lib
+  platforms: [jvm, android]
+
+dependencies:
+  - $libs.kotlinx.serialization.json
+  - $libs.ktor.serialization.kotlinx.json
+  - $kotlin.serialization.core
+  - $libs.koin.core
+  - org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2
+
+
+settings:
+  kotlin:
+    serialization: enabled
