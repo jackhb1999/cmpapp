@@ -26,6 +26,7 @@ fun Routing.authRouting() {
                 return@post
             }
             val result = repository.signUp(params = params)
+            println(result.toString())
             call.respond<AuthResponse>(
                 status = result.code,
                 message = result.data!!

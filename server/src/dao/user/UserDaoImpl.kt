@@ -8,6 +8,7 @@ import com.hb.security.hashPassword
 import org.jetbrains.exposed.sql.ResultRow
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 import org.jetbrains.exposed.sql.insert
+import org.jetbrains.exposed.sql.selectAll
 
 class UserDaoImpl : UserDao {
     override suspend fun inert(params: SignUpParams): User? {
@@ -26,14 +27,15 @@ class UserDaoImpl : UserDao {
 
     override suspend fun findByEmail(email: String): User? {
         return dbQuery {
-            UserRow.select(UserRow.email eq email)
+            UserRow.selectAll().where { UserRow.email eq email }
                 .map { rowToUser(it) }
                 .singleOrNull()
         }
     }
 
-    private fun rowToUser(row: ResultRow): User =
-        User(
+    private fun rowToUser(row: ResultRow): User {
+        println(row.toString())
+        return User(
             id = row[UserRow.id],
             name = row[UserRow.name],
             password = row[UserRow.password],
@@ -41,4 +43,5 @@ class UserDaoImpl : UserDao {
             bio = row[UserRow.bio],
             avatar = row[UserRow.avatar]
         )
+    }
 }

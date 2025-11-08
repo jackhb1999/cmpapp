@@ -10,8 +10,8 @@ hikaricp = "7.0.2"
 
 nav3Core = "1.0.0-beta01"
 lifecycleViewmodelNav3 = "2.10.0-beta01"
-kotlinSerialization = "2.1.21"
-kotlinxSerializationCore = "1.8.1"
+
+kotlinSerialization = "1.9.0"
 material3AdaptiveNav3 = "1.3.0-alpha02"
 voyagerVersion = "1.1.0-beta03"
 androidxLifecycle = "2.9.4"
@@ -225,6 +225,17 @@ voyager.navigator = { module = "cafe.adriel.voyager:voyager-navigator", version.
 voyager.tab.navigator = { module = "cafe.adriel.voyager:voyager-tab-navigator", version.ref = "voyagerVersion" }
 voyager.transitions = { module = "cafe.adriel.voyager:voyager-transitions", version.ref = "voyagerVersion" }
 
+kotlin.test = "org.jetbrains.kotlin:kotlin-test:2.2.0"
+kotlin.test.junit = "org.jetbrains.kotlin:kotlin-test-junit:2.2.0"
+kotlin.test.junit5 = "org.jetbrains.kotlin:kotlin-test-junit5:2.2.0"
+kotlin.reflect = "org.jetbrains.kotlin:kotlin-reflect:2.2.0"
+kotlin.serialization.core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinSerialization" }
+kotlin.serialization.cbor = { module = "org.jetbrains.kotlinx:kotlinx-serialization-cbor", version.ref = "kotlinSerialization" }
+kotlin.serialization.hocon = { module = "org.jetbrains.kotlinx:kotlinx-serialization-hocon", version.ref = "kotlinSerialization" }
+kotlin.serialization.json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinSerialization" }
+kotlin.serialization.json-okio = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json-okio", version.ref = "kotlinSerialization" }
+kotlin.serialization.properties = { module = "org.jetbrains.kotlinx:kotlinx-serialization-properties", version.ref = "kotlinSerialization" }
+kotlin.serialization.protobuf = { module = "org.jetbrains.kotlinx:kotlinx-serialization-protobuf", version.ref = "kotlinSerialization" }
 
 
 [plugins]
