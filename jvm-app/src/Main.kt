@@ -25,20 +25,17 @@ fun main() = application {
     }
     Window(onCloseRequest = ::exitApplication) {
         val owner = remember { DesktopViewModelStoreOwner() }
+
+
+        val scaffoldState = rememberScaffoldState()
+
+
         // 将其提供给 Compose 树
         CompositionLocalProvider(LocalViewModelStoreOwner provides owner) {
             MaterialTheme {
-//                CountView()
-//                SignUpView()
-//                LoginView()
-                Navigator(SignUpScreen()) { navigator ->
+                Navigator(LoginScreen()) { navigator ->
                     SlideTransition(navigator)
                 }
-//                Navigator(HomeScreen()) { navigator ->
-//                    SlideTransition(navigator)
-//                }
-
-
             }
         }
     }

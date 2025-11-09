@@ -4,13 +4,9 @@ import com.hb.model.AuthResponse
 import com.hb.model.SignInParams
 import com.hb.model.SignUpParams
 import common.data.KtorApi
-import io.ktor.client.call.body
-import io.ktor.client.request.accept
-import io.ktor.client.request.post
-import io.ktor.client.request.setBody
-import io.ktor.http.ContentType
-import io.ktor.http.contentType
-import util.Result
+import io.ktor.client.call.*
+import io.ktor.client.request.*
+import io.ktor.http.*
 
 internal class AuthService : KtorApi() {
     suspend fun signUp(request: SignUpParams): AuthResponse = client.post {
@@ -21,7 +17,7 @@ internal class AuthService : KtorApi() {
     }.body()
 
     suspend fun signIn(request: SignInParams): AuthResponse = client.post {
-        endPoint(path = "signin")
+        endPoint(path = "login")
         setBody(request)
     }.body()
 

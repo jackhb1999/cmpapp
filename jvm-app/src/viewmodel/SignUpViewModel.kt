@@ -28,8 +28,6 @@ class SignUpViewModel(
                 name = uiState.username,
                 password = uiState.password,
             )
-            println(authResultData.toString())
-            println(authResultData.message)
             uiState = when (authResultData) {
                 is Result.Error -> uiState.copy(
                     isAuthenticating = false,

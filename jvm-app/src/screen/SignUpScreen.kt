@@ -6,15 +6,15 @@ import cafe.adriel.voyager.navigator.LocalNavigator
 import view.SignUpView
 
 class SignUpScreen: Screen {
+    override val key: String
+        get() = "注册"
+
     @Composable
     override fun Content() {
         val navigator = LocalNavigator.current
         SignUpView(
             gotoLogin = {
                 navigator?.pop()
-            },
-            gotoHome = {
-                navigator?.push(HomeScreen())
             }
         )
     }

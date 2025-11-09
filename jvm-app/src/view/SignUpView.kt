@@ -41,7 +41,6 @@ import viewmodel.SignUpViewModel
 @Preview
 fun SignUpView(
     gotoLogin: () -> Unit,
-    gotoHome: () -> Unit,
     vm: SignUpViewModel = koinViewModel(),
     modifier: Modifier = Modifier
 ) {
@@ -112,7 +111,7 @@ fun SignUpView(
         block = {
             if (vm.uiState.authenticationSucceed) {
                 // 跳转登录页面
-                gotoHome()
+                gotoLogin()
             }
 
             if (vm.uiState.authErrorMessage != null) {
