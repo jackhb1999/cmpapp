@@ -9,6 +9,7 @@ settings:
 
 dependencies:
   - ../shared
+#  - ../rslib
   - $libs.logback.classic
   - $libs.koin.ktor
   - $libs.koin.logger.slf4j

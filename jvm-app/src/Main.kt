@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelStoreOwner
 import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
 import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.transitions.SlideTransition
+import components.AppBar
 import di.authModule
 import di.getSharedModules
 import org.koin.core.context.startKoin
@@ -28,7 +29,6 @@ fun main() = application {
 
 
         val scaffoldState = rememberScaffoldState()
-
 
         // 将其提供给 Compose 树
         CompositionLocalProvider(LocalViewModelStoreOwner provides owner) {

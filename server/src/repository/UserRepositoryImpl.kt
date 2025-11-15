@@ -2,7 +2,7 @@ package com.hb.repository
 
 import com.hb.dao.user.UserDao
 import com.hb.model.AuthResponse
-import com.hb.model.AuthResponseData
+import com.hb.model.UserSettingsData
 import com.hb.model.SignInParams
 import com.hb.model.SignUpParams
 import com.hb.plugins.generateJWTToken
@@ -33,7 +33,7 @@ class UserRepositoryImpl(
             } else {
                 Result.Success(
                     data = AuthResponse(
-                        data = AuthResponseData(
+                        data = UserSettingsData(
                             id = insertedUser.id,
                             name = insertedUser.name,
                             bio = insertedUser.bio,
@@ -58,7 +58,7 @@ class UserRepositoryImpl(
             if (user.password == hashPassword(params.password)) {
                 Result.Success(
                     data = AuthResponse(
-                        data = AuthResponseData(
+                        data = UserSettingsData(
                             id = user.id,
                             name = user.name,
                             bio = user.bio,

@@ -18,17 +18,17 @@ data class SignInParams(
 
 @Serializable
 data class AuthResponse(
-    val data: AuthResponseData? = null,
+    val data: UserSettingsData? = null,
     val errorMessage: String? = null
 )
 
 @Serializable
-data class AuthResponseData(
-    val id:Int,
-    val name: String,
-    val bio:String,
+data class UserSettingsData(
+    val id:Int = -1,
+    val name: String = "",
+    val bio:String = "",
     val avatar:String? = null,
-    val token:String,
+    val token:String = "",
     val followersCount:Int = 0,
     val followingCount:Int = 0,
 )

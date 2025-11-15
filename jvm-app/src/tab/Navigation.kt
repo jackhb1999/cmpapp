@@ -18,7 +18,7 @@ import components.AppBar
 fun Navigation() {
     TabNavigator(HomeTab) {
         Scaffold(
-            topBar = { AppBar() },
+//            topBar = { AppBar() },
             bottomBar = {
                 BottomNavigation {
                     TabNavigationItem(HomeTab)

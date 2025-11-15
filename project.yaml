@@ -2,3 +2,4 @@ modules:
   - jvm-app
   - server
   - shared
+  - rslib

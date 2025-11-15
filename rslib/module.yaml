@@ -9,6 +9,8 @@ dependencies:
   - $libs.kotlin.serialization.json
   - $libs.koin.core
   - org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2
+#  - com.sun.jna:jna:3.0.9
+  - net.java.dev.jna:jna:5.14.0
 
 
 
@@ -17,5 +19,5 @@ settings:
     serialization: enabled
 
 repositories:
-  - https://mirrors.tencent.com/nexus/repository/maven-tencent/
-  - https://mirrors.tencent.com/nexus/repository/maven-public/
+  - https://mirrors.tencent.com/nexus/repository/maven-tencent
+  - https://mirrors.tencent.com/nexus/repository/maven-public

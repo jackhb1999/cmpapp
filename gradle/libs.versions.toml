@@ -4,7 +4,7 @@ h2 = "2.3.232"
 koin = "4.1.1"
 kotlin = "2.2.20"
 ktor = "3.3.1"
-
+datastore = "1.2.0-rc01"
 postgres = "42.7.8"
 hikaricp = "7.0.2"
 
@@ -237,6 +237,8 @@ kotlin.serialization.json-okio = { module = "org.jetbrains.kotlinx:kotlinx-seria
 kotlin.serialization.properties = { module = "org.jetbrains.kotlinx:kotlinx-serialization-properties", version.ref = "kotlinSerialization" }
 kotlin.serialization.protobuf = { module = "org.jetbrains.kotlinx:kotlinx-serialization-protobuf", version.ref = "kotlinSerialization" }
 
+androidx.datastore = { module = "androidx.datastore:datastore", version.ref = "datastore" }
+androidx.datastore.core = { module = "androidx.datastore:datastore-core", version.ref = "datastore" }
 
 [plugins]
 kotlin.jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
