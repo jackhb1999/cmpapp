@@ -8,5 +8,5 @@ out
 gen
 build
 rslib/target
-relib/lib
 
+/rslib/lib/
