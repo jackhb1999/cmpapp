@@ -1,6 +1,5 @@
 package di
 
-import org.koin.core.context.GlobalContext.get
 import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.module
 import repository.AuthRepositoryImpl
@@ -8,7 +7,6 @@ import repository.UserRepository
 import service.AuthService
 import usecase.SignInUseCase
 import usecase.SignUpUseCase
-import util.DispatcherProvider
 import viewmodel.LoginViewModel
 import viewmodel.SignUpViewModel
 

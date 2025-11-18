@@ -10,11 +10,20 @@ dependencies:
   - $libs.koin.core
   - org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2
 
+dependencies@jvm:
+  - ../rslib
+
 
 
 settings:
   kotlin:
     serialization: enabled
+
+#settings@android:
+#  kotlin:
+#    ksp:
+#      processors:
+#        - androidx.room:room-compiler:2.7.0-alpha12
 
 repositories:
   - https://mirrors.tencent.com/nexus/repository/maven-tencent/

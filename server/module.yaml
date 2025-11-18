@@ -8,7 +8,7 @@ settings:
     serialization: enabled
 
 dependencies:
-  - ../shared
+  - ../common
 #  - ../rslib
   - $libs.logback.classic
   - $libs.koin.ktor

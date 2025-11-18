@@ -1,6 +1,7 @@
 product: jvm/app
 
 dependencies:
+  - ../common
   - ../shared
   - $compose.desktop.currentOs
   - $libs.compose.materialIconsCore
