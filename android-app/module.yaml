@@ -1,0 +1,18 @@
+product: android/app
+
+dependencies:
+  - ../shared
+  - $libs.compose.material3
+  - $libs.compose.foundation
+  - androidx.appcompat:appcompat:1.6.1
+  - androidx.activity:activity-compose:1.7.2
+
+settings:
+  compose: enabled
+  junit: junit-4
+  kotlin:
+    serialization: enabled
+
+repositories:
+  - https://mirrors.tencent.com/nexus/repository/maven-tencent
+  - https://mirrors.tencent.com/nexus/repository/maven-public

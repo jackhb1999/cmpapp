@@ -13,7 +13,9 @@ class LoginScreen : Screen {
     override fun Content() {
         val navigator = LocalNavigator.current
         LoginView(
-            gotoHome = { navigator?.push(HomeScreen()) },
+            gotoHome = {
+                navigator?.push(HomeScreen(token = null))
+            },
             gotoSignUp = { navigator?.push(SignUpScreen()) }
         )
     }

@@ -1,5 +1,6 @@
 modules:
   - jvm-app
+  - android-app
   - server
   - shared
   - rslib
