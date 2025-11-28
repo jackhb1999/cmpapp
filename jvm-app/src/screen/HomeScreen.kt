@@ -9,8 +9,8 @@ import cafe.adriel.voyager.navigator.LocalNavigator
 class HomeScreen(val token: String?) : Screen {
     @Composable
     override fun Content() {
-
         Navigation()
+
         val navigator = LocalNavigator.current
         LaunchedEffect(key1 = token, block = {
             if (token.isNullOrEmpty()) {
@@ -18,6 +18,7 @@ class HomeScreen(val token: String?) : Screen {
                 navigator?.push(LoginScreen())
             } else {
                 // 处理 token 不为空的情况
+
             }
         })
     }

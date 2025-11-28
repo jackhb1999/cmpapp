@@ -14,7 +14,7 @@ class LoginScreen : Screen {
         val navigator = LocalNavigator.current
         LoginView(
             gotoHome = {
-                navigator?.push(HomeScreen(token = null))
+                navigator?.push(HomeScreen(token = "123"))
             },
             gotoSignUp = { navigator?.push(SignUpScreen()) }
         )

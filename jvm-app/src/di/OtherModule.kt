@@ -1,8 +1,10 @@
 package di
 
+import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.module
-import util.SettingsWrapper
+import viewmodel.HomeViewModel
 
 val otherModule= module {
-    single { SettingsWrapper().createSettings() }
+//    single { SettingsWrapper().createSettings() }
+    viewModel { HomeViewModel() }
 }

@@ -21,9 +21,7 @@ import view.HomeView
 object HomeTab : Tab {
     @Composable
     override fun Content() {
-        Navigator(IndexScreen()) { navigator ->
-            SlideTransition(navigator)
-        }
+        HomeView()
     }
 
     override val options: TabOptions
