@@ -4,7 +4,6 @@ package view
 import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.ExperimentalMaterialApi
@@ -24,7 +23,9 @@ import viewmodel.HomeViewModel
 @Composable
 fun HomeView(
     modifier: Modifier = Modifier,
-    vm: HomeViewModel = koinViewModel()
+    vm: HomeViewModel = koinViewModel(),
+    goPostDetail: (Int) -> Unit,
+    goProfileClick: (Int) -> Unit,
 ) {
     val pullRefreshState = rememberPullRefreshState(
         refreshing = vm.onBoardingUiState.isLoading && vm.postsUiState.isLoading,
@@ -43,13 +44,15 @@ fun HomeView(
                     }
                 }
             }
-            items(items = vm.postsUiState.posts, key = { post -> post.id }) {
+            items(items = vm.postsUiState.posts, key = { post -> post.id }) { post ->
                 PostListItem(
-                    post = it,
+                    post = post,
                     onPostClick = {},
-                    onProfileClick = {},
+                    onProfileClick = {
+                        goProfileClick(post.authorId)
+                    },
                     onLikeClick = {},
-                    onCommentClick = {})
+                    onCommentClick = { goPostDetail(post.id) })
             }
         }
 

@@ -26,15 +26,12 @@ import androidx.compose.ui.unit.dp
 import com.dokar.sonner.ToastType
 import com.dokar.sonner.Toaster
 import com.dokar.sonner.ToasterDefaults
-import com.dokar.sonner.ToasterState
 import com.dokar.sonner.rememberToasterState
 import components.ButtonHeight
 import components.CustomTextField
 import components.LargeSpacing
 import components.MediumSpacing
-import org.koin.compose.koinInject
 import org.koin.compose.viewmodel.koinViewModel
-import util.DispatcherProvider
 import viewmodel.SignUpViewModel
 
 @Composable

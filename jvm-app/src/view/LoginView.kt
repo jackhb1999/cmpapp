@@ -25,8 +25,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
-import cafe.adriel.voyager.navigator.LocalNavigator
 import com.dokar.sonner.ToastType
 import com.dokar.sonner.Toaster
 import com.dokar.sonner.ToasterDefaults
@@ -36,9 +34,7 @@ import components.CustomTextField
 import components.LargeSpacing
 import components.MediumSpacing
 import org.koin.compose.viewmodel.koinViewModel
-import screen.HomeScreen
 import viewmodel.LoginViewModel
-import viewmodel.SignUpViewModel
 
 @Composable
 @Preview

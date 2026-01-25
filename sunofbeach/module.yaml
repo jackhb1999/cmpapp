@@ -1,0 +1,45 @@
+product: jvm/app
+
+dependencies:
+  - ../common
+  - ../shared
+  - $compose.desktop.currentOs
+  - $libs.compose.materialIconsCore
+  - $libs.compose.materialIconsExtended
+  - $compose.components.resources
+  - $libs.lifecycle.viewmodel.compose
+  - $libs.lifecycle.runtime
+  - $libs.voyager.navigator
+  - $libs.voyager.tab.navigator
+  - $libs.voyager.transitions
+  - $libs.ktor.client.core
+  - $libs.ktor.client.cio
+  - $libs.ktor.client.json
+  - $libs.ktor.client.contentNegotiation
+  - $libs.ktor.serialization.kotlinx.json
+  - $libs.ktor.client.logging
+  - $libs.koin.core
+  - $libs.koin.compose
+  - $libs.koin.compose.viewModel
+  - org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2
+  - org.jetbrains.kotlinx:kotlinx-coroutines-swing:1.10.2
+  - io.github.dokar3:sonner:0.3.8
+  - io.coil-kt.coil3:coil-compose:3.3.0
+  - io.coil-kt.coil3:coil-network-okhttp:3.3.0
+  - commons-codec:commons-codec:1.20.0
+  - org.jetbrains.compose.material3:material3-window-size-class:1.7.3
+
+
+settings:
+  compose:
+    enabled: true
+  kotlin:
+    serialization: enabled
+
+
+
+repositories:
+  - https://repo.spring.io/ui/native/release
+  - url: https://dl.google.com/dl/android/maven2/
+  - id: jitpack
+    url: https://jitpack.io

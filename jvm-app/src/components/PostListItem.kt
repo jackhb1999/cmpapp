@@ -20,7 +20,6 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AddAPhoto
 import androidx.compose.material.icons.filled.AddComment
-import androidx.compose.material.icons.filled.Commute
 import androidx.compose.material.icons.filled.LiveTv
 import androidx.compose.material3.Text
 
@@ -36,8 +35,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
 import fake_data.Post
-import org.jetbrains.compose.resources.painterResource
-import kotlin.math.round
 
 @Composable
 fun PostListItem(
@@ -45,17 +42,17 @@ fun PostListItem(
     post: Post,
     onPostClick: (Post) -> Unit,
     onProfileClick: (Int) -> Unit,
-    onLikeClick: () -> Unit,
-    onCommentClick: () -> Unit,
+    onLikeClick: (Int) -> Unit,
+    onCommentClick: (Int) -> Unit,
     isDetailScreen: Boolean = false
 ) {
     Column(
         modifier = modifier.fillMaxWidth()
-            .aspectRatio(ratio = 0.7f)
             .background(color = MaterialTheme.colors.surface)
             .clickable {
                 onPostClick(post)
             }
+            .padding(bottom = ExtraLargeSpacing)
     ) {
         PostItemHeader(name = post.authorName, profileUrl = post.authorImage, date = post.createdAt) {
             onProfileClick(post.authorId)
@@ -75,8 +72,8 @@ fun PostListItem(
         PostLikesRow(
             likesCount = post.likeCount,
             commentsCount = post.commentCount,
-            onLikeClick = onLikeClick,
-            onCommentClick = onCommentClick
+            onLikeClick = { onLikeClick(post.id) },
+            onCommentClick = { onCommentClick(post.id) }
         )
 
         Text(

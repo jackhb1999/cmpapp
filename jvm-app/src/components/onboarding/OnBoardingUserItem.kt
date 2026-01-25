@@ -25,7 +25,6 @@ import components.FollowsButton
 import components.MediumSpacing
 import components.ShortSpacing
 import fake_data.FollowsUser
-import javax.swing.text.StyleContext
 
 @Composable
 fun OnBoardingUserItem(
@@ -64,7 +63,7 @@ fun OnBoardingUserItem(
 
             FollowsButton(
                 modifier = modifier.fillMaxWidth().heightIn(30.dp),
-                text = 0,
+                text = "关注",
                 onClick = { onFollowButtonClick(!isFollowing, followsUser) },
                 isOutline = isFollowing
             )

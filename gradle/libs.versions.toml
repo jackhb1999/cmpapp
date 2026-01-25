@@ -18,7 +18,7 @@ androidxLifecycle = "2.9.4"
 brComDevsrsouzaComposeIcons = "1.1.1"
 
 androidx-lifecycle = "2.9.5"
-composeHotReload = "1.0.0-rc02"
+composeHotReload = "1.0.0-rc03"
 composeMultiplatform = "1.9.1"
 junit = "4.13.2"
 
@@ -191,17 +191,17 @@ compose.desktop.macos_arm64 = "org.jetbrains.compose.desktop:desktop-jvm-macos-a
 compose.desktop.macos_x64 = "org.jetbrains.compose.desktop:desktop-jvm-macos-x64:1.8.0"
 compose.desktop.uiTestJUnit4 = "org.jetbrains.compose.ui:ui-test-junit4:1.8.0"
 compose.desktop.windows_x64 = "org.jetbrains.compose.desktop:desktop-jvm-windows-x64:1.8.0"
-compose.foundation = "org.jetbrains.compose.foundation:foundation:1.8.0"
-compose.html.core = "org.jetbrains.compose.html:html-core:1.8.0"
-compose.html.svg = "org.jetbrains.compose.html:html-svg:1.8.0"
-compose.html.testUtils = "org.jetbrains.compose.html:html-test-utils:1.8.0"
-compose.material = "org.jetbrains.compose.material:material:1.8.0"
-compose.material3 = "org.jetbrains.compose.material3:material3:1.8.0"
+compose.foundation = "org.jetbrains.compose.foundation:foundation:1.8.2"
+compose.html.core = "org.jetbrains.compose.html:html-core:1.8.2"
+compose.html.svg = "org.jetbrains.compose.html:html-svg:1.8.2"
+compose.html.testUtils = "org.jetbrains.compose.html:html-test-utils:1.8.2"
+compose.material = "org.jetbrains.compose.material:material:1.8.2"
+compose.material3 = "org.jetbrains.compose.material3:material3:1.8.2"
 compose.materialIconsCore = "org.jetbrains.compose.material:material-icons-core:1.7.3"
 compose.materialIconsExtended = "org.jetbrains.compose.material:material-icons-extended:1.7.3"
-compose.preview = "org.jetbrains.compose.ui:ui-tooling-preview:1.8.0"
-compose.runtime = "org.jetbrains.compose.runtime:runtime:1.8.0"
-compose.runtimeSaveable = "org.jetbrains.compose.runtime:runtime-saveable:1.8.0"
+compose.preview = "org.jetbrains.compose.ui:ui-tooling-preview:1.8.2"
+compose.runtime = "org.jetbrains.compose.runtime:runtime:1.8.2"
+compose.runtimeSaveable = "org.jetbrains.compose.runtime:runtime-saveable:1.8.2"
 compose.ui = "org.jetbrains.compose.ui:ui:1.8.0"
 compose.uiTest = "org.jetbrains.compose.ui:ui-test:1.8.0"
 compose.uiTooling = "org.jetbrains.compose.ui:ui-tooling:1.8.0"
@@ -225,9 +225,9 @@ voyager.navigator = { module = "cafe.adriel.voyager:voyager-navigator", version.
 voyager.tab.navigator = { module = "cafe.adriel.voyager:voyager-tab-navigator", version.ref = "voyagerVersion" }
 voyager.transitions = { module = "cafe.adriel.voyager:voyager-transitions", version.ref = "voyagerVersion" }
 
-kotlin.test = "org.jetbrains.kotlin:kotlin-test:2.2.0"
-kotlin.test.junit = "org.jetbrains.kotlin:kotlin-test-junit:2.2.0"
-kotlin.test.junit5 = "org.jetbrains.kotlin:kotlin-test-junit5:2.2.0"
+kotlin.test = "org.jetbrains.kotlin:kotlin-test:2.2.21"
+kotlin.test.junit = "org.jetbrains.kotlin:kotlin-test-junit:2.2.21"
+kotlin.test.junit5 = "org.jetbrains.kotlin:kotlin-test-junit5:2.2.21"
 kotlin.reflect = "org.jetbrains.kotlin:kotlin-reflect:2.2.0"
 kotlin.serialization.core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinSerialization" }
 kotlin.serialization.cbor = { module = "org.jetbrains.kotlinx:kotlinx-serialization-cbor", version.ref = "kotlinSerialization" }

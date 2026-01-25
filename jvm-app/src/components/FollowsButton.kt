@@ -16,7 +16,8 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 fun FollowsButton(
     modifier: Modifier = Modifier,
-    @StringRes text: Int,
+//    @StringRes text: Int,
+    text: String,
     onClick: () -> Unit,
     isOutline: Boolean = false
 ) {
@@ -36,7 +37,7 @@ fun FollowsButton(
     ){
         Text(
 //            text = stringResource(text),
-            text = "关注",
+            text = text,
             style = MaterialTheme.typography.titleLarge.copy(fontSize = 12.sp)
         )
     }

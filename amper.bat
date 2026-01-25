@@ -17,9 +17,9 @@
 setlocal
 
 @rem The version of the Amper distribution to provision and use
-set amper_version=0.9.0-dev-3467
+set amper_version=0.9.2
 @rem Establish chain of trust from here by specifying exact checksum of Amper distribution to be run
-set amper_sha256=e3000d8affb181ac7f47781ac43c258a1d5e1a88957a054de959f505fea4efa1
+set amper_sha256=33304bb301d0c5276ad4aa718ce8a10486fda4be45179779497d2036666bb16f
 
 if not defined AMPER_DOWNLOAD_ROOT set AMPER_DOWNLOAD_ROOT=https://packages.jetbrains.team/maven/p/amper/amper
 if not defined AMPER_JRE_DOWNLOAD_ROOT set AMPER_JRE_DOWNLOAD_ROOT=https:/
@@ -135,7 +135,7 @@ call :download_and_extract "Amper distribution v%amper_version%" "%amper_url%" "
 if errorlevel 1 goto fail
 
 REM !! DO NOT REMOVE !!
-REM There is a command at the end of this line:                                                                                                                                                                                                                                                                                                                   exit /b %ERRORLEVEL%
+REM There is a command at the end of this line:                                                                                                                                                                                                                                                                                                                            exit /b %ERRORLEVEL%
 REM
 REM The above comment is strategically placed to compensate for a bug in the update command in Amper 0.5.0.
 REM During the update, the wrapper script is overwritten in-place while running. The problem is that cmd.exe doesn't
@@ -150,7 +150,21 @@ REM adjust the position of the exit command, hence the padding placeholder.
 
 REM ********** Provision JRE for Amper **********
 
-if defined AMPER_JAVA_HOME goto jre_provisioned
+if defined AMPER_JAVA_HOME (
+    if not exist "%AMPER_JAVA_HOME%\bin\java.exe" (
+      echo Invalid AMPER_JAVA_HOME provided: cannot find %AMPER_JAVA_HOME%\bin\java.exe
+      goto fail
+    )
+    @rem If AMPER_JAVA_HOME contains "jbr-21", it means we're inheriting it from the old Amper's update command.
+    @rem We must ignore it because Amper needs 25.
+    if "%AMPER_JAVA_HOME%"=="%AMPER_JAVA_HOME:jbr-21=%" (
+        set effective_amper_java_home=%AMPER_JAVA_HOME%
+        goto jre_provisioned
+    ) else (
+        echo WARN: AMPER_JAVA_HOME will be ignored because it points to a JBR 21, which is not valid for Amper anymore.
+        echo If you're updating from an Amper version older than 0.8.0, please ignore this message.
+    )
+)
 
 @rem Auto-updated from syncVersions.main.kts, do not modify directly here
 set zulu_version=25.28.85
@@ -176,9 +190,9 @@ set jre_target_dir=%AMPER_BOOTSTRAP_CACHE_DIR%\zulu%zulu_version%-ca-%pkg_type%%
 call :download_and_extract "Amper runtime v%zulu_version%" "%jre_url%" "%jre_target_dir%" "%jre_sha256%" "256" "false"
 if errorlevel 1 goto fail
 
-set AMPER_JAVA_HOME=
-for /d %%d in ("%jre_target_dir%\*") do if exist "%%d\bin\java.exe" set AMPER_JAVA_HOME=%%d
-if not exist "%AMPER_JAVA_HOME%\bin\java.exe" (
+set effective_amper_java_home=
+for /d %%d in ("%jre_target_dir%\*") do if exist "%%d\bin\java.exe" set effective_amper_java_home=%%d
+if not exist "%effective_amper_java_home%\bin\java.exe" (
   echo Unable to find java.exe under %jre_target_dir%
   goto fail
 )
@@ -186,7 +200,7 @@ if not exist "%AMPER_JAVA_HOME%\bin\java.exe" (
 
 REM ********** Launch Amper **********
 
-"%AMPER_JAVA_HOME%\bin\java.exe" ^
+"%effective_amper_java_home%\bin\java.exe" ^
   @"%amper_target_dir%\amper.args" ^
   "-Damper.wrapper.dist.sha256=%amper_sha256%" ^
   "-Damper.dist.path=%amper_target_dir%" ^

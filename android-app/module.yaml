@@ -6,12 +6,17 @@ dependencies:
   - $libs.compose.foundation
   - androidx.appcompat:appcompat:1.6.1
   - androidx.activity:activity-compose:1.7.2
+  - $libs.androidx.datastore
+  - $libs.androidx.datastore.core
 
 settings:
   compose: enabled
   junit: junit-4
   kotlin:
     serialization: enabled
+  android:
+    minSdk: 24
+
 
 repositories:
   - https://mirrors.tencent.com/nexus/repository/maven-tencent
