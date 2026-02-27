@@ -7,8 +7,8 @@ dependencies:
   - $libs.compose.materialIconsCore
   - $libs.compose.materialIconsExtended
   - $compose.components.resources
-  - $libs.lifecycle.viewmodel.compose
-  - $libs.lifecycle.runtime
+  - $libs.androidx.lifecycle.viewmodel.compose
+  - $libs.androidx.lifecycle.runtime
   - $libs.voyager.navigator
   - $libs.voyager.tab.navigator
   - $libs.voyager.transitions
@@ -21,8 +21,8 @@ dependencies:
   - $libs.koin.core
   - $libs.koin.compose
   - $libs.koin.compose.viewModel
-  - org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2
-  - org.jetbrains.kotlinx:kotlinx-coroutines-swing:1.10.2
+  - $libs.kotlinx.coroutines.core
+  - $libs.kotlinx.coroutines.swing
   - io.github.dokar3:sonner:0.3.8
   - io.coil-kt.coil3:coil-compose:3.3.0
   - io.coil-kt.coil3:coil-network-okhttp:3.3.0
@@ -33,6 +33,7 @@ dependencies:
 settings:
   compose:
     enabled: true
+    version: 1.10.0
   kotlin:
     serialization: enabled
 

@@ -4,18 +4,24 @@ dependencies:
   - ../shared
   - $libs.compose.material3
   - $libs.compose.foundation
-  - androidx.appcompat:appcompat:1.6.1
-  - androidx.activity:activity-compose:1.7.2
+  - $libs.androidx.appcompat
+  - $libs.androidx.activity.compose
   - $libs.androidx.datastore
   - $libs.androidx.datastore.core
+  - androidx.compose.remote:remote-core:1.0.0-alpha03
+  - $libs.compose.preview
+  - $libs.compose.uiTooling
+
 
 settings:
-  compose: enabled
+  compose:
+    enabled: true
+    version: 1.10.0
   junit: junit-4
   kotlin:
     serialization: enabled
   android:
-    minSdk: 24
+    minSdk: 29
 
 
 repositories:

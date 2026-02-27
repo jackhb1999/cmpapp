@@ -1,13 +1,10 @@
 package usecase
 
-import com.hb.model.AuthResponse
-import io.ktor.util.Digest
 import model.LoginParam
 import org.apache.commons.codec.digest.DigestUtils
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import repository.UserRepository
-import util.Result
 
 class LoginUseCase : KoinComponent {
     private val repository: UserRepository by inject()

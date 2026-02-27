@@ -1,8 +1,6 @@
 package service
 
-import com.hb.model.AuthResponse
 import common.data.KtorApi
-import io.ktor.client.call.*
 import io.ktor.client.request.*
 import io.ktor.http.*
 import model.LoginParam

@@ -1,10 +1,10 @@
 package com.hb.repository
 
 import com.hb.dao.user.UserDao
-import com.hb.model.AuthResponse
-import com.hb.model.UserSettingsData
-import com.hb.model.SignInParams
-import com.hb.model.SignUpParams
+import model.AuthResponse
+import model.UserSettingsData
+import model.SignInParams
+import model.SignUpParams
 import com.hb.plugins.generateJWTToken
 import com.hb.security.hashPassword
 import util.Result

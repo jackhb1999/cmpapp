@@ -3,12 +3,12 @@ product:
   platforms: [jvm, android]
 
 dependencies:
-  - $libs.kotlinx.serialization.json
+  - $libs.kotlin.serialization.json
   - $libs.ktor.serialization.kotlinx.json
   - $libs.kotlin.serialization.core
   - $libs.kotlin.serialization.json
   - $libs.koin.core
-  - org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2
+  - $libs.kotlinx.coroutines.core
 
 
 

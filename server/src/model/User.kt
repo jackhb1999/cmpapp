@@ -1,6 +1,8 @@
 package com.hb.model
 
-import org.jetbrains.exposed.sql.Table
+import org.jetbrains.exposed.v1.core.ResultRow
+import org.jetbrains.exposed.v1.core.Table
+
 
 object UserRow : Table(name = "user") {
     val id = integer("user_id").autoIncrement()
@@ -22,4 +24,15 @@ data class User(
     val email: String,
     val bio: String,
     val avatar: String?
-)
+){
+  public  fun rowToUser(row: ResultRow): User {
+        return User(
+            id = row[UserRow.id],
+            name = row[UserRow.name],
+            password = row[UserRow.password],
+            email = row[UserRow.email],
+            bio = row[UserRow.bio],
+            avatar = row[UserRow.avatar]
+        )
+    }
+}

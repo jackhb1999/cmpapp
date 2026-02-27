@@ -1,8 +1,8 @@
 package repository
 
-import com.hb.model.AuthResponse
-import com.hb.model.SignInParams
-import com.hb.model.SignUpParams
+import model.AuthResponse
+import model.SignInParams
+import model.SignUpParams
 import util.Result
 
 interface UserRepository {

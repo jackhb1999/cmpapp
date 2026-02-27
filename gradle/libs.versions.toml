@@ -1,106 +1,123 @@
 [versions]
-exposed = "0.61.0"
-h2 = "2.3.232"
-koin = "4.1.1"
-kotlin = "2.2.20"
-ktor = "3.3.1"
-datastore = "1.2.0-rc01"
-postgres = "42.7.8"
-hikaricp = "7.0.2"
-
-nav3Core = "1.0.0-beta01"
-lifecycleViewmodelNav3 = "2.10.0-beta01"
-
-kotlinSerialization = "1.9.0"
-material3AdaptiveNav3 = "1.3.0-alpha02"
-voyagerVersion = "1.1.0-beta03"
+agp = "8.11.2"
+androidCompileSdk = "36"
+androidMinSdk = "24"
+androidTargetSdk = "36"
+androidxActivity = "1.12.2"
+#androidxActivity = "1.7.2"
+androidxAppcompat = "1.7.1"
+androidxCore = "1.17.0"
+#androidxCore = "1.9.0"
+androidxEspresso = "3.7.0"
+#androidxLifecycle = "2.9.6"
 androidxLifecycle = "2.9.4"
+androidxTestExt = "1.3.0"
 brComDevsrsouzaComposeIcons = "1.1.1"
-
-androidx-lifecycle = "2.9.5"
-composeHotReload = "1.0.0-rc03"
-composeMultiplatform = "1.9.1"
+composeHotReload = "1.0.0"
+composeMultiplatform = "1.10.0"
+#composeMultiplatform = "1.8.2"
+datastore = "1.2.0-rc01"
+exposed = "1.0.0"
+h2 = "2.4.240"
+hikaricp = "7.0.2"
 junit = "4.13.2"
-
-kotlinx-coroutines = "1.10.2"
-
-logback = "1.5.20"
-
+koin = "4.1.1"
+kotlin = "2.3.0"
+#kotlin = "2.2.21"
+kotlinSerialization = "1.9.0"
+kotlinxCcoroutines = "1.10.2"
+ktor = "3.3.3"
+lifecycleViewmodelNav3 = "2.10.0-beta01"
+logback = "1.5.24"
+material = "1.5.2"
+material3 = "1.10.0-alpha05"
+#material3 = "1.8.2"
+material3AdaptiveNav3 = "1.3.0-alpha02"
+nav3Core = "1.0.0-beta01"
+postgres = "42.7.8"
+voyagerVersion = "1.1.0-beta03"
 
 [libraries]
-kotlin.test = "org.jetbrains.kotlin:kotlin-test:2.2.0"
-kotlin.test.junit = "org.jetbrains.kotlin:kotlin-test-junit:2.2.0"
-kotlin.test.junit5 = "org.jetbrains.kotlin:kotlin-test-junit5:2.2.0"
+androidx.activity.compose = { module = "androidx.activity:activity-compose", version.ref = "androidxActivity" }
+androidx.appcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidxAppcompat" }
+androidx.core.ktx = { module = "androidx.core:core-ktx", version.ref = "androidxCore" }
+androidx.compose.uiToolingPreview = {module="androidx.compose.ui:ui-tooling-preview",version.ref="composeMultiplatform"}
+androidx.datastore = { module = "androidx.datastore:datastore", version.ref = "datastore" }
+androidx.datastore.core = { module = "androidx.datastore:datastore-core", version.ref = "datastore" }
+androidx.datastore.preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore" }
+androidx.espresso.core = { module = "androidx.test.espresso:espresso-core", version.ref = "androidxEspresso" }
+androidx.lifecycle.runtime = { module = "androidx.lifecycle:lifecycle-runtime", version.ref = "androidxLifecycle" }
+androidx.lifecycle.runtimeCompose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidxLifecycle" }
+androidx.lifecycle.viewmodel.navigation3 = { module = "androidx.lifecycle:lifecycle-viewmodel-navigation3", version.ref = "lifecycleViewmodelNav3" }
+androidx.lifecycle.viewmodel.compose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "androidxLifecycle" }
+androidx.material3.adaptive.navigation3 = { group = "androidx.compose.material3.adaptive", name = "adaptive-navigation3", version.ref = "material3AdaptiveNav3" }
+androidx.navigation3.runtime = { module = "androidx.navigation3:navigation3-runtime", version.ref = "nav3Core" }
+androidx.navigation3.ui = { module = "androidx.navigation3:navigation3-ui", version.ref = "nav3Core" }
+androidx.testExt.junit = { module = "androidx.test.ext:junit", version.ref = "androidxTestExt" }
+compose.animation = "org.jetbrains.compose.animation:animation:1.8.0"
+compose.animationGraphics = "org.jetbrains.compose.animation:animation-graphics:1.8.0"
+compose.components.resources = { module = "org.jetbrains.compose.components:components-resources", version.ref = "composeMultiplatform" }
+compose.desktop.common = "org.jetbrains.compose.desktop:desktop:1.8.0"
+compose.desktop.components.animatedImage = "org.jetbrains.compose.components:components-animatedimage:1.8.0"
+compose.desktop.components.splitPane = "org.jetbrains.compose.components:components-splitpane:1.8.0"
+compose.desktop.currentOs = "org.jetbrains.compose.desktop:desktop-jvm-windows-x64:1.8.0"
+compose.desktop.linux_arm64 = "org.jetbrains.compose.desktop:desktop-jvm-linux-arm64:1.8.0"
+compose.desktop.linux_x64 = "org.jetbrains.compose.desktop:desktop-jvm-linux-x64:1.8.0"
+compose.desktop.macos_arm64 = "org.jetbrains.compose.desktop:desktop-jvm-macos-arm64:1.8.0"
+compose.desktop.macos_x64 = "org.jetbrains.compose.desktop:desktop-jvm-macos-x64:1.8.0"
+compose.desktop.uiTestJUnit4 = "org.jetbrains.compose.ui:ui-test-junit4:1.8.0"
+compose.desktop.windows_x64 = "org.jetbrains.compose.desktop:desktop-jvm-windows-x64:1.8.0"
+compose.foundation = { module = "org.jetbrains.compose.foundation:foundation", version.ref = "composeMultiplatform" }
+compose.html.core = "org.jetbrains.compose.html:html-core:1.8.2"
+compose.html.svg = "org.jetbrains.compose.html:html-svg:1.8.2"
+compose.html.testUtils = "org.jetbrains.compose.html:html-test-utils:1.8.2"
+compose.material = { module = "org.jetbrains.compose.material:material", version.ref = "material" }
+compose.material3 = { module = "org.jetbrains.compose.material3:material3", version.ref = "material3" }
+compose.material3.windows = { module = "org.jetbrains.compose.material3:material3-window-size-class", version.ref = "material3" }
+compose.materialIconsCore = "org.jetbrains.compose.material:material-icons-core:1.7.3"
+compose.materialIconsExtended = "org.jetbrains.compose.material:material-icons-extended:1.7.3"
+compose.preview = { module = "org.jetbrains.compose.ui:ui-tooling-preview", version.ref = "composeMultiplatform" }
+compose.runtime = { module = "org.jetbrains.compose.runtime:runtime", version.ref = "composeMultiplatform" }
+compose.runtimeSaveable = "org.jetbrains.compose.runtime:runtime-saveable:1.8.2"
+compose.ui = { module = "org.jetbrains.compose.ui:ui", version.ref = "composeMultiplatform" }
+compose.uiTest = "org.jetbrains.compose.ui:ui-test:1.8.0"
+compose.uiTooling = { module = "org.jetbrains.compose.ui:ui-tooling", version.ref = "composeMultiplatform" }
+compose.uiToolingPreview = { module = "org.jetbrains.compose.ui:ui-tooling-preview", version.ref = "composeMultiplatform" }
+exposed.core = { module = "org.jetbrains.exposed:exposed-core", version.ref = "exposed" }
+exposed.dao = { module = "org.jetbrains.exposed:exposed-dao", version.ref = "exposed" }
+exposed.datetime = { module = "org.jetbrains.exposed:exposed-kotlin-datetime", version.ref = "exposed" }
+exposed.jdbc = { module = "org.jetbrains.exposed:exposed-jdbc", version.ref = "exposed" }
+feather = { module = "br.com.devsrsouza.compose.icons:feather", version.ref = "brComDevsrsouzaComposeIcons" }
+font.awesome = { module = "br.com.devsrsouza.compose.icons:font-awesome", version.ref = "brComDevsrsouzaComposeIcons" }
+h2 = { module = "com.h2database:h2", version.ref = "h2" }
+hikariCP = { module = "com.zaxxer:HikariCP", version.ref = "hikaricp" }
+junit = { module = "junit:junit", version.ref = "junit" }
+koin.compose = { module = "io.insert-koin:koin-compose", version.ref = "koin" }
+koin.compose.viewModel = { module = "io.insert-koin:koin-compose-viewmodel", version.ref = "koin" }
+koin.core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
+koin.ktor = { module = "io.insert-koin:koin-ktor", version.ref = "koin" }
+koin.logger.slf4j = { module = "io.insert-koin:koin-logger-slf4j", version.ref = "koin" }
 kotlin.reflect = "org.jetbrains.kotlin:kotlin-reflect:2.2.0"
-ktor.bom = "io.ktor:ktor-bom:3.1.1"
+kotlin.serialization.cbor = { module = "org.jetbrains.kotlinx:kotlinx-serialization-cbor", version.ref = "kotlinSerialization" }
+kotlin.serialization.core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinSerialization" }
+kotlin.serialization.hocon = { module = "org.jetbrains.kotlinx:kotlinx-serialization-hocon", version.ref = "kotlinSerialization" }
+kotlin.serialization.json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinSerialization" }
+kotlin.serialization.json-okio = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json-okio", version.ref = "kotlinSerialization" }
+kotlin.serialization.properties = { module = "org.jetbrains.kotlinx:kotlinx-serialization-properties", version.ref = "kotlinSerialization" }
+kotlin.serialization.protobuf = { module = "org.jetbrains.kotlinx:kotlinx-serialization-protobuf", version.ref = "kotlinSerialization" }
+kotlin.test =  { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
+kotlin.test.junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
+kotlin.test.junit5 = "org.jetbrains.kotlin:kotlin-test-junit5:2.2.21"
+kotlinx.coroutines.android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinxCcoroutines" }
+kotlinx.coroutines.core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCcoroutines" }
+kotlinx.coroutines.swing = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-swing", version.ref = "kotlinxCcoroutines" }
+
+
 ktor.auth = "io.ktor:ktor-auth"
 ktor.auth.jwt = "io.ktor:ktor-auth-jwt"
 ktor.auth.ldap = "io.ktor:ktor-auth-ldap"
-ktor.freemarker = "io.ktor:ktor-freemarker"
-ktor.html.builder = "io.ktor:ktor-html-builder"
-ktor.http = "io.ktor:ktor-http"
-ktor.http.cio = "io.ktor:ktor-http-cio"
-ktor.locations = "io.ktor:ktor-locations"
-ktor.mustache = "io.ktor:ktor-mustache"
-ktor.pebble = "io.ktor:ktor-pebble"
-ktor.server.auth = "io.ktor:ktor-server-auth"
-ktor.server.auth.jwt = "io.ktor:ktor-server-auth-jwt"
-ktor.server.auth.ldap = "io.ktor:ktor-server-auth-ldap"
-ktor.server.autoHeadResponse = "io.ktor:ktor-server-auto-head-response"
-ktor.server.bodyLimit = "io.ktor:ktor-server-body-limit"
-ktor.server.cachingHeaders = "io.ktor:ktor-server-caching-headers"
-ktor.server.callId = "io.ktor:ktor-server-call-id"
-ktor.server.callLogging = "io.ktor:ktor-server-call-logging"
-ktor.server.cio = "io.ktor:ktor-server-cio"
-ktor.server.compression = "io.ktor:ktor-server-compression"
-ktor.server.conditionalHeaders = "io.ktor:ktor-server-conditional-headers"
-ktor.server.configYaml = "io.ktor:ktor-server-config-yaml"
-ktor.server.contentNegotiation = "io.ktor:ktor-server-content-negotiation"
-ktor.server.core = "io.ktor:ktor-server-core"
-ktor.server.cors = "io.ktor:ktor-server-cors"
-ktor.server.csrf = "io.ktor:ktor-server-csrf"
-ktor.server.dataConversion = "io.ktor:ktor-server-data-conversion"
-ktor.server.defaultHeaders = "io.ktor:ktor-server-default-headers"
-ktor.server.doubleReceive = "io.ktor:ktor-server-double-receive"
-ktor.server.forwardedHeader = "io.ktor:ktor-server-forwarded-header"
-ktor.server.freemarker = "io.ktor:ktor-server-freemarker"
-ktor.server.hsts = "io.ktor:ktor-server-hsts"
-ktor.server.htmlBuilder = "io.ktor:ktor-server-html-builder"
-ktor.server.httpRedirect = "io.ktor:ktor-server-http-redirect"
-ktor.server.i18n = "io.ktor:ktor-server-i18n"
-ktor.server.jetty = "io.ktor:ktor-server-jetty"
-ktor.server.jetty.jakarta = "io.ktor:ktor-server-jetty-jakarta"
-ktor.server.jte = "io.ktor:ktor-server-jte"
-ktor.server.locations = "io.ktor:ktor-server-locations"
-ktor.server.methodOverride = "io.ktor:ktor-server-method-override"
-ktor.server.metrics = "io.ktor:ktor-server-metrics"
-ktor.server.metrics.micrometer = "io.ktor:ktor-server-metrics-micrometer"
-ktor.server.mustache = "io.ktor:ktor-server-mustache"
-ktor.server.netty = "io.ktor:ktor-server-netty"
-ktor.server.openapi = "io.ktor:ktor-server-openapi"
-ktor.server.partialContent = "io.ktor:ktor-server-partial-content"
-ktor.server.pebble = "io.ktor:ktor-server-pebble"
-ktor.server.plugins = "io.ktor:ktor-server-plugins"
-ktor.server.rateLimit = "io.ktor:ktor-server-rate-limit"
-ktor.server.requestValidation = "io.ktor:ktor-server-request-validation"
-ktor.server.resources = "io.ktor:ktor-server-resources"
-ktor.server.servlet = "io.ktor:ktor-server-servlet"
-ktor.server.servlet.jakarta = "io.ktor:ktor-server-servlet-jakarta"
-ktor.server.sessions = "io.ktor:ktor-server-sessions"
-ktor.server.sse = "io.ktor:ktor-server-sse"
-ktor.server.statusPages = "io.ktor:ktor-server-status-pages"
-ktor.server.swagger = "io.ktor:ktor-server-swagger"
-ktor.server.testHost = "io.ktor:ktor-server-test-host"
-ktor.server.thymeleaf = "io.ktor:ktor-server-thymeleaf"
-ktor.server.tomcat = "io.ktor:ktor-server-tomcat"
-ktor.server.tomcat.jakarta = "io.ktor:ktor-server-tomcat-jakarta"
-ktor.server.velocity = "io.ktor:ktor-server-velocity"
-ktor.server.webjars = "io.ktor:ktor-server-webjars"
-ktor.server.websockets = "io.ktor:ktor-server-websockets"
-ktor.thymeleaf = "io.ktor:ktor-thymeleaf"
-ktor.velocity = "io.ktor:ktor-velocity"
-ktor.webjars = "io.ktor:ktor-webjars"
-ktor.websockets = "io.ktor:ktor-websockets"
+ktor.bom = "io.ktor:ktor-bom:3.1.1"
+ktor.callId = "io.ktor:ktor-call-id"
 ktor.client = "io.ktor:ktor-client"
 ktor.client.apache = "io.ktor:ktor-client-apache"
 ktor.client.apache5 = "io.ktor:ktor-client-apache5"
@@ -127,17 +144,23 @@ ktor.client.serialization = "io.ktor:ktor-client-serialization"
 ktor.client.websocket = "io.ktor:ktor-client-websocket"
 ktor.client.websockets = "io.ktor:ktor-client-websockets"
 ktor.client.winhttp = "io.ktor:ktor-client-winhttp"
-ktor.callId = "io.ktor:ktor-call-id"
 ktor.events = "io.ktor:ktor-events"
 ktor.features = "io.ktor:ktor-features"
+ktor.freemarker = "io.ktor:ktor-freemarker"
 ktor.gson = "io.ktor:ktor-gson"
+ktor.html.builder = "io.ktor:ktor-html-builder"
+ktor.http = "io.ktor:ktor-http"
+ktor.http.cio = "io.ktor:ktor-http-cio"
 ktor.io = "io.ktor:ktor-io"
 ktor.jackson = "io.ktor:ktor-jackson"
+ktor.locations = "io.ktor:ktor-locations"
 ktor.metrics = "io.ktor:ktor-metrics"
 ktor.metrics.micrometer = "io.ktor:ktor-metrics-micrometer"
+ktor.mustache = "io.ktor:ktor-mustache"
 ktor.network = "io.ktor:ktor-network"
 ktor.network.tls = "io.ktor:ktor-network-tls"
 ktor.network.tls.certificates = "io.ktor:ktor-network-tls-certificates"
+ktor.pebble = "io.ktor:ktor-pebble"
 ktor.resources = "io.ktor:ktor-resources"
 ktor.serialization = "io.ktor:ktor-serialization"
 ktor.serialization.gson = "io.ktor:ktor-serialization-gson"
@@ -145,112 +168,89 @@ ktor.serialization.jackson = "io.ktor:ktor-serialization-jackson"
 ktor.serialization.kotlinx = "io.ktor:ktor-serialization-kotlinx"
 ktor.serialization.kotlinx.cbor = "io.ktor:ktor-serialization-kotlinx-cbor"
 ktor.serialization.kotlinx.json = "io.ktor:ktor-serialization-kotlinx-json"
+ktor.serialization.kotlinx.json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
 ktor.serialization.kotlinx.protobuf = "io.ktor:ktor-serialization-kotlinx-protobuf"
 ktor.serialization.kotlinx.xml = "io.ktor:ktor-serialization-kotlinx-xml"
-ktor.sse = "io.ktor:ktor-sse"
-ktor.utils = "io.ktor:ktor-utils"
-ktor.websocket.serialization = "io.ktor:ktor-websocket-serialization"
-logback.classic = "ch.qos.logback:logback-classic:1.5.18"
-koin.ktor = { module = "io.insert-koin:koin-ktor", version.ref = "koin" }
-koin.core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
-koin.compose = { module = "io.insert-koin:koin-compose", version.ref = "koin" }
-koin.compose.viewModel = { module = "io.insert-koin:koin-compose-viewmodel", version.ref = "koin" }
-koin.logger.slf4j = { module = "io.insert-koin:koin-logger-slf4j", version.ref = "koin" }
-ktor.server.core = { module = "io.ktor:ktor-server-core", version.ref = "ktor" }
-ktor.serialization.kotlinx.json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
-ktor.server.content.negotiation = { module = "io.ktor:ktor-server-content-negotiation", version.ref = "ktor" }
-postgresql = { module = "org.postgresql:postgresql", version.ref = "postgres" }
-h2 = { module = "com.h2database:h2", version.ref = "h2" }
-exposed.core = { module = "org.jetbrains.exposed:exposed-core", version.ref = "exposed" }
-exposed.jdbc = { module = "org.jetbrains.exposed:exposed-jdbc", version.ref = "exposed" }
 ktor.server.auth = { module = "io.ktor:ktor-server-auth", version.ref = "ktor" }
 ktor.server.auth.jwt = { module = "io.ktor:ktor-server-auth-jwt", version.ref = "ktor" }
-ktor.server.netty = { module = "io.ktor:ktor-server-netty", version.ref = "ktor" }
-logback.classic = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
+ktor.server.auth.ldap = "io.ktor:ktor-server-auth-ldap"
+ktor.server.autoHeadResponse = "io.ktor:ktor-server-auto-head-response"
+ktor.server.bodyLimit = "io.ktor:ktor-server-body-limit"
+ktor.server.cachingHeaders = "io.ktor:ktor-server-caching-headers"
+ktor.server.callId = "io.ktor:ktor-server-call-id"
+ktor.server.callLogging = "io.ktor:ktor-server-call-logging"
+ktor.server.cio = "io.ktor:ktor-server-cio"
+ktor.server.compression = "io.ktor:ktor-server-compression"
+ktor.server.conditionalHeaders = "io.ktor:ktor-server-conditional-headers"
 ktor.server.config.yaml = { module = "io.ktor:ktor-server-config-yaml", version.ref = "ktor" }
+ktor.server.content.negotiation = { module = "io.ktor:ktor-server-content-negotiation", version.ref = "ktor" }
+ktor.server.core = { module = "io.ktor:ktor-server-core", version.ref = "ktor" }
+ktor.server.core.jvm = { module = "io.ktor:ktor-server-core-jvm", version.ref = "ktor" }
+ktor.server.cors = "io.ktor:ktor-server-cors"
+ktor.server.csrf = "io.ktor:ktor-server-csrf"
+ktor.server.dataConversion = "io.ktor:ktor-server-data-conversion"
+ktor.server.defaultHeaders = "io.ktor:ktor-server-default-headers"
+ktor.server.doubleReceive = "io.ktor:ktor-server-double-receive"
+ktor.server.forwardedHeader = "io.ktor:ktor-server-forwarded-header"
+ktor.server.freemarker = "io.ktor:ktor-server-freemarker"
+ktor.server.hsts = "io.ktor:ktor-server-hsts"
+ktor.server.htmlBuilder = "io.ktor:ktor-server-html-builder"
+ktor.server.httpRedirect = "io.ktor:ktor-server-http-redirect"
+ktor.server.i18n = "io.ktor:ktor-server-i18n"
+ktor.server.jetty = "io.ktor:ktor-server-jetty"
+ktor.server.jetty.jakarta = "io.ktor:ktor-server-jetty-jakarta"
+ktor.server.jte = "io.ktor:ktor-server-jte"
+ktor.server.locations = "io.ktor:ktor-server-locations"
+ktor.server.methodOverride = "io.ktor:ktor-server-method-override"
+ktor.server.metrics = "io.ktor:ktor-server-metrics"
+ktor.server.metrics.micrometer = "io.ktor:ktor-server-metrics-micrometer"
+ktor.server.mustache = "io.ktor:ktor-server-mustache"
+ktor.server.netty.jvm =  { module = "io.ktor:ktor-server-netty-jvm", version.ref = "ktor" }
+ktor.server.netty = { module = "io.ktor:ktor-server-netty", version.ref = "ktor" }
+ktor.server.openapi = "io.ktor:ktor-server-openapi"
+ktor.server.partialContent = "io.ktor:ktor-server-partial-content"
+ktor.server.pebble = "io.ktor:ktor-server-pebble"
+ktor.server.plugins = "io.ktor:ktor-server-plugins"
+ktor.server.rateLimit = "io.ktor:ktor-server-rate-limit"
+ktor.server.requestValidation = "io.ktor:ktor-server-request-validation"
+ktor.server.resources = "io.ktor:ktor-server-resources"
+ktor.server.servlet = "io.ktor:ktor-server-servlet"
+ktor.server.servlet.jakarta = "io.ktor:ktor-server-servlet-jakarta"
+ktor.server.sessions = "io.ktor:ktor-server-sessions"
+ktor.server.sse = "io.ktor:ktor-server-sse"
+ktor.server.statusPages = "io.ktor:ktor-server-status-pages"
+ktor.server.swagger = "io.ktor:ktor-server-swagger"
 ktor.server.test.host = { module = "io.ktor:ktor-server-test-host", version.ref = "ktor" }
-kotlin.test.junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
-hikariCP = { module = "com.zaxxer:HikariCP", version.ref = "hikaricp" }
-kotlinx-serialization-json = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0"
+ktor.server.test.host.jvm = { module = "io.ktor:ktor-server-test-host-jvm", version.ref = "ktor" }
+ktor.server.thymeleaf = "io.ktor:ktor-server-thymeleaf"
+ktor.server.tomcat = "io.ktor:ktor-server-tomcat"
+ktor.server.tomcat.jakarta = "io.ktor:ktor-server-tomcat-jakarta"
+ktor.server.velocity = "io.ktor:ktor-server-velocity"
+ktor.server.webjars = "io.ktor:ktor-server-webjars"
+ktor.server.websockets = "io.ktor:ktor-server-websockets"
+ktor.sse = "io.ktor:ktor-sse"
+ktor.thymeleaf = "io.ktor:ktor-thymeleaf"
+ktor.utils = "io.ktor:ktor-utils"
+ktor.velocity = "io.ktor:ktor-velocity"
+ktor.webjars = "io.ktor:ktor-webjars"
+ktor.websocket.serialization = "io.ktor:ktor-websocket-serialization"
+ktor.websockets = "io.ktor:ktor-websockets"
 
-
-kotlin.test = "org.jetbrains.kotlin:kotlin-test:2.2.0"
-kotlin.test.junit = "org.jetbrains.kotlin:kotlin-test-junit:2.2.0"
-kotlin.test.junit5 = "org.jetbrains.kotlin:kotlin-test-junit5:2.2.0"
-kotlin.reflect = "org.jetbrains.kotlin:kotlin-reflect:2.2.0"
-compose.animation = "org.jetbrains.compose.animation:animation:1.8.0"
-compose.animationGraphics = "org.jetbrains.compose.animation:animation-graphics:1.8.0"
-compose.components.resources = "org.jetbrains.compose.components:components-resources:1.8.0"
-compose.desktop.common = "org.jetbrains.compose.desktop:desktop:1.8.0"
-compose.desktop.components.animatedImage = "org.jetbrains.compose.components:components-animatedimage:1.8.0"
-compose.desktop.components.splitPane = "org.jetbrains.compose.components:components-splitpane:1.8.0"
-compose.desktop.currentOs = "org.jetbrains.compose.desktop:desktop-jvm-windows-x64:1.8.0"
-compose.desktop.linux_arm64 = "org.jetbrains.compose.desktop:desktop-jvm-linux-arm64:1.8.0"
-compose.desktop.linux_x64 = "org.jetbrains.compose.desktop:desktop-jvm-linux-x64:1.8.0"
-compose.desktop.macos_arm64 = "org.jetbrains.compose.desktop:desktop-jvm-macos-arm64:1.8.0"
-compose.desktop.macos_x64 = "org.jetbrains.compose.desktop:desktop-jvm-macos-x64:1.8.0"
-compose.desktop.uiTestJUnit4 = "org.jetbrains.compose.ui:ui-test-junit4:1.8.0"
-compose.desktop.windows_x64 = "org.jetbrains.compose.desktop:desktop-jvm-windows-x64:1.8.0"
-compose.foundation = "org.jetbrains.compose.foundation:foundation:1.8.2"
-compose.html.core = "org.jetbrains.compose.html:html-core:1.8.2"
-compose.html.svg = "org.jetbrains.compose.html:html-svg:1.8.2"
-compose.html.testUtils = "org.jetbrains.compose.html:html-test-utils:1.8.2"
-compose.material = "org.jetbrains.compose.material:material:1.8.2"
-compose.material3 = "org.jetbrains.compose.material3:material3:1.8.2"
-compose.materialIconsCore = "org.jetbrains.compose.material:material-icons-core:1.7.3"
-compose.materialIconsExtended = "org.jetbrains.compose.material:material-icons-extended:1.7.3"
-compose.preview = "org.jetbrains.compose.ui:ui-tooling-preview:1.8.2"
-compose.runtime = "org.jetbrains.compose.runtime:runtime:1.8.2"
-compose.runtimeSaveable = "org.jetbrains.compose.runtime:runtime-saveable:1.8.2"
-compose.ui = "org.jetbrains.compose.ui:ui:1.8.0"
-compose.uiTest = "org.jetbrains.compose.ui:ui-test:1.8.0"
-compose.uiTooling = "org.jetbrains.compose.ui:ui-tooling:1.8.0"
-
-# Core Navigation 3 libraries
-androidx.navigation3.runtime = { module = "androidx.navigation3:navigation3-runtime", version.ref = "nav3Core" }
-androidx.navigation3.ui = { module = "androidx.navigation3:navigation3-ui", version.ref = "nav3Core" }
-
-# Optional add-on libraries
-androidx.lifecycle.viewmodel.navigation3 = { module = "androidx.lifecycle:lifecycle-viewmodel-navigation3", version.ref = "lifecycleViewmodelNav3" }
-kotlinx.serialization.core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinxSerializationCore" }
-androidx.material3.adaptive.navigation3 = { group = "androidx.compose.material3.adaptive", name = "adaptive-navigation3", version.ref = "material3AdaptiveNav3" }
-
-font.awesome = { module = "br.com.devsrsouza.compose.icons:font-awesome", version.ref = "brComDevsrsouzaComposeIcons" }
-feather = { module = "br.com.devsrsouza.compose.icons:feather", version.ref = "brComDevsrsouzaComposeIcons" }
-
-lifecycle.viewmodel.compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "androidxLifecycle" }
-lifecycle.runtime = { module = "androidx.lifecycle:lifecycle-runtime", version.ref = "androidxLifecycle" }
-
+logback.classic = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
+postgresql = { module = "org.postgresql:postgresql", version.ref = "postgres" }
 voyager.navigator = { module = "cafe.adriel.voyager:voyager-navigator", version.ref = "voyagerVersion" }
 voyager.tab.navigator = { module = "cafe.adriel.voyager:voyager-tab-navigator", version.ref = "voyagerVersion" }
 voyager.transitions = { module = "cafe.adriel.voyager:voyager-transitions", version.ref = "voyagerVersion" }
 
-kotlin.test = "org.jetbrains.kotlin:kotlin-test:2.2.21"
-kotlin.test.junit = "org.jetbrains.kotlin:kotlin-test-junit:2.2.21"
-kotlin.test.junit5 = "org.jetbrains.kotlin:kotlin-test-junit5:2.2.21"
-kotlin.reflect = "org.jetbrains.kotlin:kotlin-reflect:2.2.0"
-kotlin.serialization.core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinSerialization" }
-kotlin.serialization.cbor = { module = "org.jetbrains.kotlinx:kotlinx-serialization-cbor", version.ref = "kotlinSerialization" }
-kotlin.serialization.hocon = { module = "org.jetbrains.kotlinx:kotlinx-serialization-hocon", version.ref = "kotlinSerialization" }
-kotlin.serialization.json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinSerialization" }
-kotlin.serialization.json-okio = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json-okio", version.ref = "kotlinSerialization" }
-kotlin.serialization.properties = { module = "org.jetbrains.kotlinx:kotlinx-serialization-properties", version.ref = "kotlinSerialization" }
-kotlin.serialization.protobuf = { module = "org.jetbrains.kotlinx:kotlinx-serialization-protobuf", version.ref = "kotlinSerialization" }
 
-androidx.datastore = { module = "androidx.datastore:datastore", version.ref = "datastore" }
-androidx.datastore.core = { module = "androidx.datastore:datastore-core", version.ref = "datastore" }
-androidx.datastore.preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore" }
 
 [plugins]
-kotlin.jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
-ktor = { id = "io.ktor.plugin", version.ref = "ktor" }
-kotlin.plugin.serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
-
-jetbrains-kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlinSerialization" }
-
-composeHotReload = { id = "org.jetbrains.compose.hot-reload", version.ref = "composeHotReload" }
-
-composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "composeMultiplatform" }
+androidApplication = { id = "com.android.application", version.ref = "agp" }
+androidLibrary = { id = "com.android.library", version.ref = "agp" }
 composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
-kotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+composeHotReload = { id = "org.jetbrains.compose.hot-reload", version.ref = "composeHotReload" }
+composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "composeMultiplatform" }
+kotlin.plugin.serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlinSerialization" }
+kotlin.jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+ktor = { id = "io.ktor.plugin", version.ref = "ktor" }

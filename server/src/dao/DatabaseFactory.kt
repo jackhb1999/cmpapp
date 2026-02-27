@@ -1,19 +1,30 @@
 package com.hb.dao
 
+import com.hb.model.DeptEntity
+import com.hb.model.DeptTable
 import com.hb.model.UserRow
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
 import kotlinx.coroutines.Dispatchers
-import org.jetbrains.exposed.sql.Database
-import org.jetbrains.exposed.sql.SchemaUtils
-import org.jetbrains.exposed.sql.transactions.experimental.newSuspendedTransaction
-import org.jetbrains.exposed.sql.transactions.transaction
+import org.jetbrains.exposed.v1.jdbc.Database
+import org.jetbrains.exposed.v1.jdbc.SchemaUtils
+import org.jetbrains.exposed.v1.jdbc.exists
+import org.jetbrains.exposed.v1.jdbc.transactions.experimental.newSuspendedTransaction
+import org.jetbrains.exposed.v1.jdbc.transactions.transaction
+
 
 object DatabaseFactory {
     fun init() {
         Database.connect(createHikariDataSource())
+        // print sql to std-out
+//        addLogger(StdOutSqlLogger)
         transaction {
-            SchemaUtils.create(UserRow)
+            if (!UserRow.exists()) {
+                SchemaUtils.create(UserRow)
+            }
+            if(!DeptTable.exists()){
+                SchemaUtils.create(DeptTable)
+            }
         }
     }
 

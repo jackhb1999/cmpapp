@@ -15,17 +15,19 @@ dependencies:
   - $libs.koin.logger.slf4j
   - $libs.ktor.server.core
   - $libs.ktor.serialization.kotlinx.json
-  - $libs.kotlinx.serialization.json
+  - $libs.kotlin.serialization.json
   - $libs.ktor.server.content.negotiation
   - $libs.postgresql
   - $libs.hikariCP
   - $libs.exposed.core
   - $libs.exposed.jdbc
+  - $libs.exposed.datetime
+  - $libs.exposed.dao
   - $libs.ktor.server.auth
   - $libs.ktor.server.auth.jwt
   - $libs.ktor.server.netty
-  - $libs.logback.classic
   - $libs.ktor.server.config.yaml
+  - org.slf4j:slf4j-nop:2.0.9
 
 
 test-dependencies:

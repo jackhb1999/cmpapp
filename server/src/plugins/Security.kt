@@ -2,7 +2,7 @@ package com.hb.plugins
 
 import com.auth0.jwt.JWT
 import com.auth0.jwt.algorithms.Algorithm
-import com.hb.model.AuthResponse
+import model.AuthResponse
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.auth.*

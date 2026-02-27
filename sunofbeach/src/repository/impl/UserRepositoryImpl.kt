@@ -1,12 +1,10 @@
 package repository.impl
 
-import com.hb.model.AuthResponse
 import kotlinx.coroutines.withContext
 import model.LoginParam
 import repository.UserRepository
 import service.ApiService
 import util.DispatcherProvider
-import util.Result
 
 internal class UserRepositoryImpl(
     private val dispatcher: DispatcherProvider,

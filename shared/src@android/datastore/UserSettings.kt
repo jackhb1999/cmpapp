@@ -1,7 +1,7 @@
 package datastore
 
 import androidx.datastore.core.Serializer
-import com.hb.model.UserSettingsData
+import model.UserSettingsData
 import kotlinx.serialization.SerializationException
 import kotlinx.serialization.json.Json
 import java.io.InputStream

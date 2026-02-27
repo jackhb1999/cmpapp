@@ -1,6 +1,6 @@
 package com.hb.dao.user
 
-import com.hb.model.SignUpParams
+import model.SignUpParams
 import com.hb.model.User
 
 interface UserDao {
