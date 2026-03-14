@@ -10,3 +10,5 @@ build
 rslib/target
 
 /rslib/lib/
+/rslib/generated-java
+
