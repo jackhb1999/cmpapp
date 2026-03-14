@@ -3,7 +3,7 @@ modules:
   - android-app
   - server
   - shared
-  - rslib
+  - rs_lib
   - common
 
 

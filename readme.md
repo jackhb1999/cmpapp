@@ -19,7 +19,7 @@ modules:
 - android-app 对应安卓客户端
 - server 对应服务器
 - shared 对应不同客户端的ui、逻辑实现，默认src下为默认共享
-- rslib rust逻辑，暂不参与
+- rs_lib rust逻辑，暂不参与模块耦合
 - common 共享数据结构给服务器和客户端
 
 

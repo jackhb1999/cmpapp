@@ -7,8 +7,8 @@
 out
 gen
 build
-rslib/target
+rs_lib/target
 
-/rslib/lib/
-/rslib/generated-java
+/rs_lib/lib/
+/rs_lib/generated-java
 
