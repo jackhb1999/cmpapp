@@ -16,7 +16,9 @@ data class ProfileScreen(val userId: Int) : Screen {
             userId = userId,
             onPostClick = postClick,
             onCommentClick = postClick,
-            onButtonClick = { navigator?.push(EditProfileScreen(userId)) }
+            onButtonClick = { navigator?.push(EditProfileScreen(userId)) },
+            onFollowersClick = { navigator?.push(FollowsScreen(userId,1)) },
+            onFollowingClick = { navigator?.push(FollowsScreen(userId,2)) },
         )
     }
 }

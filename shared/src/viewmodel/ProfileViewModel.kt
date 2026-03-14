@@ -35,18 +35,6 @@ class ProfileViewModel : ViewModel() {
     }
 
 
-    fun onFollowersClick() {
-        val followersCount = userInfoUiState.profile?.followersCount ?: 0
-        userInfoUiState = userInfoUiState.copy(
-            profile = userInfoUiState.profile?.copy(
-                followingCount = followersCount + 1
-            )
-        )
-    }
-
-    fun onFollowingClick() {
-
-    }
 
     fun onLikesClick(postId :Int) {
 

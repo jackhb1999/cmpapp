@@ -8,7 +8,8 @@ import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
 import kotlinx.serialization.json.Json
 
-private const val BASE_URL = "http://192.168.1.5:8088"
+//private const val BASE_URL = "http://192.168.1.5:8088"
+private const val BASE_URL = "http://192.168.32.28:8088"
 
 internal abstract class KtorApi {
     val client = HttpClient {

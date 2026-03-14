@@ -8,6 +8,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Divider
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
@@ -51,7 +52,7 @@ fun PostDetailView(
                 }
             }
             items(items = sampleComments, key = { comment -> comment.id }) {
-                Divider()
+                HorizontalDivider()
                 CommentListItem(
                     comment = it,
                     onProfileClick = { _ -> },

@@ -32,7 +32,9 @@ fun ProfileView(
     userId: Int,
     onPostClick: (Int) -> Unit,
     onCommentClick: (Int) -> Unit,
-    onButtonClick: () -> Unit
+    onButtonClick: () -> Unit,
+    onFollowersClick: () -> Unit,
+    onFollowingClick: () -> Unit,
 ) {
     if (vm.userInfoUiState.isLoading && vm.profileUiState.isLoading
     ) {
@@ -52,8 +54,8 @@ fun ProfileView(
                     followingCount = vm.userInfoUiState.profile?.followingCount ?: 0,
                     followersCount = vm.userInfoUiState.profile?.followersCount ?: 0,
                     onButtonClick = { onButtonClick() },
-                    onFollowersClick = { vm.onFollowersClick() },
-                    onFollowingClick = { vm.onFollowingClick() },
+                    onFollowersClick = { onFollowersClick() },
+                    onFollowingClick = { onFollowingClick() },
                 )
             }
 
@@ -114,7 +116,7 @@ fun ProfileHeaderSection(
                 Spacer(Modifier.width(MediumSpacing))
                 FollowsText(count = followingCount, text = "关注的人数", onClick = onFollowingClick)
                 FollowsButton(
-                    text = "关注", onClick = onButtonClick,
+                    text = "修改", onClick = onButtonClick,
                     modifier = modifier.heightIn(30.dp).widthIn(100.dp), isOutline = isCurrentUser || isFollowing
                 )
             }
