@@ -37,7 +37,7 @@ class UserRepositoryImpl(
                             id = insertedUser.id,
                             name = insertedUser.name,
                             bio = insertedUser.bio,
-                            avatar = insertedUser.avatar,
+                            avatar = insertedUser.imageUrl,
                             token = generateJWTToken(insertedUser.email),
                         )
                     )
@@ -62,8 +62,10 @@ class UserRepositoryImpl(
                             id = user.id,
                             name = user.name,
                             bio = user.bio,
-                            avatar = user.avatar,
+                            avatar = user.imageUrl,
                             token = generateJWTToken(user.email),
+                            followersCount = user.followersCount,
+                            followingCount = user.followingCount,
                         )
                     )
                 )

@@ -1,9 +1,11 @@
 package com.hb.dao.user
 
+import com.hb.model.UserRow
 import model.SignUpParams
-import com.hb.model.User
 
 interface UserDao {
-    suspend fun inert(params: SignUpParams): User?
-    suspend fun findByEmail(email: String): User?
+    suspend fun inert(params: SignUpParams): UserRow?
+    suspend fun findByEmail(email: String): UserRow?
+
+    suspend fun updateFollowsCount(follower: ByteArray,following: ByteArray,isFollowing: Boolean): Boolean
 }

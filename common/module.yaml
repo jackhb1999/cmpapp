@@ -9,7 +9,7 @@ dependencies:
   - $libs.kotlin.serialization.json
   - $libs.koin.core
   - $libs.kotlinx.coroutines.core
-
+  - com.diglol.id:id:0.3.0
 
 
 settings:

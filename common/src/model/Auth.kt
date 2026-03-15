@@ -24,7 +24,7 @@ data class AuthResponse(
 
 @Serializable
 data class UserSettingsData(
-    val id:Int = -1,
+    val id:String = "",
     val name: String = "",
     val bio:String = "",
     val avatar:String? = null,

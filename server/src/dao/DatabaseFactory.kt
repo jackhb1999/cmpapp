@@ -1,15 +1,17 @@
 package com.hb.dao
 
-import com.hb.model.DeptEntity
 import com.hb.model.DeptTable
-import com.hb.model.UserRow
+import com.hb.model.FollowsTable
+import com.hb.model.UserTable
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import org.jetbrains.exposed.v1.jdbc.Database
 import org.jetbrains.exposed.v1.jdbc.SchemaUtils
 import org.jetbrains.exposed.v1.jdbc.exists
 import org.jetbrains.exposed.v1.jdbc.transactions.experimental.newSuspendedTransaction
+import org.jetbrains.exposed.v1.jdbc.transactions.suspendTransaction
 import org.jetbrains.exposed.v1.jdbc.transactions.transaction
 
 
@@ -19,11 +21,14 @@ object DatabaseFactory {
         // print sql to std-out
 //        addLogger(StdOutSqlLogger)
         transaction {
-            if (!UserRow.exists()) {
-                SchemaUtils.create(UserRow)
+            if (!UserTable.exists()) {
+                SchemaUtils.create(UserTable)
             }
-            if(!DeptTable.exists()){
+            if (!DeptTable.exists()) {
                 SchemaUtils.create(DeptTable)
+            }
+            if (!FollowsTable.exists()) {
+                SchemaUtils.create(FollowsTable)
             }
         }
     }
@@ -49,5 +54,8 @@ object DatabaseFactory {
 
 
     suspend fun <T> dbQuery(block: suspend () -> T): T =
-        newSuspendedTransaction(Dispatchers.IO) { block() }
+        suspendTransaction { withContext(Dispatchers.IO) { block() } }
+//    newSuspendedTransaction(Dispatchers.IO) { block() }
+
+
 }

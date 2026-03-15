@@ -1,47 +1,79 @@
 package com.hb.dao.user
 
 import com.hb.dao.DatabaseFactory.dbQuery
-import model.SignUpParams
-import com.hb.model.User
 import com.hb.model.UserRow
+import com.hb.model.UserTable
 import com.hb.security.hashPassword
+import model.SignUpParams
 import org.jetbrains.exposed.v1.core.ResultRow
 import org.jetbrains.exposed.v1.core.eq
+import org.jetbrains.exposed.v1.core.plus
 import org.jetbrains.exposed.v1.jdbc.insert
 import org.jetbrains.exposed.v1.jdbc.selectAll
+import org.jetbrains.exposed.v1.jdbc.update
+import util.IdGenerator
 
 
 class UserDaoImpl : UserDao {
-    override suspend fun inert(params: SignUpParams): User? {
+    override suspend fun inert(params: SignUpParams): UserRow? {
         return dbQuery {
-            val insertStatement = UserRow.insert {
+            val insertStatement = UserTable.insert {
+                it[id] = IdGenerator.generateId()
                 it[name] = params.name
                 it[email] = params.email
                 it[password] = hashPassword(params.password)
             }
 
             insertStatement.resultedValues?.singleOrNull()?.let {
-                rowToUser(it)
+                rowToUserRow(it)
             }
         }
     }
 
-    override suspend fun findByEmail(email: String): User? {
+    override suspend fun findByEmail(email: String): UserRow? {
         return dbQuery {
-            UserRow.selectAll().where { UserRow.email eq email }
-                .map { rowToUser(it) }
+            UserTable.selectAll().where { UserTable.email eq email }
+                .map { rowToUserRow(it) }
                 .singleOrNull()
         }
     }
 
-    private fun rowToUser(row: ResultRow): User {
-        return User(
-            id = row[UserRow.id],
-            name = row[UserRow.name],
-            password = row[UserRow.password],
-            email = row[UserRow.email],
-            bio = row[UserRow.bio],
-            avatar = row[UserRow.avatar]
+
+    override suspend fun updateFollowsCount(
+        follower: ByteArray,
+        following: ByteArray,
+        isFollowing: Boolean
+    ): Boolean {
+        return dbQuery {
+            val count = if (isFollowing) +1 else -1
+            val result1 = UserTable.update(
+                where = { UserTable.id eq follower },
+            ) {
+                it.update(
+                    column = UserTable.followingCount
+                ) { UserTable.followingCount.plus(count) }
+            } > 0
+            val result2 = UserTable.update(
+                where = { UserTable.id eq following },
+            ) {
+                it.update(UserTable.followersCount) { UserTable.followersCount.plus(count) }
+            } > 0
+            result1 && result2
+        }
+    }
+
+    private fun rowToUserRow(row: ResultRow): UserRow {
+        return UserRow(
+            id = row[UserTable.id].toString(),
+            name = row[UserTable.name],
+            password = row[UserTable.password],
+            email = row[UserTable.email],
+            bio = row[UserTable.bio],
+            imageUrl = row[UserTable.imageUrl],
+            followersCount = row[UserTable.followersCount],
+            followingCount = row[UserTable.followingCount],
         )
     }
+
+
 }

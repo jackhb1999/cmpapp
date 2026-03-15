@@ -29,7 +29,7 @@ fun FollowsView(
                     onItemClick(it.id)
                 }
             }
-        }
+        } 
         if (vm.uiState.isLoading && vm.uiState.followsUsers.isEmpty()) {
             CircularProgressIndicator()
         }

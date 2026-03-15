@@ -58,7 +58,7 @@ abstract class BaseEntityClass<out E : BaseEntity>(
                 EntityChangeType.Updated -> {
                     val now = nowUTC()
                     changedEntity?.let {
-                        if (it.writeValues[table.updateTime as Column<Any?>] == null) {
+                        if (it.writeValues[table.updateTime as Column<*>] == null) {
                             it.updateTime = now
                         }
                     }
