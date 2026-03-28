@@ -1,8 +1,6 @@
 package com.hb.dao.user
 
 import com.hb.dao.DatabaseFactory.dbQuery
-import com.hb.model.UserRow
-import com.hb.model.UserTable
 import com.hb.security.hashPassword
 import model.SignUpParams
 import org.jetbrains.exposed.v1.core.ResultRow
@@ -40,8 +38,8 @@ class UserDaoImpl : UserDao {
 
 
     override suspend fun updateFollowsCount(
-        follower: ByteArray,
-        following: ByteArray,
+        follower: String,
+        following: String,
         isFollowing: Boolean
     ): Boolean {
         return dbQuery {
@@ -64,7 +62,7 @@ class UserDaoImpl : UserDao {
 
     private fun rowToUserRow(row: ResultRow): UserRow {
         return UserRow(
-            id = row[UserTable.id].toString(),
+            id = row[UserTable.id],
             name = row[UserTable.name],
             password = row[UserTable.password],
             email = row[UserTable.email],

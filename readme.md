@@ -22,7 +22,9 @@ modules:
 - rs_lib rust逻辑，暂不参与模块耦合
 - common 共享数据结构给服务器和客户端
 
-
+Todo:
+- amper怎么进行测试[已解决]
+- Diglol Id 在数据库存储、对应实体的类型最优方案(尤其是data class)[已解决]
 
 
 

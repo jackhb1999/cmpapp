@@ -20,13 +20,13 @@ datastore = "1.2.0-rc01"
 exposed = "1.0.0"
 h2 = "2.4.240"
 hikaricp = "7.0.2"
-junit = "4.13.2"
+#junit = "4.13.2"
 koin = "4.1.1"
-kotlin = "2.3.0"
+kotlin = "2.3.10"
 #kotlin = "2.2.21"
-kotlinSerialization = "1.9.0"
+kotlinSerialization = "1.10.0"
 kotlinxCcoroutines = "1.10.2"
-ktor = "3.3.3"
+ktor = "3.4.0"
 lifecycleViewmodelNav3 = "2.10.0-beta01"
 logback = "1.5.24"
 material = "1.5.2"
@@ -91,7 +91,7 @@ feather = { module = "br.com.devsrsouza.compose.icons:feather", version.ref = "b
 font.awesome = { module = "br.com.devsrsouza.compose.icons:font-awesome", version.ref = "brComDevsrsouzaComposeIcons" }
 h2 = { module = "com.h2database:h2", version.ref = "h2" }
 hikariCP = { module = "com.zaxxer:HikariCP", version.ref = "hikaricp" }
-junit = { module = "junit:junit", version.ref = "junit" }
+#junit = { module = "junit:junit", version.ref = "junit" }
 koin.compose = { module = "io.insert-koin:koin-compose", version.ref = "koin" }
 koin.compose.viewModel = { module = "io.insert-koin:koin-compose-viewmodel", version.ref = "koin" }
 koin.core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
@@ -106,8 +106,8 @@ kotlin.serialization.json-okio = { module = "org.jetbrains.kotlinx:kotlinx-seria
 kotlin.serialization.properties = { module = "org.jetbrains.kotlinx:kotlinx-serialization-properties", version.ref = "kotlinSerialization" }
 kotlin.serialization.protobuf = { module = "org.jetbrains.kotlinx:kotlinx-serialization-protobuf", version.ref = "kotlinSerialization" }
 kotlin.test =  { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
-kotlin.test.junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
-kotlin.test.junit5 = "org.jetbrains.kotlin:kotlin-test-junit5:2.2.21"
+#kotlin.test.junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
+kotlin.test.junit5 =  { module ="org.jetbrains.kotlin:kotlin-test-junit5", version.ref = "kotlin" }
 kotlinx.coroutines.android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinxCcoroutines" }
 kotlinx.coroutines.core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCcoroutines" }
 kotlinx.coroutines.swing = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-swing", version.ref = "kotlinxCcoroutines" }

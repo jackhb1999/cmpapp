@@ -11,8 +11,6 @@ class FollowsRepositoryImpl(
     private val followsDao: FollowsDao
 ) : FollowsRepository {
     override suspend fun followUser(follower: String, following: String): Result<Any> {
-        val follower = follower.toByteArray()
-        val following = following.toByteArray()
         return if (followsDao.isAlreadyFollowing(follower, following)) {
             Result.Error<Any>(code = HttpStatusCode.Forbidden, message = "已经关注过了")
         } else {
@@ -27,8 +25,6 @@ class FollowsRepositoryImpl(
     }
 
     override suspend fun unfollowUser(follower: String, following: String): Result<Any> {
-        val follower = follower.toByteArray()
-        val following = following.toByteArray()
         return if (followsDao.isAlreadyFollowing(follower, following)) {
             val success = followsDao.unfollowUser(follower, following)
             if (success) {

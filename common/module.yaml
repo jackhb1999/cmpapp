@@ -9,12 +9,25 @@ dependencies:
   - $libs.kotlin.serialization.json
   - $libs.koin.core
   - $libs.kotlinx.coroutines.core
+  - $libs.kotlin.test
   - com.diglol.id:id:0.3.0
+  - $libs.ktor.server.core
 
+test-dependencies:
+  - $libs.kotlin.test.junit5
+  - org.junit.jupiter:junit-jupiter:5.14.0
+  - org.junit.jupiter:junit-jupiter-api:5.14.0
 
 settings:
   kotlin:
     serialization: enabled
+  junit: junit-5
+
+test-settings:
+  kotlin:
+    serialization:
+      enabled: true
+  junit: junit-5
 
 repositories:
   - https://mirrors.tencent.com/nexus/repository/maven-tencent

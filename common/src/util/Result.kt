@@ -7,7 +7,7 @@ sealed class Result<T>(
     val data: T? = null,
     val message: String? = null
 ) {
-    class Success<T>(data: T? = null,msg:String? = null) : Result<T>(code = HttpStatusCode.OK,data = data, message = msg)
+    class Success<T>(data: T? = null, msg:String? = null) : Result<T>(code = HttpStatusCode.OK,data = data, message = msg)
     class Error<T>(
         code: HttpStatusCode = HttpStatusCode.ServiceUnavailable,
         data: T? = null,

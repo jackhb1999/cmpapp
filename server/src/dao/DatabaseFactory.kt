@@ -1,8 +1,10 @@
 package com.hb.dao
 
 import com.hb.model.DeptTable
-import com.hb.model.FollowsTable
-import com.hb.model.UserTable
+import com.hb.dao.follows.FollowsTable
+import com.hb.dao.post.PostTable
+import com.hb.dao.post_likes.PostLikesTable
+import com.hb.dao.user.UserTable
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
 import kotlinx.coroutines.Dispatchers
@@ -10,7 +12,6 @@ import kotlinx.coroutines.withContext
 import org.jetbrains.exposed.v1.jdbc.Database
 import org.jetbrains.exposed.v1.jdbc.SchemaUtils
 import org.jetbrains.exposed.v1.jdbc.exists
-import org.jetbrains.exposed.v1.jdbc.transactions.experimental.newSuspendedTransaction
 import org.jetbrains.exposed.v1.jdbc.transactions.suspendTransaction
 import org.jetbrains.exposed.v1.jdbc.transactions.transaction
 
@@ -29,6 +30,12 @@ object DatabaseFactory {
             }
             if (!FollowsTable.exists()) {
                 SchemaUtils.create(FollowsTable)
+            }
+            if (!PostTable.exists()) {
+                SchemaUtils.create(PostTable)
+            }
+            if (!PostLikesTable.exists()) {
+                SchemaUtils.create(PostLikesTable)
             }
         }
     }

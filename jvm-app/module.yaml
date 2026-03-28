@@ -25,7 +25,25 @@ settings:
 
 
 repositories:
+  - https://packages.jetbrains.team/maven/p/amper/amper
   - https://repo.spring.io/ui/native/release
   - url: https://dl.google.com/dl/android/maven2/
   - id: jitpack
     url: https://jitpack.io
+  - url: https://mirrors.tencent.com/nexus/repository/maven-tencent/
+  - url: https://mirrors.tencent.com/nexus/repository/maven-public/
+  - url: 'https://maven.aliyun.com/repository/public'
+  - url: https://maven.aliyun.com/repository/google
+  - url: 'https://maven.aliyun.com/repository/gradle-plugin'
+  - url: 'https://maven.aliyun.com/repository/central'
+  - url: 'https://repo.huaweicloud.com/repository/maven/'
+  - url: 'https://mirrors.cloud.tencent.com/nexus/repository/maven-public/'
+  - url: 'https://mirrors.163.com/maven/repository/maven-public/'
+  - url: 'https://maven.oscs.oschina.net/content/groups/public/'
+  - url: 'https://maven.aliyun.com/repository/public'
+  - url: 'https://maven.aliyun.com/repository/google'
+  - url: 'https://maven.aliyun.com/repository/central'
+  - url: 'https://repo.huaweicloud.com/repository/maven/'
+  - url: 'https://mirrors.cloud.tencent.com/nexus/repository/maven-public/'
+  - url: 'https://mirrors.163.com/maven/repository/maven-public/'
+  - url: 'https://maven.oscs.oschina.net/content/groups/public/'
