@@ -98,19 +98,21 @@ koin.core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
 koin.ktor = { module = "io.insert-koin:koin-ktor", version.ref = "koin" }
 koin.logger.slf4j = { module = "io.insert-koin:koin-logger-slf4j", version.ref = "koin" }
 kotlin.reflect = "org.jetbrains.kotlin:kotlin-reflect:2.2.0"
-kotlin.serialization.cbor = { module = "org.jetbrains.kotlinx:kotlinx-serialization-cbor", version.ref = "kotlinSerialization" }
-kotlin.serialization.core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinSerialization" }
-kotlin.serialization.hocon = { module = "org.jetbrains.kotlinx:kotlinx-serialization-hocon", version.ref = "kotlinSerialization" }
-kotlin.serialization.json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinSerialization" }
-kotlin.serialization.json-okio = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json-okio", version.ref = "kotlinSerialization" }
-kotlin.serialization.properties = { module = "org.jetbrains.kotlinx:kotlinx-serialization-properties", version.ref = "kotlinSerialization" }
-kotlin.serialization.protobuf = { module = "org.jetbrains.kotlinx:kotlinx-serialization-protobuf", version.ref = "kotlinSerialization" }
 kotlin.test =  { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
-#kotlin.test.junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
 kotlin.test.junit5 =  { module ="org.jetbrains.kotlin:kotlin-test-junit5", version.ref = "kotlin" }
 kotlinx.coroutines.android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinxCcoroutines" }
 kotlinx.coroutines.core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCcoroutines" }
 kotlinx.coroutines.swing = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-swing", version.ref = "kotlinxCcoroutines" }
+kotlinx.datetime = "org.jetbrains.kotlinx:kotlinx-datetime:0.7.1"
+kotlinx.serialization.cbor = { module = "org.jetbrains.kotlinx:kotlinx-serialization-cbor", version.ref = "kotlinSerialization" }
+kotlinx.serialization.core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinSerialization" }
+kotlinx.serialization.hocon = { module = "org.jetbrains.kotlinx:kotlinx-serialization-hocon", version.ref = "kotlinSerialization" }
+kotlinx.serialization.json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinSerialization" }
+kotlinx.serialization.json-okio = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json-okio", version.ref = "kotlinSerialization" }
+kotlinx.serialization.properties = { module = "org.jetbrains.kotlinx:kotlinx-serialization-properties", version.ref = "kotlinSerialization" }
+kotlinx.serialization.protobuf = { module = "org.jetbrains.kotlinx:kotlinx-serialization-protobuf", version.ref = "kotlinSerialization" }
+
+
 
 
 ktor.auth = "io.ktor:ktor-auth"

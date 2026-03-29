@@ -96,7 +96,8 @@ class PostDaoImpl : PostDao {
             commentsCount = row[PostTable.commentsCount],
             userId = row[PostTable.userId],
             username = row[UserTable.name],
-            userImageUrl = row[UserTable.imageUrl]
+            userImageUrl = row[UserTable.imageUrl],
+            createdAt = row[PostTable.createdAt],
         )
     }
 }

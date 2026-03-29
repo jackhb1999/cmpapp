@@ -58,7 +58,7 @@ class PostRepositoryImpl(
         pageNumber: Int,
         pageSize: Int
     ): Result<List<Post>> {
-       val postsRows = postDao.getPostByUser(userId = postsOwnerId, pageNumber = pageNumber, pageSize = pageSize)
+        val postsRows = postDao.getPostByUser(userId = postsOwnerId, pageNumber = pageNumber, pageSize = pageSize)
         val posts = postsRows.map {
             toPost(
                 postRow = it,
@@ -104,6 +104,7 @@ class PostRepositoryImpl(
             userImageUrl = postRow.userImageUrl,
             isLiked = isPostLiked,
             isOwnPost = isOwnPost,
+            createdAt = postRow.createdAt,
         )
     }
 }

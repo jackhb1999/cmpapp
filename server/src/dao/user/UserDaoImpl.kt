@@ -7,6 +7,7 @@ import org.jetbrains.exposed.v1.core.ResultRow
 import org.jetbrains.exposed.v1.core.eq
 import org.jetbrains.exposed.v1.core.plus
 import org.jetbrains.exposed.v1.jdbc.insert
+import org.jetbrains.exposed.v1.jdbc.select
 import org.jetbrains.exposed.v1.jdbc.selectAll
 import org.jetbrains.exposed.v1.jdbc.update
 import util.IdGenerator
@@ -36,6 +37,28 @@ class UserDaoImpl : UserDao {
         }
     }
 
+    override suspend fun findById(userId: String): UserRow? {
+        return dbQuery {
+            UserTable.selectAll().where { UserTable.id eq userId }.map { rowToUserRow(it) }.singleOrNull()
+        }
+    }
+
+    override suspend fun updateUser(
+        userId: String,
+        name: String,
+        bio: String,
+        imageUrl: String?
+    ): Boolean {
+        return dbQuery {
+            UserTable.update(where = { UserTable.id eq userId }) {
+                it[UserTable.name] = name
+                it[UserTable.bio] = bio
+                if (imageUrl !== null) {
+                    it[UserTable.imageUrl] = imageUrl
+                }
+            } > 0
+        }
+    }
 
     override suspend fun updateFollowsCount(
         follower: String,

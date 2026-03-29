@@ -25,5 +25,6 @@ data class PostRow(
     val commentsCount: Int,
     val userId: String,
     val username: String,
-    val userImageUrl: String?
+    val userImageUrl: String?,
+    val createdAt: LocalDateTime,
 )

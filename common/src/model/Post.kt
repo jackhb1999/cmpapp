@@ -1,7 +1,7 @@
 package model
 
+import kotlinx.datetime.LocalDateTime
 import kotlinx.serialization.Serializable
-import java.time.LocalDateTime
 
 @Serializable
 data class PostTextParams(
@@ -14,7 +14,7 @@ data class Post(
     val postId: String,
     val caption: String,
     val imageUrl: String,
-//    val createdAt: String,
+    val createdAt: LocalDateTime,
     val likesCount: Int,
     val commentsCount: Int,
     val userId: String,

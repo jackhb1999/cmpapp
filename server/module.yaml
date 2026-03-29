@@ -15,7 +15,7 @@ dependencies:
   - $libs.koin.logger.slf4j
   - $libs.ktor.server.core
   - $libs.ktor.serialization.kotlinx.json
-  - $libs.kotlin.serialization.json
+  - $libs.kotlinx.serialization.json
   - $libs.ktor.server.content.negotiation
   - $libs.postgresql
   - $libs.hikariCP

@@ -3,6 +3,7 @@ package com.hb.dao
 import com.hb.model.DeptTable
 import com.hb.dao.follows.FollowsTable
 import com.hb.dao.post.PostTable
+import com.hb.dao.post_comments.PostCommentsTable
 import com.hb.dao.post_likes.PostLikesTable
 import com.hb.dao.user.UserTable
 import com.zaxxer.hikari.HikariConfig
@@ -36,6 +37,9 @@ object DatabaseFactory {
             }
             if (!PostLikesTable.exists()) {
                 SchemaUtils.create(PostLikesTable)
+            }
+            if (!PostCommentsTable.exists()) {
+                SchemaUtils.create(PostCommentsTable)
             }
         }
     }

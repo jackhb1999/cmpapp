@@ -13,12 +13,14 @@ import com.hb.dao.user.UserDaoImpl
 import com.hb.repository.DeptRepositoryImpl
 import com.hb.repository.FollowsRepositoryImpl
 import com.hb.repository.PostRepositoryImpl
+import com.hb.repository.ProfileRepositoryImpl
 import repository.UserRepository
 import com.hb.repository.UserRepositoryImpl
 import fake_data.Post
 import org.koin.dsl.module
 import repository.FollowsRepository
 import repository.PostRepository
+import repository.ProfileRepository
 
 val appModule = module {
     single<UserDao> { UserDaoImpl() }
@@ -38,5 +40,8 @@ val appModule = module {
     }
     single<PostRepository> {
         PostRepositoryImpl(postDao = get(), followsDao = get(), postLikesDao = get())
+    }
+    single<ProfileRepository> {
+        ProfileRepositoryImpl(userDao = get(), followsDao = get())
     }
 }
