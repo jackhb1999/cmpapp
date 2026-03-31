@@ -26,6 +26,7 @@ kotlin = "2.3.10"
 #kotlin = "2.2.21"
 kotlinSerialization = "1.10.0"
 kotlinxCcoroutines = "1.10.2"
+kotlinxRpc = "0.10.2"
 ktor = "3.4.0"
 lifecycleViewmodelNav3 = "2.10.0-beta01"
 logback = "1.5.24"
@@ -41,7 +42,7 @@ voyagerVersion = "1.1.0-beta03"
 androidx.activity.compose = { module = "androidx.activity:activity-compose", version.ref = "androidxActivity" }
 androidx.appcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidxAppcompat" }
 androidx.core.ktx = { module = "androidx.core:core-ktx", version.ref = "androidxCore" }
-androidx.compose.uiToolingPreview = {module="androidx.compose.ui:ui-tooling-preview",version.ref="composeMultiplatform"}
+androidx.compose.uiToolingPreview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "composeMultiplatform" }
 androidx.datastore = { module = "androidx.datastore:datastore", version.ref = "datastore" }
 androidx.datastore.core = { module = "androidx.datastore:datastore-core", version.ref = "datastore" }
 androidx.datastore.preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore" }
@@ -98,12 +99,18 @@ koin.core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
 koin.ktor = { module = "io.insert-koin:koin-ktor", version.ref = "koin" }
 koin.logger.slf4j = { module = "io.insert-koin:koin-logger-slf4j", version.ref = "koin" }
 kotlin.reflect = "org.jetbrains.kotlin:kotlin-reflect:2.2.0"
-kotlin.test =  { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
-kotlin.test.junit5 =  { module ="org.jetbrains.kotlin:kotlin-test-junit5", version.ref = "kotlin" }
+kotlin.test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
+kotlin.test.junit5 = { module = "org.jetbrains.kotlin:kotlin-test-junit5", version.ref = "kotlin" }
 kotlinx.coroutines.android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinxCcoroutines" }
 kotlinx.coroutines.core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCcoroutines" }
 kotlinx.coroutines.swing = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-swing", version.ref = "kotlinxCcoroutines" }
 kotlinx.datetime = "org.jetbrains.kotlinx:kotlinx-datetime:0.7.1"
+kotlinx.rpc.core = { module = "org.jetbrains.kotlinx:kotlinx-rpc-core", version.ref = "kotlinxRpc" }
+kotlinx.rpc.krpc.client = { module = "org.jetbrains.kotlinx:kotlinx-rpc-krpc-client", version.ref = "kotlinxRpc" }
+kotlinx.rpc.krpc.server = { module = "org.jetbrains.kotlinx:kotlinx-rpc-krpc-server", version.ref = "kotlinxRpc" }
+kotlinx.rpc.krpc.serialization.json = { module = "org.jetbrains.kotlinx:kotlinx-rpc-krpc-serialization-json", version.ref = "kotlinxRpc" }
+kotlinx.rpc.krpc.ktor.client = { module = "org.jetbrains.kotlinx:kotlinx-rpc-krpc-ktor-client", version.ref = "kotlinxRpc" }
+kotlinx.rpc.krpc.ktor.server = { module = "org.jetbrains.kotlinx:kotlinx-rpc-krpc-ktor-server", version.ref = "kotlinxRpc" }
 kotlinx.serialization.cbor = { module = "org.jetbrains.kotlinx:kotlinx-serialization-cbor", version.ref = "kotlinSerialization" }
 kotlinx.serialization.core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinSerialization" }
 kotlinx.serialization.hocon = { module = "org.jetbrains.kotlinx:kotlinx-serialization-hocon", version.ref = "kotlinSerialization" }
@@ -207,7 +214,7 @@ ktor.server.methodOverride = "io.ktor:ktor-server-method-override"
 ktor.server.metrics = "io.ktor:ktor-server-metrics"
 ktor.server.metrics.micrometer = "io.ktor:ktor-server-metrics-micrometer"
 ktor.server.mustache = "io.ktor:ktor-server-mustache"
-ktor.server.netty.jvm =  { module = "io.ktor:ktor-server-netty-jvm", version.ref = "ktor" }
+ktor.server.netty.jvm = { module = "io.ktor:ktor-server-netty-jvm", version.ref = "ktor" }
 ktor.server.netty = { module = "io.ktor:ktor-server-netty", version.ref = "ktor" }
 ktor.server.openapi = "io.ktor:ktor-server-openapi"
 ktor.server.partialContent = "io.ktor:ktor-server-partial-content"
@@ -246,6 +253,8 @@ voyager.transitions = { module = "cafe.adriel.voyager:voyager-transitions", vers
 
 
 
+
+
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
@@ -256,3 +265,4 @@ kotlin.plugin.serialization = { id = "org.jetbrains.kotlin.plugin.serialization"
 kotlin.jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 ktor = { id = "io.ktor.plugin", version.ref = "ktor" }
+kotlinx.rpc = { id = "org.jetbrains.kotlinx.rpc.plugin", version.ref = "kotlinxRpc" }

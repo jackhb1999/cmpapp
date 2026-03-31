@@ -4,6 +4,7 @@ import com.hb.route.authRouting
 import com.hb.route.followsRoute
 import com.hb.route.postRoutes
 import com.hb.route.profileRoutes
+import com.hb.route.rpaRoutes
 import io.ktor.server.application.*
 import io.ktor.server.http.content.resources
 import io.ktor.server.http.content.static
@@ -16,6 +17,7 @@ fun Application.configureRouting() {
         get("/") {
             call.respondText("Hello World!")
         }
+        rpaRoutes()
         authRouting()
         followsRoute()
         postRoutes()

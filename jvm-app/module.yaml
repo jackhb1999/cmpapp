@@ -21,9 +21,6 @@ settings:
   kotlin:
     serialization: enabled
 
-
-
-
 repositories:
   - https://packages.jetbrains.team/maven/p/amper/amper
   - https://repo.spring.io/ui/native/release

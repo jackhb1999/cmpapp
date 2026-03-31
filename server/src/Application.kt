@@ -3,6 +3,7 @@ package com.hb
 import io.ktor.server.application.*
 import com.hb.dao.DatabaseFactory
 import com.hb.di.configureDI
+import com.hb.plugins.configureKrpc
 import com.hb.plugins.configureRouting
 import com.hb.plugins.configureSecurity
 import com.hb.plugins.configureSerialization
@@ -16,6 +17,7 @@ fun Application.module() {
     configureSerialization()
     configureDI()
     configureSecurity()
+    configureKrpc()
     configureRouting()
 
 }

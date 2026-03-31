@@ -11,6 +11,7 @@ dependencies:
   - $libs.kotlinx.datetime
   - com.diglol.id:id:0.3.0: exported
   - $libs.ktor.server.core
+  - $libs.kotlinx.rpc.core
 
 test-dependencies:
   - $libs.kotlin.test.junit5
@@ -26,6 +27,7 @@ test-settings:
   kotlin:
     serialization:
       enabled: true
+
   junit: junit-5
 
 repositories:

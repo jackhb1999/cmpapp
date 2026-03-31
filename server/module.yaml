@@ -29,6 +29,9 @@ dependencies:
   - $libs.ktor.server.config.yaml
   - $libs.ktor.utils
   - org.slf4j:slf4j-nop:2.0.9
+  - $libs.kotlinx.rpc.krpc.server
+  - $libs.kotlinx.rpc.krpc.serialization.json
+  - $libs.kotlinx.rpc.krpc.ktor.server
 
 
 
