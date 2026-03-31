@@ -7,9 +7,11 @@ import org.jetbrains.exposed.v1.core.ResultRow
 import org.jetbrains.exposed.v1.core.SortOrder
 import org.jetbrains.exposed.v1.core.eq
 import org.jetbrains.exposed.v1.core.inList
+import org.jetbrains.exposed.v1.core.plus
 import org.jetbrains.exposed.v1.jdbc.deleteWhere
 import org.jetbrains.exposed.v1.jdbc.insert
 import org.jetbrains.exposed.v1.jdbc.selectAll
+import org.jetbrains.exposed.v1.jdbc.update
 import util.IdGenerator
 
 class PostDaoImpl : PostDao {
@@ -79,6 +81,24 @@ class PostDaoImpl : PostDao {
             postJoinTableSelect.where { PostTable.postId eq postId }
                 .singleOrNull()?.let { toPostRow(it) }
         }
+    }
+
+    override suspend fun updateLikesCount(postId: String, decrement: Boolean): Boolean {
+        return dbQuery {
+            val value = if (decrement) -1 else 1
+            PostTable.update({ PostTable.postId eq postId }) {
+                it.update(column = likesCount, value = likesCount.plus(value))
+            }
+        } > 0
+    }
+
+    override suspend fun updateCommentsCount(postId: String, decrement: Boolean): Boolean {
+        return dbQuery {
+            val value = if (decrement) -1 else 1
+            PostTable.update({ PostTable.postId eq postId }) {
+                it.update(column = commentsCount, value = commentsCount.plus(value))
+            }
+        } > 0
     }
 
     override suspend fun deletePost(postId: String): Boolean {

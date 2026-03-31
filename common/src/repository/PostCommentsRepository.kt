@@ -8,7 +8,7 @@ interface PostCommentsRepository {
 
     suspend fun addComment(params: NewCommentParams): Result<PostComment>
 
-    suspend fun removeComment(commentId: String, postId: String): Result<Any>
+    suspend fun removeComment(commentId: String, postId: String,userId: String): Result<Any>
 
     suspend fun getPostComments(postId: String, pageNumber: Int, pageSize: Int): Result<List<PostComment>>
 
