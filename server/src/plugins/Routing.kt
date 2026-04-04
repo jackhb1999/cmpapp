@@ -3,6 +3,7 @@ package com.hb.plugins
 import com.hb.route.authRouting
 import com.hb.route.followsRoute
 import com.hb.route.postCommentsRoute
+import com.hb.route.postLikesRouting
 import com.hb.route.postRoutes
 import com.hb.route.profileRoutes
 import com.hb.route.rpaRoutes
@@ -24,6 +25,7 @@ fun Application.configureRouting() {
         postRoutes()
         profileRoutes()
         postCommentsRoute()
+        postLikesRouting()
         staticResources(
             remotePath = "static",
             basePackage = "build/resource/main/static"

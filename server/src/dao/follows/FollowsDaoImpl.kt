@@ -1,6 +1,7 @@
 package com.hb.dao.follows
 
 import com.hb.dao.DatabaseFactory.dbQuery
+import model.FollowUserData
 import org.jetbrains.exposed.v1.core.SortOrder
 import org.jetbrains.exposed.v1.core.eq
 import org.jetbrains.exposed.v1.core.and
@@ -36,7 +37,7 @@ class FollowsDaoImpl : FollowsDao {
         pageSize: Int
     ): List<String> {
         return dbQuery {
-            FollowsTable.selectAll().where { FollowsTable.followingId eq userId }
+          FollowsTable.selectAll().where { FollowsTable.followingId eq userId }
                 .orderBy(FollowsTable.followDate, SortOrder.DESC)
                 .limit(pageSize)
                 .offset(((pageNumber - 1) * pageSize).toLong())
@@ -45,7 +46,6 @@ class FollowsDaoImpl : FollowsDao {
                 }
         }
     }
-
     override suspend fun getFollowing(
         userId: String,
         pageNumber: Int?,

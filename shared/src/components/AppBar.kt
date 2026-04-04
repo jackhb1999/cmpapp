@@ -25,7 +25,7 @@ fun AppBar(
         modifier = modifier,
     ) {
         TopAppBar(
-            title = { key?.let { Text(it) } },
+            title = { Text(key) },
             modifier = modifier,
             actions = {
                 AnimatedVisibility(visible = key == "Home") {

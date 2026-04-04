@@ -7,9 +7,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import kotlinx.io.IOException
 import repository.NewsRepository
 import uistate.NewsUiState
-import java.io.IOException
 
 class NewsViewModel(
     private val repository: NewsRepository,

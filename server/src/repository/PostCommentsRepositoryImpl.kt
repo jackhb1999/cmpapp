@@ -3,7 +3,6 @@ package com.hb.repository
 import com.hb.dao.post.PostDao
 import com.hb.dao.post_comments.PostCommentRow
 import com.hb.dao.post_comments.PostCommentsDao
-import com.hb.dao.post_comments.PostCommentsTable
 import model.NewCommentParams
 import model.PostComment
 import repository.PostCommentsRepository

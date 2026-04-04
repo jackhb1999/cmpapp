@@ -2,12 +2,14 @@ package com.hb.plugins
 
 import com.auth0.jwt.JWT
 import com.auth0.jwt.algorithms.Algorithm
+import com.hb.dao.user.UserDao
 import model.AuthResponse
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.auth.*
 import io.ktor.server.auth.jwt.*
 import io.ktor.server.response.*
+import org.koin.ktor.ext.inject
 
 private const val CLAIM = "email"
 private lateinit var jwtAudience: String
@@ -22,6 +24,9 @@ fun Application.configureSecurity() {
     jwtDomain = environment.config.property("jwt.domain").getString()
     jwtRealm = environment.config.property("jwt.realm").getString()
     jwtSecret = "secret"
+
+    val userDao by inject<UserDao>()
+
     authentication {
         jwt {
             realm = jwtRealm
@@ -34,8 +39,13 @@ fun Application.configureSecurity() {
             )
             validate { credential ->
                 if (credential.payload.getClaim(CLAIM).asString() != null) {
-
-                    JWTPrincipal(credential.payload)
+                    val userExists = userDao.findByEmail(email = credential.payload.getClaim(CLAIM).asString()) != null
+                    val isValidAudience = credential.payload.audience.contains(jwtAudience)
+                    if (userExists && isValidAudience) {
+                        JWTPrincipal(credential.payload)
+                    } else {
+                        null
+                    }
                 } else null
             }
             challenge { _, _ ->

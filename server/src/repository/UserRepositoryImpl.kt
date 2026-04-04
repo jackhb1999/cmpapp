@@ -18,7 +18,7 @@ class UserRepositoryImpl(
     override suspend fun signUp(params: SignUpParams): Result<AuthResponse> {
         return if (userAlreadyExist(params.email)) {
             Result.Error(
-                code = HttpStatusCode.Conflict, data = AuthResponse(
+                code = HttpStatusCode.Conflict.value, data = AuthResponse(
                     errorMessage = "User already exist"
                 )
             )
@@ -26,7 +26,7 @@ class UserRepositoryImpl(
             val insertedUser = userDao.inert(params)
             if (insertedUser == null) {
                 Result.Error(
-                    code = HttpStatusCode.InternalServerError, data = AuthResponse(
+                    code = HttpStatusCode.InternalServerError.value, data = AuthResponse(
                         errorMessage = "Error while inserting user"
                     )
                 )
@@ -50,7 +50,7 @@ class UserRepositoryImpl(
         val user = userDao.findByEmail(params.email)
         return if (user == null) {
             Result.Error(
-                code = HttpStatusCode.NotFound, data = AuthResponse(
+                code = HttpStatusCode.NotFound.value, data = AuthResponse(
                     errorMessage = "User not found"
                 )
             )
@@ -71,7 +71,7 @@ class UserRepositoryImpl(
                 )
             } else {
                 Result.Error(
-                    code = HttpStatusCode.Unauthorized, data = AuthResponse(
+                    code = HttpStatusCode.Unauthorized.value, data = AuthResponse(
                         errorMessage = "Invalid password"
                     )
                 )

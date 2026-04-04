@@ -3,7 +3,7 @@ package service
 import model.AuthResponse
 import model.SignInParams
 import model.SignUpParams
-import common.data.KtorApi
+import common.KtorApi
 import io.ktor.client.call.*
 import io.ktor.client.request.*
 import io.ktor.http.*

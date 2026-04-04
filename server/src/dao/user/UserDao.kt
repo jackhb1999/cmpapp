@@ -11,4 +11,8 @@ interface UserDao {
     suspend fun updateUser(userId: String, name: String, bio: String, imageUrl: String?): Boolean
 
     suspend fun updateFollowsCount(follower: String, following: String, isFollowing: Boolean): Boolean
+
+    suspend fun getUsers(ids:List<String>): List<UserRow>
+
+    suspend fun getPopularUsers(limit:Int): List<UserRow>
 }

@@ -4,7 +4,9 @@ import com.hb.dao.DatabaseFactory.dbQuery
 import com.hb.security.hashPassword
 import model.SignUpParams
 import org.jetbrains.exposed.v1.core.ResultRow
+import org.jetbrains.exposed.v1.core.SortOrder
 import org.jetbrains.exposed.v1.core.eq
+import org.jetbrains.exposed.v1.core.inList
 import org.jetbrains.exposed.v1.core.plus
 import org.jetbrains.exposed.v1.jdbc.insert
 import org.jetbrains.exposed.v1.jdbc.select
@@ -80,6 +82,21 @@ class UserDaoImpl : UserDao {
                 it.update(UserTable.followersCount) { UserTable.followersCount.plus(count) }
             } > 0
             result1 && result2
+        }
+    }
+
+    override suspend fun getUsers(ids: List<String>): List<UserRow> {
+        return dbQuery {
+            UserTable.selectAll().where { UserTable.id inList ids }
+                .map { rowToUserRow(it) }
+        }
+    }
+
+    override suspend fun getPopularUsers(limit: Int): List<UserRow> {
+        return dbQuery {
+            UserTable.selectAll()
+                .orderBy(column = UserTable.followersCount, order = SortOrder.DESC)
+                .limit(limit).map { rowToUserRow(it) }
         }
     }
 

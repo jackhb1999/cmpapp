@@ -6,6 +6,7 @@ settings:
     mainClass: com.hb.ApplicationKt
   kotlin:
     serialization: enabled
+    rpc: enabled
 
 dependencies:
   - ../common
@@ -56,10 +57,5 @@ repositories:
   - url: 'https://mirrors.cloud.tencent.com/nexus/repository/maven-public/'
   - url: 'https://mirrors.163.com/maven/repository/maven-public/'
   - url: 'https://maven.oscs.oschina.net/content/groups/public/'
-  - url: 'https://maven.aliyun.com/repository/public'
   - url: 'https://maven.aliyun.com/repository/google'
-  - url: 'https://maven.aliyun.com/repository/central'
-  - url: 'https://repo.huaweicloud.com/repository/maven/'
-  - url: 'https://mirrors.cloud.tencent.com/nexus/repository/maven-public/'
-  - url: 'https://mirrors.163.com/maven/repository/maven-public/'
-  - url: 'https://maven.oscs.oschina.net/content/groups/public/'
+  - url: 'https://repo1.maven.org/maven2/'

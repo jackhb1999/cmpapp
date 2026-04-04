@@ -28,7 +28,7 @@ fun Routing.postCommentsRoute() {
                     return@post
                 }
                 val result = repository.addComment(params)
-                call.respond(status = result.code, message = result)
+                call.respond(status = HttpStatusCode.fromValue(result.code), message = result)
             }
 
             delete(path = "/delete") {
@@ -36,7 +36,7 @@ fun Routing.postCommentsRoute() {
                 val postId = call.getParameter(name = "postId", isQueryParameter = true)
                 val commentId = call.getParameter(name = "commentId", isQueryParameter = true)
                 val result = repository.removeComment(commentId, postId, userId)
-                call.respond(status = result.code, message = result)
+                call.respond(status = HttpStatusCode.fromValue(result.code), message = result)
             }
 
             get(path = "/{postId}") {
@@ -45,7 +45,7 @@ fun Routing.postCommentsRoute() {
                 val limit = call.getIntParameter(name = "limit", isQueryParameter = true, defaultVal = 10)
 
                 val result =  repository.getPostComments(postId,page,limit)
-                call.respond(status = result.code, message = result)
+                call.respond(status = HttpStatusCode.fromValue(result.code), message = result)
             }
         }
     }

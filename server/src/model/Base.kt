@@ -8,6 +8,7 @@ import kotlinx.datetime.toLocalDateTime
 import org.jetbrains.exposed.v1.core.Column
 import org.jetbrains.exposed.v1.core.dao.id.EntityID
 import org.jetbrains.exposed.v1.core.dao.id.IntIdTable
+import org.jetbrains.exposed.v1.core.dao.id.UuidTable
 import org.jetbrains.exposed.v1.core.exposedLogger
 import org.jetbrains.exposed.v1.dao.EntityChangeType
 import org.jetbrains.exposed.v1.dao.EntityHook

@@ -4,7 +4,6 @@ import com.hb.dao.follows.FollowsDao
 import com.hb.dao.post.PostDao
 import com.hb.dao.post.PostRow
 import com.hb.dao.post_likes.PostLikesDao
-import com.hb.dao.user.UserDao
 import io.ktor.http.HttpStatusCode
 import model.Post
 import model.PostTextParams
@@ -23,10 +22,10 @@ class PostRepositoryImpl(
             userId = postTextParams.userId
         )
         return if (postIsCreated) {
-            Result.Success(msg = "Post created")
+            Result.Success(message = "Post created")
         } else {
             Result.Error(
-                code = HttpStatusCode.InternalServerError,
+                code = HttpStatusCode.InternalServerError.value,
                 message = "Post creation failed"
             )
         }
@@ -83,10 +82,10 @@ class PostRepositoryImpl(
     override suspend fun deletePost(postId: String): Result<Any> {
         val postIsDeleted = postDao.deletePost(postId)
         return if (postIsDeleted) {
-            Result.Success(msg = "deleted Post '${postId}' successfully")
+            Result.Success(message = "deleted Post '${postId}' successfully")
         } else {
             Result.Error(
-                code = HttpStatusCode.InternalServerError,
+                code = HttpStatusCode.InternalServerError.value,
                 message = "fail"
             )
         }

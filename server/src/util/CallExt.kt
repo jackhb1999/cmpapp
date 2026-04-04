@@ -3,7 +3,6 @@ package com.hb.util
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.ApplicationCall
 import io.ktor.server.response.respond
-import org.jetbrains.exposed.v1.core.QueryParameter
 import util.Result
 
 suspend fun ApplicationCall.getParameter(name: String, isQueryParameter: Boolean = false): String {

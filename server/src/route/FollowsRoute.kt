@@ -1,8 +1,10 @@
 package com.hb.route
 
+
+import com.hb.util.getIntParameter
+import com.hb.util.getParameter
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.auth.authenticate
-import io.ktor.server.request.receive
 import io.ktor.server.request.receiveNullable
 import io.ktor.server.response.respond
 import io.ktor.server.routing.*
@@ -16,7 +18,7 @@ fun Routing.followsRoute() {
 
     authenticate {
         route("/follows") {
-            post {
+            post("/follow") {
                 val params = call.receiveNullable<FollowsParams>()
                 if (params == null) {
 //                    call.respond<Result<Any>>(
@@ -32,6 +34,31 @@ fun Routing.followsRoute() {
                     repository.unfollowUser(follower = params.follower, following = params.following)
                 }
                 call.respond<Result<Any>>(result)
+            }
+
+            get("/followers") {
+                val userId = call.getParameter(name = "userId")
+                val page = call.getIntParameter(name = "page", isQueryParameter = true, defaultVal = 0)
+                val limit = call.getIntParameter(name = "limit", isQueryParameter = true, defaultVal = 10)
+
+                val result = repository.getFollowers(userId, page, limit)
+                call.respond(status = HttpStatusCode.fromValue(result.code), message = result)
+
+            }
+
+            get("/following") {
+                val userId = call.getParameter(name = "userId")
+                val page = call.getIntParameter(name = "page", isQueryParameter = true, defaultVal = 0)
+                val limit = call.getIntParameter(name = "limit", isQueryParameter = true, defaultVal = 10)
+
+                val result = repository.getFollowing(userId, page, limit)
+                call.respond(status = HttpStatusCode.fromValue(result.code), message = result)
+            }
+
+            get("/suggestions") {
+                val userId = call.getParameter(name = "userId")
+                val result = repository.getFollowingSuggestions(userId)
+                call.respond(status = HttpStatusCode.fromValue(result.code), message = result)
             }
         }
     }

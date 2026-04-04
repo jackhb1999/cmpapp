@@ -54,7 +54,7 @@ fun Routing.postRoutes() {
                 } else {
                     val result = postRepository.createPost(imageUrl = imageUrl, postTextParams = postTextParams!!)
                     call.respond<Result<Any>>(
-                        status = result.code,
+                        status = HttpStatusCode.fromValue(result.code),
                         message = result
                     )
                 }
