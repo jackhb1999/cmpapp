@@ -10,4 +10,5 @@ internal class AwesomeServiceImpl : AwesomeService, KtorRpc() {
      override fun getNews(city: String): Flow<String> = service.getNews(city)
 
      override suspend fun daysUntilStableRelease(): Int = service.daysUntilStableRelease()
+
 }

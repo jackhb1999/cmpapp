@@ -16,7 +16,7 @@ import viewmodel.SignUpViewModel
 val authModule = module {
     single<UserRepository> {
         AuthRepositoryImpl(
-            get(), get()
+            get(), get(),get()
         )
     }
 

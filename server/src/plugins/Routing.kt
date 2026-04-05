@@ -27,8 +27,9 @@ fun Application.configureRouting() {
         postCommentsRoute()
         postLikesRouting()
         staticResources(
-            remotePath = "static",
-            basePackage = "build/resource/main/static"
+            remotePath = "/resources",
+            basePackage = "static"
         )
+        staticResources("/resources", "static")
     }
 }

@@ -5,14 +5,15 @@ product:
 dependencies:
   - ../common
   - $compose.hotReload.runtimeApi
-  - $libs.compose.preview
-  - $libs.compose.uiTooling
+  - $compose.components.resources
+  - $libs.compose.preview: exported
+  - $libs.compose.uiTooling: exported
   - $libs.compose.material3: exported
   - $libs.compose.foundation: exported
   - $libs.compose.materialIconsCore
   - $libs.compose.materialIconsExtended
-  - io.coil-kt.coil3:coil-compose:3.3.0
-  - io.coil-kt.coil3:coil-network-okhttp:3.3.0
+  - $libs.coil.compose
+  - $libs.coil.network.okhttp
   - $libs.compose.material3.windows
   - $libs.kotlinx.serialization.json
   - $libs.ktor.serialization.kotlinx.json
@@ -20,14 +21,15 @@ dependencies:
   - $libs.kotlinx.serialization.json
   - $libs.koin.core
   - $libs.kotlinx.coroutines.core
-  - com.russhwolf:multiplatform-settings:1.3.0
-  - com.russhwolf:multiplatform-settings-serialization:1.3.0
-  - com.russhwolf:multiplatform-settings-datastore:1.3.0
-  - com.russhwolf:multiplatform-settings-coroutines:1.3.0: exported
+  - $libs.androidx.datastore
+  - $libs.androidx.datastore.core
+  - $libs.multiplatform.settings
+  - $libs.multiplatform.settings.serialization
+  - $libs.multiplatform.settings.datastore
+  - $libs.multiplatform.settings.coroutines: exported
   - $libs.voyager.navigator
   - $libs.voyager.tab.navigator
   - $libs.voyager.transitions
-  - $compose.components.resources
   - $libs.androidx.lifecycle.viewmodel.compose
   - $libs.androidx.lifecycle.runtime
   - $libs.ktor.client.core
@@ -40,8 +42,8 @@ dependencies:
   - $libs.koin.compose
   - $libs.koin.compose.viewModel
   - $libs.kotlinx.coroutines.core
-  - io.github.dokar3:sonner:0.3.9
-  - com.typesafe:config:1.4.5
+  - $libs.sonner
+  - $libs.config
   - $libs.kotlinx.rpc.krpc.client
   - $libs.kotlinx.rpc.krpc.serialization.json
   - $libs.kotlinx.rpc.krpc.ktor.client
@@ -50,12 +52,11 @@ dependencies:
 dependencies@jvm:
   - ../rs_lib
   - $libs.kotlinx.coroutines.swing
-  - $libs.androidx.datastore.preferences
+  - $compose.desktop.currentOs: exported
+  - $compose.hotReload.runtimeApi: exported
 
 dependencies@android:
-  - $libs.androidx.datastore
-  - $libs.androidx.datastore.core
-  - $libs.androidx.datastore.preferences
+  - androidx.compose.remote:remote-core:1.0.0-alpha03
   # Use to create Remote Compose documents
   - androidx.compose.remote:remote-creation:1.0.0-alpha03
   - androidx.compose.remote:remote-creation-core:1.0.0-alpha03
@@ -66,6 +67,10 @@ dependencies@android:
   - androidx.compose.remote:remote-tooling-preview:1.0.0-alpha03
   - androidx.compose.remote:remote-creation-android:1.0.0-alpha03
   - $libs.kotlinx.coroutines.android
+  - $libs.androidx.core.splashscreen: exported
+  - $libs.androidx.activity.compose: exported
+  - $libs.androidx.appcompat: exported
+
 
 settings:
   compose:

@@ -1,4 +1,4 @@
-package datastore
+package data
 
 import androidx.datastore.core.Serializer
 import model.UserSettingsData

@@ -8,4 +8,4 @@ private val utilityModule = module {
     factory { provideDispatcher() }
 }
 
-fun getSharedModules() = listOf(utilityModule)
+fun getSharedModules() = listOf(utilityModule, platformModule)

@@ -4,26 +4,24 @@ androidCompileSdk = "36"
 androidMinSdk = "24"
 androidTargetSdk = "36"
 androidxActivity = "1.12.2"
-#androidxActivity = "1.7.2"
 androidxAppcompat = "1.7.1"
 androidxCore = "1.17.0"
-#androidxCore = "1.9.0"
+androidxCoreSplasscreen = "1.2.0"
 androidxEspresso = "3.7.0"
 #androidxLifecycle = "2.9.6"
 androidxLifecycle = "2.9.4"
 androidxTestExt = "1.3.0"
 brComDevsrsouzaComposeIcons = "1.1.1"
+coil = "3.3.0"
+config = "1.4.5"
 composeHotReload = "1.0.0-rc03"
 composeMultiplatform = "1.10.0"
-#composeMultiplatform = "1.8.2"
 datastore = "1.2.0-rc01"
 exposed = "1.0.0"
 h2 = "2.4.240"
 hikaricp = "7.0.2"
-#junit = "4.13.2"
 koin = "4.1.1"
 kotlin = "2.3.20"
-#kotlin = "2.2.21"
 kotlinSerialization = "1.10.0"
 kotlinxCcoroutines = "1.10.2"
 kotlinxRpc = "0.10.2"
@@ -32,10 +30,12 @@ lifecycleViewmodelNav3 = "2.10.0-beta01"
 logback = "1.5.24"
 material = "1.5.2"
 material3 = "1.10.0-alpha05"
-#material3 = "1.8.2"
 material3AdaptiveNav3 = "1.3.0-alpha02"
+multiplatformSettings = "1.3.0"
 nav3Core = "1.0.0-beta01"
 postgres = "42.7.8"
+slf4j = "2.0.16"
+sonner = "0.3.9"
 voyagerVersion = "1.1.0-beta03"
 
 [libraries]
@@ -43,6 +43,7 @@ voyagerVersion = "1.1.0-beta03"
 androidx.activity.compose = { module = "androidx.activity:activity-compose", version.ref = "androidxActivity" }
 androidx.appcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidxAppcompat" }
 androidx.core.ktx = { module = "androidx.core:core-ktx", version.ref = "androidxCore" }
+androidx.core.splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "androidxCoreSplasscreen" }
 androidx.compose.uiToolingPreview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "composeMultiplatform" }
 androidx.datastore = { module = "androidx.datastore:datastore", version.ref = "datastore" }
 androidx.datastore.core = { module = "androidx.datastore:datastore-core", version.ref = "datastore" }
@@ -56,21 +57,27 @@ androidx.material3.adaptive.navigation3 = { group = "androidx.compose.material3.
 androidx.navigation3.runtime = { module = "androidx.navigation3:navigation3-runtime", version.ref = "nav3Core" }
 androidx.navigation3.ui = { module = "androidx.navigation3:navigation3-ui", version.ref = "nav3Core" }
 androidx.testExt.junit = { module = "androidx.test.ext:junit", version.ref = "androidxTestExt" }
-compose.animation = "org.jetbrains.compose.animation:animation:1.8.0"
-compose.animationGraphics = "org.jetbrains.compose.animation:animation-graphics:1.8.0"
+
+coil.compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
+coil.network.okhttp = { module = "io.coil-kt.coil3:coil-network-okhttp", version.ref = "coil" }
+config = { module = "com.typesafe:config", version.ref = "config" }
+
+compose.animation ={ module =  "org.jetbrains.compose.animation:animation", version.ref = "composeMultiplatform" }
+compose.animationGraphics = { module = "org.jetbrains.compose.animation:animation-graphics", version.ref = "composeMultiplatform" }
 compose.components.resources = { module = "org.jetbrains.compose.components:components-resources", version.ref = "composeMultiplatform" }
-compose.desktop.common = "org.jetbrains.compose.desktop:desktop:1.8.0"
-compose.desktop.components.animatedImage = "org.jetbrains.compose.components:components-animatedimage:1.8.0"
-compose.desktop.components.splitPane = "org.jetbrains.compose.components:components-splitpane:1.8.0"
-compose.desktop.currentOs = "org.jetbrains.compose.desktop:desktop-jvm-windows-x64:1.8.0"
-compose.desktop.linux_arm64 = "org.jetbrains.compose.desktop:desktop-jvm-linux-arm64:1.8.0"
-compose.desktop.linux_x64 = "org.jetbrains.compose.desktop:desktop-jvm-linux-x64:1.8.0"
-compose.desktop.macos_arm64 = "org.jetbrains.compose.desktop:desktop-jvm-macos-arm64:1.8.0"
-compose.desktop.macos_x64 = "org.jetbrains.compose.desktop:desktop-jvm-macos-x64:1.8.0"
-compose.desktop.uiTestJUnit4 = "org.jetbrains.compose.ui:ui-test-junit4:1.8.0"
-compose.desktop.windows_x64 = "org.jetbrains.compose.desktop:desktop-jvm-windows-x64:1.8.0"
+compose.desktop.common = { module = "org.jetbrains.compose.desktop:desktop", version.ref = "composeMultiplatform" }
+compose.desktop.components.animatedImage ={ module =  "org.jetbrains.compose.components:components-animatedimage", version.ref = "composeMultiplatform" }
+compose.desktop.components.splitPane = { module = "org.jetbrains.compose.components:components-splitpane", version.ref = "composeMultiplatform" }
+compose.desktop.currentOs = { module = "org.jetbrains.compose.desktop:desktop-jvm-windows-x64", version.ref = "composeMultiplatform" }
+compose.desktop.linux_arm64 ={ module =  "org.jetbrains.compose.desktop:desktop-jvm-linux-arm64", version.ref = "composeMultiplatform" }
+compose.desktop.linux_x64 = { module = "org.jetbrains.compose.desktop:desktop-jvm-linux-x64", version.ref = "composeMultiplatform" }
+compose.desktop.macos_arm64 = { module = "org.jetbrains.compose.desktop:desktop-jvm-macos-arm64", version.ref = "composeMultiplatform" }
+compose.desktop.macos_x64 = { module = "org.jetbrains.compose.desktop:desktop-jvm-macos-x64", version.ref = "composeMultiplatform" }
+compose.desktop.uiTestJUnit4 = { module = "org.jetbrains.compose.ui:ui-test-junit4", version.ref = "composeMultiplatform" }
+compose.desktop.windows_x64 = { module = "org.jetbrains.compose.desktop:desktop-jvm-windows-x64", version.ref = "composeMultiplatform" }
 compose.foundation = { module = "org.jetbrains.compose.foundation:foundation", version.ref = "composeMultiplatform" }
-compose.hot.reload.runtime =  { module = "org.jetbrains.compose.hot-reload:hot-reload-runtime-jvm", version.ref = "composeHotReload" }
+compose.hotReload.runtimeApi = { module =  "org.jetbrains.compose.hot-reload:hot-reload-runtime-api", version.ref = "composeHotReload" }
+compose.hot.reload.runtime = { module = "org.jetbrains.compose.hot-reload:hot-reload-runtime-jvm", version.ref = "composeHotReload" }
 compose.html.core = "org.jetbrains.compose.html:html-core:1.8.2"
 compose.html.svg = "org.jetbrains.compose.html:html-svg:1.8.2"
 compose.html.testUtils = "org.jetbrains.compose.html:html-test-utils:1.8.2"
@@ -86,6 +93,7 @@ compose.ui = { module = "org.jetbrains.compose.ui:ui", version.ref = "composeMul
 compose.uiTest = "org.jetbrains.compose.ui:ui-test:1.8.0"
 compose.uiTooling = { module = "org.jetbrains.compose.ui:ui-tooling", version.ref = "composeMultiplatform" }
 compose.uiToolingPreview = { module = "org.jetbrains.compose.ui:ui-tooling-preview", version.ref = "composeMultiplatform" }
+
 exposed.core = { module = "org.jetbrains.exposed:exposed-core", version.ref = "exposed" }
 exposed.dao = { module = "org.jetbrains.exposed:exposed-dao", version.ref = "exposed" }
 exposed.datetime = { module = "org.jetbrains.exposed:exposed-kotlin-datetime", version.ref = "exposed" }
@@ -120,7 +128,6 @@ kotlinx.serialization.json = { module = "org.jetbrains.kotlinx:kotlinx-serializa
 kotlinx.serialization.json-okio = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json-okio", version.ref = "kotlinSerialization" }
 kotlinx.serialization.properties = { module = "org.jetbrains.kotlinx:kotlinx-serialization-properties", version.ref = "kotlinSerialization" }
 kotlinx.serialization.protobuf = { module = "org.jetbrains.kotlinx:kotlinx-serialization-protobuf", version.ref = "kotlinSerialization" }
-
 
 ktor.auth = "io.ktor:ktor-auth"
 ktor.auth.jwt = "io.ktor:ktor-auth-jwt"
@@ -245,12 +252,18 @@ ktor.webjars = "io.ktor:ktor-webjars"
 ktor.websocket.serialization = "io.ktor:ktor-websocket-serialization"
 ktor.websockets = "io.ktor:ktor-websockets"
 
+multiplatform.settings = { module = "com.russhwolf:multiplatform-settings", version.ref = "multiplatformSettings" }
+multiplatform.settings.serialization = { module = "com.russhwolf:multiplatform-settings-serialization", version.ref = "multiplatformSettings" }
+multiplatform.settings.datastore ={ module = "com.russhwolf:multiplatform-settings-datastore", version.ref = "multiplatformSettings" }
+multiplatform.settings.coroutines={ module = "com.russhwolf:multiplatform-settings-coroutines", version.ref = "multiplatformSettings" }
+
 logback.classic = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
 postgresql = { module = "org.postgresql:postgresql", version.ref = "postgres" }
+sonner = { module = "io.github.dokar3:sonner", version.ref = "sonner" }
+slf4j.nop = { module = "org.slf4j:slf4j-nop", version.ref = "slf4j" }
 voyager.navigator = { module = "cafe.adriel.voyager:voyager-navigator", version.ref = "voyagerVersion" }
 voyager.tab.navigator = { module = "cafe.adriel.voyager:voyager-tab-navigator", version.ref = "voyagerVersion" }
 voyager.transitions = { module = "cafe.adriel.voyager:voyager-transitions", version.ref = "voyagerVersion" }
-
 
 
 

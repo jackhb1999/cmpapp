@@ -2,8 +2,14 @@ ktor:
     application:
         modules:
             - com.hb.ApplicationKt.module
+    development: true
     deployment:
-        port: 8088
+      port: 8088
+      watch:
+        - classes
+        - resources
+
+
 
 jwt:
   domain: "https://jwt-provider-domain/"

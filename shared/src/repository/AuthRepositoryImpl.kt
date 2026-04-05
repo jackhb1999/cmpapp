@@ -1,5 +1,6 @@
 package repository
 
+import data.UserPreferences
 import model.AuthResponse
 import model.SignInParams
 import model.SignUpParams
@@ -10,7 +11,8 @@ import util.Result
 
 internal class AuthRepositoryImpl(
     private val dispatcher: DispatcherProvider,
-    private val authService: AuthService
+    private val authService: AuthService,
+    private val userPreferences: UserPreferences
 ) : UserRepository {
     override suspend fun signUp(params: SignUpParams): Result<AuthResponse> {
         return withContext(dispatcher.io) {
@@ -19,6 +21,9 @@ internal class AuthRepositoryImpl(
                 if (response.data == null) {
                     Result.Error(message = response.errorMessage)
                 } else {
+                    userPreferences.setUserData(
+                        response.data!!
+                    )
                     Result.Success(response)
                 }
             } catch (e: Exception) {
@@ -34,6 +39,9 @@ internal class AuthRepositoryImpl(
                 if (response.data == null) {
                     Result.Error(message = response.errorMessage)
                 } else {
+                    userPreferences.setUserData(
+                        response.data!!
+                    )
                     Result.Success(response)
                 }
             } catch (e: Exception) {

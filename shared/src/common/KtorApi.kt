@@ -10,11 +10,12 @@ import kotlinx.serialization.json.Json
 
 //private const val BASE_URL = "http://192.168.1.5:8088"
 //private const val BASE_URL = "http://192.168.32.28:8088"
-private const val BASE_URL = "http://192.168.1.190:8088"
+//private const val BASE_URL = "http://192.168.1.190:8088"
+private const val BASE_URL = "http://127.0.0.1:8088"
 
-internal abstract class KtorApi {
+internal abstract class KtorApi : AutoCloseable {
     val client = HttpClient {
-        install(Logging){
+        install(Logging) {
             logger = Logger.DEFAULT
             level = LogLevel.ALL
         }
@@ -35,5 +36,9 @@ internal abstract class KtorApi {
             path(path)
             contentType(ContentType.Application.Json)
         }
+    }
+
+    override fun close() {
+        client.close()
     }
 }

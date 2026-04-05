@@ -1,7 +1,9 @@
 product: jvm/app
 
 settings:
-  ktor: enabled
+  ktor:
+    enabled: true
+
   jvm:
     mainClass: com.hb.ApplicationKt
   kotlin:
@@ -29,7 +31,7 @@ dependencies:
   - $libs.ktor.server.netty
   - $libs.ktor.server.config.yaml
   - $libs.ktor.utils
-  - org.slf4j:slf4j-nop:2.0.9
+  - $libs.slf4j.nop
   - $libs.kotlinx.rpc.krpc.server
   - $libs.kotlinx.rpc.krpc.serialization.json
   - $libs.kotlinx.rpc.krpc.ktor.server
