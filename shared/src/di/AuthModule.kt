@@ -10,6 +10,7 @@ import service.AwesomeServiceImpl
 import usecase.AwesomeUseCase
 import usecase.SignInUseCase
 import usecase.SignUpUseCase
+import usecase.UserSettingUseCase
 import viewmodel.LoginViewModel
 import viewmodel.SignUpViewModel
 
@@ -25,6 +26,7 @@ val authModule = module {
     factory { SignUpUseCase() }
     factory { SignInUseCase() }
     factory { AwesomeUseCase() }
+    factory { UserSettingUseCase() }
     viewModel { SignUpViewModel(get()) }
     viewModel { LoginViewModel(signInUseCase = get(), awesomeUseCase = get()) }
 }

@@ -6,9 +6,9 @@ import model.UserSettingsData
 
 internal class UserPreferencesImpl(
     private val dataStore: DataStore<UserSettingsData>
-): UserPreferences {
+) : UserPreferences {
     override suspend fun getUserData(): UserSettingsData {
-     return  dataStore.data.first()
+        return dataStore.data.first()
     }
 
     override suspend fun setUserData(userSettingsData: UserSettingsData) {

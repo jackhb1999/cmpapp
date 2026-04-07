@@ -6,14 +6,22 @@ import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.material3.Card
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabOptions
+import org.koin.compose.viewmodel.koinViewModel
+import viewmodel.MainActivityViewModel
 
 object SettingTab : Tab {
     @Composable
     override fun Content() {
+        val viewModel: MainActivityViewModel = koinViewModel()
+        LaunchedEffect(key1 = null, block = {
+            println(22)
+            viewModel.readDataStore()
+        })
 //        Box(
 //            contentAlignment = Alignment.Center,
 //            modifier = Modifier.fillMaxSize()
@@ -24,6 +32,7 @@ object SettingTab : Tab {
             Row(modifier = Modifier.fillMaxWidth()) {
                 SelectionContainer {
                     Text(text = "什么的还是大红i阿黄都爱活动i啊活动i啊哈ihi哦吼i吼吼吼后ihi哦hi黑乎乎ik")
+                    Text(text = viewModel.userSettingsData.token)
                 }
             }
 
