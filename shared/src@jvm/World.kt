@@ -1,5 +1,5 @@
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.*
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.transitions.SlideTransition
 import di.authModule
@@ -16,17 +16,10 @@ actual fun getWorld() = "JVM World"
 
 @Composable
 actual fun getMain() {
-    val viewModel: MainActivityViewModel = koinViewModel()
-    LaunchedEffect(key1 = null, block = {
-        viewModel.readDataStore()
-        println("22" + viewModel.userSettingsData.token)
-    })
-
-    var screen = LoginScreen()
-
-    Navigator(screen) { navigator ->
+    Navigator(HomeScreen()) { navigator ->
         SlideTransition(navigator)
     }
+
 }
 
 

@@ -31,7 +31,7 @@ dependencies:
   - $libs.voyager.tab.navigator
   - $libs.voyager.transitions
   - $libs.androidx.lifecycle.viewmodel.compose
-  - $libs.androidx.lifecycle.runtime
+  - $libs.androidx.lifecycle.runtimeCompose
   - $libs.ktor.client.core
   - $libs.ktor.client.cio
   - $libs.ktor.client.json

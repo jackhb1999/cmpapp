@@ -46,7 +46,7 @@ actual fun SignUpScreenContext() {
                     Column(modifier = Modifier.weight(1f)) {
                         LoginView(
                             gotoHome = {
-                                navigator?.push(HomeScreen(token = "123"))
+                                navigator?.push(HomeScreen())
                             },
                             gotoSignUp = { navigator?.push(SignUpScreen()) }
                         )
