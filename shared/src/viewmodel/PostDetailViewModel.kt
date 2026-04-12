@@ -6,11 +6,11 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import fake_data.Comment
-import fake_data.Post
 import fake_data.sampleComments
 import fake_data.samplePosts
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import model.Post
 
 class PostDetailViewModel : ViewModel() {
     var postUiState by mutableStateOf(PostUiState())
@@ -18,7 +18,7 @@ class PostDetailViewModel : ViewModel() {
     var commentsUiState by mutableStateOf(CommmentsUiState())
         private set
 
-    fun fetchData(postId: Int) {
+    fun fetchData(postId: String) {
         viewModelScope.launch {
             postUiState = postUiState.copy(
                 isLoading = true
@@ -29,7 +29,7 @@ class PostDetailViewModel : ViewModel() {
             delay(2000)
             postUiState = postUiState.copy(
                 isLoading = false,
-                post = samplePosts.find { it.id == postId }
+                post = samplePosts.find { it.postId == postId }
             )
 
             commentsUiState = commentsUiState.copy(

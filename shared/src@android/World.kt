@@ -5,13 +5,14 @@ import di.authModule
 import di.getSharedModules
 import di.otherModule
 import org.koin.core.context.startKoin
+import screen.HomeScreen
 import screen.LoginScreen
 
 actual fun getWorld() = "Android World"
 
 @Composable
 actual fun getMain() {
-    Navigator(LoginScreen()) { navigator ->
+    Navigator(HomeScreen()) { navigator ->
         SlideTransition(navigator)
     }
 }

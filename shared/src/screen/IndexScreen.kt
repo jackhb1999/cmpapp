@@ -19,7 +19,7 @@ class IndexScreen : Screen {
             modifier = Modifier.fillMaxSize()
         ) {
             Button(onClick = {
-                navigator?.push(DetailsScreen(str = 123))
+                navigator?.push(DetailsScreen(str = "123"))
             }) {
                 BasicText(text = "点击我")
             }

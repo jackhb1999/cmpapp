@@ -8,11 +8,11 @@ import tab.Navigation
 import view.FollowsView
 import view.ProfileView
 
-class FollowsScreen(val userId: Int, val followsType: Int) : Screen {
+class FollowsScreen(val userId: String, val followsType: Int) : Screen {
     @Composable
     override fun Content() {
         val navigator = LocalNavigator.current
-        fun goProfileClickFn(userId: Int) {
+        fun goProfileClickFn(userId: String) {
             navigator?.push(ProfileScreen(userId))
         }
         FollowsView(userId = userId, followsType = followsType, onItemClick = ::goProfileClickFn)

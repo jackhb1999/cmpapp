@@ -5,12 +5,12 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import fake_data.Post
 import fake_data.Profile
 import fake_data.samplePosts
 import fake_data.sampleProfiles
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import model.Post
 
 class ProfileViewModel : ViewModel() {
     var userInfoUiState by mutableStateOf(UserInfoUiState())
@@ -20,12 +20,12 @@ class ProfileViewModel : ViewModel() {
         private set
 
 
-    fun fetchProfile(userId: Int) {
+    fun fetchProfile(userId: String) {
         viewModelScope.launch {
             delay(2000)
             userInfoUiState = userInfoUiState.copy(
                 isLoading = false,
-                profile = sampleProfiles.find { it.id == userId }
+                profile = sampleProfiles.find { it.id.toString() == userId }
             )
             profileUiState = profileUiState.copy(
                 isLoading = false,
@@ -36,7 +36,7 @@ class ProfileViewModel : ViewModel() {
 
 
 
-    fun onLikesClick(postId :Int) {
+    fun onLikesClick(postId :String) {
 
     }
 

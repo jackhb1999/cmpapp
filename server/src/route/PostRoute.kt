@@ -1,6 +1,6 @@
 package com.hb.route
 
-import com.hb.util.Constants
+import util.Constants
 import com.hb.util.getIntParameter
 import com.hb.util.getParameter
 import com.hb.util.saveFile
@@ -96,9 +96,9 @@ fun Routing.postRoutes() {
         route("/posts") {
             get(path = "/feed") {
                 try {
-                    val currentUserId = call.getParameter(name = "currentUserId", isQueryParameter = true)
-                    val page = call.getIntParameter(name = "page", isQueryParameter = true, defaultVal = 0)
-                    val limit = call.getIntParameter(name = "limit", isQueryParameter = true, defaultVal = 10)
+                    val currentUserId = call.getParameter(name = Constants.CURRENT_USER_ID_PARAMETER, isQueryParameter = true)
+                    val page = call.getIntParameter(name = Constants.PAGE_QUERY_PARAMETER, isQueryParameter = true, defaultVal = 0)
+                    val limit = call.getIntParameter(name = Constants.PAGE_SIZE_QUERY_PARAMETER, isQueryParameter = true, defaultVal = 10)
                     val result =
                         postRepository.getFeedPosts(userId = currentUserId, pageNumber = page, pageSize = limit)
                     call.respond<Result<List<Post>>>(result)
@@ -115,7 +115,7 @@ fun Routing.postRoutes() {
             get(path = "/{userId}") {
                 try {
                     val userId = call.getParameter(name = "userId")
-                    val currentUserId = call.getParameter(name = "currentUserId", isQueryParameter = true)
+                    val currentUserId = call.getParameter(name = Constants.CURRENT_USER_ID_PARAMETER, isQueryParameter = true)
                     val page = call.getIntParameter(name = "page", isQueryParameter = true, defaultVal = 0)
                     val limit = call.getIntParameter(name = "limit", isQueryParameter = true, defaultVal = 10)
                     val result =

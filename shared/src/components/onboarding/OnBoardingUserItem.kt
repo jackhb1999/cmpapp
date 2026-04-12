@@ -14,14 +14,13 @@ import components.CircleImage
 import components.FollowsButton
 import components.MediumSpacing
 import components.ShortSpacing
-import fake_data.FollowsUser
+import model.FollowUserData
 
 @Composable
 fun OnBoardingUserItem(
-    followsUser: FollowsUser,
-    onUserClick: (FollowsUser) -> Unit,
-    isFollowing: Boolean = false,
-    onFollowButtonClick: (Boolean, FollowsUser) -> Unit,
+    followsUser: FollowUserData,
+    onUserClick: (FollowUserData) -> Unit,
+    onFollowButtonClick: (Boolean, FollowUserData) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Card(
@@ -36,7 +35,7 @@ fun OnBoardingUserItem(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             CircleImage(
-                imageUrl = followsUser.profileUrl,
+                imageUrl = followsUser.imageUrl,
                 modifier = modifier.size(50.dp)
             ) {
                 onUserClick(followsUser)
@@ -52,9 +51,9 @@ fun OnBoardingUserItem(
 
             FollowsButton(
                 modifier = modifier.fillMaxWidth().heightIn(30.dp),
-                text = "关注",
-                onClick = { onFollowButtonClick(!isFollowing, followsUser) },
-                isOutline = isFollowing
+                text = if (followsUser.isFollowing) "取消关注" else "关注",
+                onClick = { onFollowButtonClick(!followsUser.isFollowing, followsUser) },
+                isOutline = followsUser.isFollowing
             )
 
         }

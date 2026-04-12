@@ -8,11 +8,18 @@ dependencies:
   - $libs.kotlinx.serialization.json
   - $libs.kotlinx.coroutines.core
   - $libs.kotlin.test
-  - $libs.kotlinx.datetime
-  - com.diglol.id:id:0.3.0: exported
+  - $libs.kotlinx.datetime: exported
+  - com.diglol.id:id:0.3.0
+  - io.github.oshai:kotlin-logging:8.0.01: exported
   - $libs.ktor.server.core
   - $libs.ktor.serialization.kotlinx.json
   - $libs.kotlinx.rpc.core
+  - $libs.logback.classic: exported
+  - $libs.slf4j.api: exported
+  - $libs.slf4j.nop: exported
+
+dependencies@jvm:
+  - io.github.oshai:kotlin-logging-jvm:8.0.01: exported
 
 test-dependencies:
   - $libs.kotlin.test.junit5

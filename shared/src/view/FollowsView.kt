@@ -18,14 +18,14 @@ import viewmodel.FollowsViewModel
 fun FollowsView(
     modifier: Modifier = Modifier,
     vm: FollowsViewModel = koinViewModel(),
-    onItemClick: (Int) -> Unit,
-    userId: Int,
+    onItemClick: (String) -> Unit,
+    userId: String,
     followsType: Int
 ) {
     Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
         LazyColumn(modifier = Modifier.fillMaxSize()) {
             items(items = vm.uiState.followsUsers, key = { user -> user.id }) {
-                FollowsListItem(name = it.name, bio = it.bio, imageUrl = it.profileUrl) {
+                FollowsListItem(name = it.name, bio = it.bio, imageUrl = it.imageUrl) {
                     onItemClick(it.id)
                 }
             }

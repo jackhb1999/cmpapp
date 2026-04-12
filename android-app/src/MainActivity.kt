@@ -24,42 +24,42 @@ import kotlinx.coroutines.launch
 import viewmodel.MainActivityUiState
 import viewmodel.MainActivityViewModel
 
-//class MainActivity : AppCompatActivity() {
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        getDI()
-//        setContent {
-//            getMain()
-//        }
-//    }
-//}
-
-
-class MainActivity : ComponentActivity() {
-    private val viewModel: MainActivityViewModel by viewModels()
-
+class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
-        val splashScreen = installSplashScreen()
         super.onCreate(savedInstanceState)
         getDI()
-
-        var uiState: MainActivityUiState by mutableStateOf(MainActivityUiState.Loading)
-        lifecycleScope.launch {
-            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.uiState.onEach { uiState = it }.collect()
-            }
-        }
-
-        splashScreen.setKeepOnScreenCondition {
-            uiState == MainActivityUiState.Loading
-        }
-
         setContent {
-            Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-                val authState = viewModel.uiState.collectAsStateWithLifecycle(null)
-                getMain()
-            }
-
+            getMain()
         }
     }
 }
+
+
+//class MainActivity : ComponentActivity() {
+//    private val viewModel: MainActivityViewModel by viewModels()
+//
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        val splashScreen = installSplashScreen()
+//        super.onCreate(savedInstanceState)
+//        getDI()
+//
+//        var uiState: MainActivityUiState by mutableStateOf(MainActivityUiState.Loading)
+//        lifecycleScope.launch {
+//            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+//                viewModel.uiState.onEach { uiState = it }.collect()
+//            }
+//        }
+//
+//        splashScreen.setKeepOnScreenCondition {
+//            uiState == MainActivityUiState.Loading
+//        }
+//
+//        setContent {
+//            Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
+//                val authState = viewModel.uiState.collectAsStateWithLifecycle(null)
+//                getMain()
+//            }
+//
+//        }
+//    }
+//}

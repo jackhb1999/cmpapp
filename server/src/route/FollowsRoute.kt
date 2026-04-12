@@ -11,6 +11,7 @@ import io.ktor.server.routing.*
 import model.FollowsParams
 import org.koin.ktor.ext.inject
 import repository.FollowsRepository
+import util.Constants
 import util.Result
 
 fun Routing.followsRoute() {
@@ -33,11 +34,11 @@ fun Routing.followsRoute() {
                 } else {
                     repository.unfollowUser(follower = params.follower, following = params.following)
                 }
-                call.respond<Result<Any>>(result)
+                call.respond<Boolean>(result.data!!)
             }
 
             get("/followers") {
-                val userId = call.getParameter(name = "userId")
+                val userId = call.getParameter(name = Constants.USER_ID_PARAMETER)
                 val page = call.getIntParameter(name = "page", isQueryParameter = true, defaultVal = 0)
                 val limit = call.getIntParameter(name = "limit", isQueryParameter = true, defaultVal = 10)
 
@@ -47,7 +48,7 @@ fun Routing.followsRoute() {
             }
 
             get("/following") {
-                val userId = call.getParameter(name = "userId")
+                val userId = call.getParameter(name = Constants.USER_ID_PARAMETER)
                 val page = call.getIntParameter(name = "page", isQueryParameter = true, defaultVal = 0)
                 val limit = call.getIntParameter(name = "limit", isQueryParameter = true, defaultVal = 10)
 
@@ -56,9 +57,9 @@ fun Routing.followsRoute() {
             }
 
             get("/suggestions") {
-                val userId = call.getParameter(name = "userId")
+                val userId = call.getParameter(name = Constants.USER_ID_PARAMETER)
                 val result = repository.getFollowingSuggestions(userId)
-                call.respond(status = HttpStatusCode.fromValue(result.code), message = result)
+                call.respond(status = HttpStatusCode.fromValue(result.code), message = result.data!!)
             }
         }
     }

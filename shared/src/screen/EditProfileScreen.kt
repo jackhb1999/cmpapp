@@ -5,7 +5,7 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import view.EditProfileView
 
-class EditProfileScreen(val userId: Int) : Screen {
+class EditProfileScreen(val userId: String) : Screen {
     @Composable
     override fun Content() {
         val navigator = LocalNavigator.current

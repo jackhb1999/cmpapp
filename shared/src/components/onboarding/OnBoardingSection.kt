@@ -14,15 +14,15 @@ import androidx.compose.ui.text.style.TextAlign
 import components.LargeSpacing
 import components.MediumSpacing
 import components.ShortSpacing
-import fake_data.FollowsUser
+import model.FollowUserData
 
 
 @Composable
 fun OnBoardingSection(
     modifier: Modifier = Modifier,
-    users: List<FollowsUser>,
-    onUserClick: (FollowsUser) -> Unit,
-    onFollowButtonClick: (Boolean, FollowsUser) -> Unit,
+    users: List<FollowUserData>,
+    onUserClick: (FollowUserData) -> Unit,
+    onFollowButtonClick: (Boolean, FollowUserData) -> Unit,
     onBoardingFinish: () -> Unit,
 ) {
     Column(
@@ -54,7 +54,7 @@ fun OnBoardingSection(
                 .padding(vertical = LargeSpacing),
             shape = RoundedCornerShape(percent = 50)
         ) {
-            Text(text = "全部关注")
+            Text(text = "关闭关注")
         }
 
     }
@@ -63,9 +63,9 @@ fun OnBoardingSection(
 @Composable
 fun UsersRow(
     modifier: Modifier = Modifier,
-    users: List<FollowsUser>,
-    onUserClick: (FollowsUser) -> Unit,
-    onFollowButtonClick: (Boolean, FollowsUser) -> Unit,
+    users: List<FollowUserData>,
+    onUserClick: (FollowUserData) -> Unit,
+    onFollowButtonClick: (Boolean, FollowUserData) -> Unit,
 ) {
 
     LazyRow(

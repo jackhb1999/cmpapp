@@ -28,7 +28,7 @@ import viewmodel.PostDetailViewModel
 fun PostDetailView(
     modifier: Modifier = Modifier,
     vm: PostDetailViewModel = koinViewModel(),
-    postId: Int
+    postId: String
 ) {
     if (vm.postUiState.isLoading && vm.commentsUiState.isLoading) {
         Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {

@@ -20,7 +20,7 @@ fun FollowsListItem(
     modifier: Modifier = Modifier,
     name: String,
     bio: String,
-    imageUrl: String,
+    imageUrl: String?,
     onItemClick: () -> Unit
 ) {
     Row(

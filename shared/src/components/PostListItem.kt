@@ -23,16 +23,22 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
-import fake_data.Post
+import kotlinx.datetime.LocalDateTime
+import kotlinx.datetime.format
+import kotlinx.datetime.format.DateTimeFormat
+
+import model.Post
+
+
 
 @Composable
 fun PostListItem(
     modifier: Modifier = Modifier,
     post: Post,
     onPostClick: (Post) -> Unit,
-    onProfileClick: (Int) -> Unit,
-    onLikeClick: (Int) -> Unit,
-    onCommentClick: (Int) -> Unit,
+    onProfileClick: (String) -> Unit,
+    onLikeClick: (String) -> Unit,
+    onCommentClick: (String) -> Unit,
     isDetailScreen: Boolean = false
 ) {
     Column(
@@ -43,8 +49,8 @@ fun PostListItem(
             }
             .padding(bottom = ExtraLargeSpacing)
     ) {
-        PostItemHeader(name = post.authorName, profileUrl = post.authorImage, date = post.createdAt) {
-            onProfileClick(post.authorId)
+        PostItemHeader(name = post.username, profileUrl = post.imageUrl, date = post.createdAt) {
+            onProfileClick(post.userId)
         }
 
         AsyncImage(
@@ -59,14 +65,14 @@ fun PostListItem(
 //            }
         )
         PostLikesRow(
-            likesCount = post.likeCount,
-            commentsCount = post.commentCount,
-            onLikeClick = { onLikeClick(post.id) },
-            onCommentClick = { onCommentClick(post.id) }
+            likesCount = post.likesCount,
+            commentsCount = post.commentsCount,
+            onLikeClick = { onLikeClick(post.postId) },
+            onCommentClick = { onCommentClick(post.postId) }
         )
 
         Text(
-            text = post.text,
+            text = post.caption,
             style = MaterialTheme.typography.bodySmall,
             modifier = modifier.padding(horizontal = LargeSpacing),
             maxLines = if (isDetailScreen) {
@@ -86,7 +92,7 @@ fun PostItemHeader(
     modifier: Modifier = Modifier,
     name: String,
     profileUrl: String,
-    date: String,
+    date: LocalDateTime,
     onProfileClick: () -> Unit
 ) {
     Row(
@@ -102,7 +108,7 @@ fun PostItemHeader(
             modifier = modifier.size(4.dp).clip(CircleShape)
         )
         Text(
-            text = date, style = MaterialTheme.typography.bodyLarge.copy(
+            text = date.toString(), style = MaterialTheme.typography.bodyLarge.copy(
                 textAlign = TextAlign.Start,
                 fontSize = 12.sp,
             ),

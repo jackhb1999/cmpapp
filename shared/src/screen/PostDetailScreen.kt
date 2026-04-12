@@ -13,7 +13,7 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import view.PostDetailView
 
-class PostDetailScreen(val postId: Int) : Screen {
+class PostDetailScreen(val postId: String) : Screen {
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
     override fun Content() {

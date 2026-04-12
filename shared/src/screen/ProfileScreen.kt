@@ -5,11 +5,11 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import view.ProfileView
 
-data class ProfileScreen(val userId: Int) : Screen {
+data class ProfileScreen(val userId: String) : Screen {
     @Composable
     override fun Content() {
         val navigator = LocalNavigator.current
-        val postClick = fun(postId: Int) {
+        val postClick = fun(postId: String) {
             navigator?.push(PostDetailScreen(postId))
         }
         ProfileView(

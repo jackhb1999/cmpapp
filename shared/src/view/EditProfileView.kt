@@ -37,7 +37,7 @@ import viewmodel.EditProfileViewModel
 fun EditProfileView(
     modifier: Modifier = Modifier,
     vm: EditProfileViewModel = koinViewModel(),
-    userId: Int,
+    userId: String,
     onUploadSuccess: () -> Unit,
 ) {
     val toaster = rememberToasterState()

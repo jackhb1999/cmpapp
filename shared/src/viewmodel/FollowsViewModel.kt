@@ -5,17 +5,17 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import fake_data.FollowsUser
 import fake_data.sampleUsers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import model.FollowUserData
 
 
 class FollowsViewModel : ViewModel() {
     var uiState by mutableStateOf(FollowsUiState())
         private set
 
-    fun fetchFollowers(userId:Int,followsType:Int) {
+    fun fetchFollowers(userId:String,followsType:Int) {
         viewModelScope.launch {
             uiState = uiState.copy(isLoading = true)
             delay(1000)
@@ -29,6 +29,6 @@ class FollowsViewModel : ViewModel() {
 
 data class FollowsUiState(
     val isLoading: Boolean = false,
-    val followsUsers: List<FollowsUser> = listOf(),
+    val followsUsers: List<FollowUserData> = listOf(),
     val errorMessage: String? = null
 )

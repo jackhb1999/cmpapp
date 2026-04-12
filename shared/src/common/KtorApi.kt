@@ -38,6 +38,13 @@ internal abstract class KtorApi : AutoCloseable {
         }
     }
 
+    fun HttpRequestBuilder.setToken(token: String) {
+        headers{
+//            append(HttpHeaders.Authorization,token)
+            append("Authorization","Bearer $token")
+        }
+    }
+
     override fun close() {
         client.close()
     }

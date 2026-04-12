@@ -12,31 +12,35 @@ class FollowsRepositoryImpl(
     private val userDao: UserDao,
     private val followsDao: FollowsDao
 ) : FollowsRepository {
-    override suspend fun followUser(follower: String, following: String): Result<Any> {
+    override suspend fun followUser(follower: String, following: String): Result<Boolean> {
         return if (followsDao.isAlreadyFollowing(follower, following)) {
-            Result.Error<Any>(code = HttpStatusCode.Forbidden.value, message = "已经关注过了")
+            Result.Error<Boolean>(code = HttpStatusCode.Forbidden.value, message = "已经关注过了", data = false)
         } else {
             val success = followsDao.followUser(follower, following)
             if (success) {
                 userDao.updateFollowsCount(follower, following, isFollowing = true)
-                Result.Success(message = "添加关注成功！")
+                Result.Success(message = "添加关注成功！", data = true)
             } else {
-                Result.Error<Any>(code = HttpStatusCode.ServiceUnavailable.value, message = "添加关注失败！")
+                Result.Error<Boolean>(
+                    code = HttpStatusCode.ServiceUnavailable.value,
+                    message = "添加关注失败！",
+                    data = false
+                )
             }
         }
     }
 
-    override suspend fun unfollowUser(follower: String, following: String): Result<Any> {
+    override suspend fun unfollowUser(follower: String, following: String): Result<Boolean> {
         return if (followsDao.isAlreadyFollowing(follower, following)) {
             val success = followsDao.unfollowUser(follower, following)
             if (success) {
                 userDao.updateFollowsCount(follower, following, isFollowing = false)
-                Result.Success(message = "取关成功！")
+                Result.Success(message = "取关成功！", data = true)
             } else {
-                Result.Error<Any>(code = HttpStatusCode.ServiceUnavailable.value, message = "取关失败！")
+                Result.Error(code = HttpStatusCode.ServiceUnavailable.value, message = "取关失败！", data = false)
             }
         } else {
-            Result.Error<Any>(code = HttpStatusCode.Forbidden.value, message = "未曾关注！")
+            Result.Error(code = HttpStatusCode.Forbidden.value, message = "未曾关注！", data = false)
         }
     }
 

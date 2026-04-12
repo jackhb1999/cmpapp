@@ -17,7 +17,7 @@ import fake_data.Comment
 fun CommentListItem(
     modifier: Modifier = Modifier,
     comment: Comment,
-    onProfileClick: (Int) -> Unit,
+    onProfileClick: (String) -> Unit,
     onMoreIconClick: () -> Unit
 ) {
 

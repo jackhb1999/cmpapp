@@ -29,9 +29,9 @@ import viewmodel.ProfileViewModel
 fun ProfileView(
     modifier: Modifier = Modifier,
     vm: ProfileViewModel = koinViewModel(),
-    userId: Int,
-    onPostClick: (Int) -> Unit,
-    onCommentClick: (Int) -> Unit,
+    userId: String,
+    onPostClick: (String) -> Unit,
+    onCommentClick: (String) -> Unit,
     onButtonClick: () -> Unit,
     onFollowersClick: () -> Unit,
     onFollowingClick: () -> Unit,
@@ -61,9 +61,9 @@ fun ProfileView(
 
             items(
                 items = vm.profileUiState.posts,
-                key = { post -> post.id }
+                key = { post -> post.postId }
             ) {
-                val postId = it.id
+                val postId = it.postId
                 PostListItem(
                     post = it,
                     onPostClick = { onPostClick(postId) },

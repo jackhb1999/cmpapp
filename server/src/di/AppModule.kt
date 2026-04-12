@@ -12,22 +12,10 @@ import com.hb.dao.post_likes.PostLikesDao
 import com.hb.dao.post_likes.PostLikesDaoImpl
 import com.hb.dao.user.UserDao
 import com.hb.dao.user.UserDaoImpl
-import com.hb.repository.DeptRepositoryImpl
-import com.hb.repository.FollowsRepositoryImpl
-import com.hb.repository.PostCommentsRepositoryImpl
-import com.hb.repository.PostLikesRepositoryImpl
-import com.hb.repository.PostRepositoryImpl
-import com.hb.repository.ProfileRepositoryImpl
-import repository.UserRepository
-import com.hb.repository.UserRepositoryImpl
+import com.hb.repository.*
 import com.hb.service.AwesomeServiceImpl
-import fake_data.Post
 import org.koin.dsl.module
-import repository.FollowsRepository
-import repository.PostCommentsRepository
-import repository.PostLikesRepository
-import repository.PostRepository
-import repository.ProfileRepository
+import repository.*
 import service.AwesomeService
 
 val appModule = module {

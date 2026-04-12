@@ -14,7 +14,8 @@ screen
 view
 viewmodel
 usecase
-repository（涉及本地io） / service（服务请求）
+repository（rpc可省略）
+service（服务请求）
 
 route
 service（rpc） / repository（非rpc）
