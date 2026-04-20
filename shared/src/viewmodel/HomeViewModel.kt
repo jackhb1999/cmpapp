@@ -6,21 +6,26 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import fake_data.samplePosts
 import io.github.oshai.kotlinlogging.KotlinLogging
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import model.FollowUserData
-import model.LikeParams
 import model.Post
 import usecase.FollowOrUnfollowUseCase
 import usecase.GetFollowableUsersUseCase
+import usecase.GetPostUseCase
+import util.Constants
+import util.Constants.DEFAULT_REQUEST_PAGE_SIZE
+import util.DefaultPagingManage
+import util.PagingManage
 import util.Result
 
 private val logger = KotlinLogging.logger {}
 
 class HomeViewModel(
     private val getFollowableUsersUseCase: GetFollowableUsersUseCase,
-    private val followOrUnfollowUseCase: FollowOrUnfollowUseCase
+    private val followOrUnfollowUseCase: FollowOrUnfollowUseCase,
+    private val getPostUseCase: GetPostUseCase
 ) : ViewModel() {
 
     var postsFeedUiState by mutableStateOf(PostsFeedUiState())
@@ -32,26 +37,66 @@ class HomeViewModel(
     var homeRefreshState by mutableStateOf(HomeRefreshState())
         private set
 
+    private val pagingManage by lazy { createPagingManager() }
+
+
     init {
         println("home的数据创建")
         fetchData()
     }
 
-    fun fetchData() {
+    private fun fetchData() {
         homeRefreshState = homeRefreshState.copy(isRefreshing = true)
         viewModelScope.launch {
-            logger.info { "fetchData1" }
-            println("fetchData2")
-            val users = getFollowableUsersUseCase()
-            handleOnBoardingResult(users)
-            postsFeedUiState = postsFeedUiState.copy(
-                isLoading = false,
-                posts = samplePosts
-            )
-            homeRefreshState = homeRefreshState.copy(
-                isRefreshing = true,
-            )
+            val onBoardingDeferred = async { getFollowableUsersUseCase() }
+            pagingManage.apply {
+                reset()
+                loadItems()
+            }
+            handleOnBoardingResult(onBoardingDeferred.await())
+            homeRefreshState = homeRefreshState.copy(isRefreshing = false)
         }
+    }
+
+    private fun createPagingManager(): PagingManage<Post> {
+        return DefaultPagingManage<Post>(
+            onRequest = { page ->
+                getPostUseCase(page, DEFAULT_REQUEST_PAGE_SIZE)
+            },
+            onSuccess = { posts, page ->
+                postsFeedUiState = if (posts.isEmpty()) {
+                    postsFeedUiState.copy(
+                        endReached = true
+                    )
+                } else {
+                    if (page == Constants.INITIAL_PAGE_NUMBER) {
+                        postsFeedUiState = postsFeedUiState.copy(
+                            posts = emptyList(),
+                        )
+                    }
+                    postsFeedUiState.copy(
+                        posts = postsFeedUiState.posts.plus(posts),
+                        endReached = posts.size < DEFAULT_REQUEST_PAGE_SIZE,
+                    )
+                }
+            },
+            onError = { cause, page ->
+                if (page == Constants.INITIAL_PAGE_NUMBER) {
+                    homeRefreshState = homeRefreshState.copy(
+                        refreshErrorMessage = cause
+                    )
+                } else {
+                    postsFeedUiState = postsFeedUiState.copy(
+                        errorMessage = cause
+                    )
+                }
+            },
+            onLoadStateChange = { isLoading ->
+                postsFeedUiState = postsFeedUiState.copy(
+                    isLoading = isLoading
+                )
+            }
+        )
     }
 
     private fun handleOnBoardingResult(result: Result<List<FollowUserData>>) {
@@ -88,12 +133,12 @@ class HomeViewModel(
         }
     }
 
-    private fun dismissOnboarding(){
-        val hasFollowing = onBoardingUiState.followableUsers.any{it.isFollowing}
-        if(!hasFollowing){
+    private fun dismissOnboarding() {
+        val hasFollowing = onBoardingUiState.followableUsers.any { it.isFollowing }
+        if (!hasFollowing) {
 
-        }else{
-            onBoardingUiState.copy(followableUsers = emptyList(),shouldShowOnBoarding = false)
+        } else {
+            onBoardingUiState =  onBoardingUiState.copy(followableUsers = emptyList(), shouldShowOnBoarding = false)
             fetchData()
         }
     }
@@ -122,7 +167,8 @@ data class HomeRefreshState(
 data class PostsFeedUiState(
     val isLoading: Boolean = false,
     val posts: List<Post> = listOf(),
-    val errorMessage: String? = null
+    val errorMessage: String? = null,
+    val endReached: Boolean = false,
 )
 
 data class OnBoardingUiState(

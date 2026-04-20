@@ -15,6 +15,7 @@ import service.AuthService
 import service.AwesomeService
 import service.AwesomeServiceImpl
 import service.FollowsApiService
+import service.PostApiService
 import usecase.AwesomeUseCase
 import usecase.FollowOrUnfollowUseCase
 import usecase.GetFollowableUsersUseCase
@@ -49,6 +50,7 @@ val authModule = module {
     factory { AwesomeServiceImpl() }
     factory { AuthService() }
     factory { FollowsApiService() }
+    factory { PostApiService() }
     factory { SignUpUseCase() }
     factory { SignInUseCase() }
     factory { GetFollowableUsersUseCase() }

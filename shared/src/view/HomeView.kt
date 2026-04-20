@@ -26,7 +26,7 @@ fun HomeView(
         modifier = modifier.fillMaxSize().pullToRefresh(
             state = pullRefreshState,
             isRefreshing = vm.homeRefreshState.isRefreshing,
-            onRefresh = { vm.fetchData() }
+            onRefresh = { vm.onUiAction(HomeUiAction.RefreshAction) }
         )) {
         LazyColumn(modifier = modifier.fillMaxSize()) {
             if (vm.onBoardingUiState.shouldShowOnBoarding) {
