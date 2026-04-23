@@ -47,6 +47,7 @@ fun main() = application {
         MaterialTheme {
             getMain()
         }
+//        Screen()
     }
 }
 

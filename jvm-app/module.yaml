@@ -3,12 +3,16 @@ product: jvm/app
 dependencies:
   - ../shared
   - ../common
+  - ../rs_lib
 
 
 
 
 
 settings:
+  jvm:
+    jdk:
+      version: 21
   compose:
     enabled: true
     experimental:
@@ -16,7 +20,7 @@ settings:
         version: 1.0.0-rc03
     resources:
       packageName: com.rustob.gen
-    version: 1.10.0
+    version: 1.10.3
   kotlin:
     serialization: enabled
 

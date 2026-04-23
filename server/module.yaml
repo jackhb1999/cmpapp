@@ -3,8 +3,9 @@ product: jvm/app
 settings:
   ktor:
     enabled: true
-
   jvm:
+    jdk:
+      version: 21
     mainClass: com.hb.ApplicationKt
   kotlin:
     serialization: enabled

@@ -1,0 +1,9 @@
+tasks:
+  generate:
+    action: !generateLibSources
+      libsDir: ${module.rootDir}
+      resourcesDir: ${taskOutputDir}
+    markOutputsAs:
+      - path: ${action.resourcesDir}
+        kind: jvm-resources
+

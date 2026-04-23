@@ -73,9 +73,12 @@ dependencies@android:
 
 
 settings:
+  jvm:
+    jdk:
+      version: 21
   compose:
     enabled: true
-    version: 1.10.0
+    version: 1.10.3
     experimental:
       hotReload:
         version: 1.0.0-rc03

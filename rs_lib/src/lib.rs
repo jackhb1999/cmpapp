@@ -14,6 +14,11 @@ pub fn add(lhs: u32, rhs: u32) -> u32 {
     lhs + rhs
 }
 
+#[uniffi::export]
+pub fn add2(lhs: i32, rhs: i32) -> i32 {
+    lhs + rhs
+}
+
 #[test]
 pub fn test() {
     let start = Instant::now();

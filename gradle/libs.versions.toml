@@ -31,6 +31,7 @@ androidxMacroBenchmark = "1.5.0-alpha01"
 androidxMetrics = "1.0.0-beta01"
 androidxNavigation = "2.8.5"
 androidxNavigation3 = "1.0.0"
+androidxPaging = "3.5.0-beta01"
 androidxProfileinstaller = "1.4.1"
 androidxSavedStateCompose = "1.3.1"
 androidxTestCore = "1.7.0-rc01"
@@ -44,7 +45,7 @@ androidxWork = "2.10.0"
 brComDevsrsouzaComposeIcons = "1.1.1"
 coil = "3.3.0"
 composeHotReload = "1.0.0-rc03"
-composeMultiplatform = "1.10.0"
+composeMultiplatform = "1.10.3"
 config = "1.4.5"
 datastore = "1.2.0-rc01"
 dependencyGuard = "0.5.0"
@@ -68,8 +69,7 @@ kotlinxCcoroutines = "1.10.2"
 kotlinxCoroutines = "1.10.1"
 kotlinxDatetime = "0.6.1"
 kotlinxRpc = "0.10.2"
-kotlinxSerializationJson = "1.8.0"
-ksp = "2.3.4"
+ksp = "2.3.6"
 ktlint = "1.4.0"
 ktor = "3.4.1"
 lifecycleViewmodelNav3 = "2.10.0-beta01"
@@ -118,27 +118,30 @@ androidx.lifecycle.viewmodel.compose = { module = "org.jetbrains.androidx.lifecy
 androidx.material3.adaptive.navigation3 = { group = "androidx.compose.material3.adaptive", name = "adaptive-navigation3", version.ref = "material3AdaptiveNav3" }
 androidx.navigation3.runtime = { module = "androidx.navigation3:navigation3-runtime", version.ref = "nav3Core" }
 androidx.navigation3.ui = { module = "androidx.navigation3:navigation3-ui", version.ref = "nav3Core" }
+androidx.paging.common = { module = "androidx.paging:paging-common", version.ref = "androidxPaging" }
+androidx.paging.compose = { module = "androidx.paging:paging-compose", version.ref = "androidxPaging" }
 androidx.testExt.junit = { module = "androidx.test.ext:junit", version.ref = "androidxTestExt" }
 
-coil.compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
-coil.network.okhttp = { module = "io.coil-kt.coil3:coil-network-okhttp", version.ref = "coil" }
+
+coil.compose = { group = "io.coil-kt.coil3", name = "coil-compose", version.ref = "coil" }
+coil.network.okhttp = { group = "io.coil-kt.coil3", name = "coil-network-okhttp", version.ref = "coil" }
 config = { module = "com.typesafe:config", version.ref = "config" }
 
-compose.animation ={ module =  "org.jetbrains.compose.animation:animation", version.ref = "composeMultiplatform" }
+compose.animation = { module = "org.jetbrains.compose.animation:animation", version.ref = "composeMultiplatform" }
 compose.animationGraphics = { module = "org.jetbrains.compose.animation:animation-graphics", version.ref = "composeMultiplatform" }
 compose.components.resources = { module = "org.jetbrains.compose.components:components-resources", version.ref = "composeMultiplatform" }
 compose.desktop.common = { module = "org.jetbrains.compose.desktop:desktop", version.ref = "composeMultiplatform" }
-compose.desktop.components.animatedImage ={ module =  "org.jetbrains.compose.components:components-animatedimage", version.ref = "composeMultiplatform" }
+compose.desktop.components.animatedImage = { module = "org.jetbrains.compose.components:components-animatedimage", version.ref = "composeMultiplatform" }
 compose.desktop.components.splitPane = { module = "org.jetbrains.compose.components:components-splitpane", version.ref = "composeMultiplatform" }
 compose.desktop.currentOs = { module = "org.jetbrains.compose.desktop:desktop-jvm-windows-x64", version.ref = "composeMultiplatform" }
-compose.desktop.linux_arm64 ={ module =  "org.jetbrains.compose.desktop:desktop-jvm-linux-arm64", version.ref = "composeMultiplatform" }
+compose.desktop.linux_arm64 = { module = "org.jetbrains.compose.desktop:desktop-jvm-linux-arm64", version.ref = "composeMultiplatform" }
 compose.desktop.linux_x64 = { module = "org.jetbrains.compose.desktop:desktop-jvm-linux-x64", version.ref = "composeMultiplatform" }
 compose.desktop.macos_arm64 = { module = "org.jetbrains.compose.desktop:desktop-jvm-macos-arm64", version.ref = "composeMultiplatform" }
 compose.desktop.macos_x64 = { module = "org.jetbrains.compose.desktop:desktop-jvm-macos-x64", version.ref = "composeMultiplatform" }
 compose.desktop.uiTestJUnit4 = { module = "org.jetbrains.compose.ui:ui-test-junit4", version.ref = "composeMultiplatform" }
 compose.desktop.windows_x64 = { module = "org.jetbrains.compose.desktop:desktop-jvm-windows-x64", version.ref = "composeMultiplatform" }
 compose.foundation = { module = "org.jetbrains.compose.foundation:foundation", version.ref = "composeMultiplatform" }
-compose.hotReload.runtimeApi = { module =  "org.jetbrains.compose.hot-reload:hot-reload-runtime-api", version.ref = "composeHotReload" }
+compose.hotReload.runtimeApi = { module = "org.jetbrains.compose.hot-reload:hot-reload-runtime-api", version.ref = "composeHotReload" }
 compose.hot.reload.runtime = { module = "org.jetbrains.compose.hot-reload:hot-reload-runtime-jvm", version.ref = "composeHotReload" }
 compose.html.core = "org.jetbrains.compose.html:html-core:1.8.2"
 compose.html.svg = "org.jetbrains.compose.html:html-svg:1.8.2"
@@ -191,133 +194,131 @@ kotlinx.serialization.json-okio = { module = "org.jetbrains.kotlinx:kotlinx-seri
 kotlinx.serialization.properties = { module = "org.jetbrains.kotlinx:kotlinx-serialization-properties", version.ref = "kotlinSerialization" }
 kotlinx.serialization.protobuf = { module = "org.jetbrains.kotlinx:kotlinx-serialization-protobuf", version.ref = "kotlinSerialization" }
 
-ktor.auth = "io.ktor:ktor-auth"
-ktor.auth.jwt = "io.ktor:ktor-auth-jwt"
-ktor.auth.ldap = "io.ktor:ktor-auth-ldap"
-ktor.bom = "io.ktor:ktor-bom:3.1.1"
-ktor.callId = "io.ktor:ktor-call-id"
-ktor.client = "io.ktor:ktor-client"
-ktor.client.apache = "io.ktor:ktor-client-apache"
-ktor.client.apache5 = "io.ktor:ktor-client-apache5"
-ktor.client.auth = "io.ktor:ktor-client-auth"
-ktor.client.authBasic = "io.ktor:ktor-client-auth-basic"
-ktor.client.callId = "io.ktor:ktor-client-call-id"
+ktor.auth = { module = "io.ktor:ktor-auth", version.ref = "ktor" }
+ktor.auth.jwt = { module = "io.ktor:ktor-auth-jwt", version.ref = "ktor" }
+ktor.auth.ldap = { module = "io.ktor:ktor-auth-ldap", version.ref = "ktor" }
+ktor.bom = { module = "io.ktor:ktor-bom", version.ref = "ktor" }
+ktor.callId = { module = "io.ktor:ktor-call-id", version.ref = "ktor" }
+ktor.client = { module = "io.ktor:ktor-client", version.ref = "ktor" }
+ktor.client.apache = { module = "io.ktor:ktor-client-apache", version.ref = "ktor" }
+ktor.client.apache5 = { module = "io.ktor:ktor-client-apache5", version.ref = "ktor" }
+ktor.client.auth = { module = "io.ktor:ktor-client-auth", version.ref = "ktor" }
+ktor.client.authBasic = { module = "io.ktor:ktor-client-auth-basic", version.ref = "ktor" }
+ktor.client.callId = { module = "io.ktor:ktor-client-call-id", version.ref = "ktor" }
 ktor.client.cio = { module = "io.ktor:ktor-client-cio", version.ref = "ktor" }
 ktor.client.contentNegotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
 ktor.client.core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
-ktor.client.encoding = "io.ktor:ktor-client-encoding"
-ktor.client.features = "io.ktor:ktor-client-features"
-ktor.client.gson = "io.ktor:ktor-client-gson"
-ktor.client.jackson = "io.ktor:ktor-client-jackson"
-ktor.client.java = "io.ktor:ktor-client-java"
-ktor.client.jetty = "io.ktor:ktor-client-jetty"
-ktor.client.jetty.jakarta = "io.ktor:ktor-client-jetty-jakarta"
+ktor.client.encoding = { module = "io.ktor:ktor-client-encoding", version.ref = "ktor" }
+ktor.client.features = { module = "io.ktor:ktor-client-features", version.ref = "ktor" }
+ktor.client.gson = { module = "io.ktor:ktor-client-gson", version.ref = "ktor" }
+ktor.client.jackson = { module = "io.ktor:ktor-client-jackson", version.ref = "ktor" }
+ktor.client.java = { module = "io.ktor:ktor-client-java", version.ref = "ktor" }
+ktor.client.jetty = { module = "io.ktor:ktor-client-jetty", version.ref = "ktor" }
+ktor.client.jetty.jakarta = { module = "io.ktor:ktor-client-jetty-jakarta", version.ref = "ktor" }
 ktor.client.json = { module = "io.ktor:ktor-client-json", version.ref = "ktor" }
 ktor.client.logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor" }
-ktor.client.mock = "io.ktor:ktor-client-mock"
-ktor.client.okhttp = "io.ktor:ktor-client-okhttp"
-ktor.client.plugins = "io.ktor:ktor-client-plugins"
-ktor.client.resources = "io.ktor:ktor-client-resources"
-ktor.client.serialization = "io.ktor:ktor-client-serialization"
-ktor.client.websocket = "io.ktor:ktor-client-websocket"
-ktor.client.websockets = "io.ktor:ktor-client-websockets"
-ktor.client.winhttp = "io.ktor:ktor-client-winhttp"
-ktor.events = "io.ktor:ktor-events"
-ktor.features = "io.ktor:ktor-features"
-ktor.freemarker = "io.ktor:ktor-freemarker"
-ktor.gson = "io.ktor:ktor-gson"
-ktor.html.builder = "io.ktor:ktor-html-builder"
-ktor.http = "io.ktor:ktor-http"
-ktor.http.cio = "io.ktor:ktor-http-cio"
-ktor.io = "io.ktor:ktor-io"
-ktor.jackson = "io.ktor:ktor-jackson"
-ktor.locations = "io.ktor:ktor-locations"
-ktor.metrics = "io.ktor:ktor-metrics"
-ktor.metrics.micrometer = "io.ktor:ktor-metrics-micrometer"
-ktor.mustache = "io.ktor:ktor-mustache"
-ktor.network = "io.ktor:ktor-network"
-ktor.network.tls = "io.ktor:ktor-network-tls"
-ktor.network.tls.certificates = "io.ktor:ktor-network-tls-certificates"
-ktor.pebble = "io.ktor:ktor-pebble"
-ktor.resources = "io.ktor:ktor-resources"
-ktor.serialization = "io.ktor:ktor-serialization"
-ktor.serialization.gson = "io.ktor:ktor-serialization-gson"
-ktor.serialization.jackson = "io.ktor:ktor-serialization-jackson"
-ktor.serialization.kotlinx = "io.ktor:ktor-serialization-kotlinx"
-ktor.serialization.kotlinx.cbor = "io.ktor:ktor-serialization-kotlinx-cbor"
-ktor.serialization.kotlinx.json = "io.ktor:ktor-serialization-kotlinx-json"
+ktor.client.mock = { module = "io.ktor:ktor-client-mock", version.ref = "ktor" }
+ktor.client.okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
+ktor.client.plugins = { module = "io.ktor:ktor-client-plugins", version.ref = "ktor" }
+ktor.client.resources = { module = "io.ktor:ktor-client-resources", version.ref = "ktor" }
+ktor.client.serialization = { module = "io.ktor:ktor-client-serialization", version.ref = "ktor" }
+ktor.client.websocket = { module = "io.ktor:ktor-client-websocket", version.ref = "ktor" }
+ktor.client.websockets = { module = "io.ktor:ktor-client-websockets", version.ref = "ktor" }
+ktor.client.winhttp = { module = "io.ktor:ktor-client-winhttp", version.ref = "ktor" }
+ktor.events = { module = "io.ktor:ktor-events", version.ref = "ktor" }
+ktor.features = { module = "io.ktor:ktor-features", version.ref = "ktor" }
+ktor.freemarker = { module = "io.ktor:ktor-freemarker", version.ref = "ktor" }
+ktor.gson = { module = "io.ktor:ktor-gson", version.ref = "ktor" }
+ktor.html.builder = { module = "io.ktor:ktor-html-builder", version.ref = "ktor" }
+ktor.http = { module = "io.ktor:ktor-http", version.ref = "ktor" }
+ktor.http.cio = { module = "io.ktor:ktor-http-cio", version.ref = "ktor" }
+ktor.io = { module = "io.ktor:ktor-io", version.ref = "ktor" }
+ktor.jackson = { module = "io.ktor:ktor-jackson", version.ref = "ktor" }
+ktor.locations = { module = "io.ktor:ktor-locations", version.ref = "ktor" }
+ktor.metrics = { module = "io.ktor:ktor-metrics", version.ref = "ktor" }
+ktor.metrics.micrometer = { module = "io.ktor:ktor-metrics-micrometer", version.ref = "ktor" }
+ktor.mustache = { module = "io.ktor:ktor-mustache", version.ref = "ktor" }
+ktor.network = { module = "io.ktor:ktor-network", version.ref = "ktor" }
+ktor.network.tls = { module = "io.ktor:ktor-network-tls", version.ref = "ktor" }
+ktor.network.tls.certificates = { module = "io.ktor:ktor-network-tls-certificates", version.ref = "ktor" }
+ktor.pebble = { module = "io.ktor:ktor-pebble", version.ref = "ktor" }
+ktor.resources = { module = "io.ktor:ktor-resources", version.ref = "ktor" }
+ktor.serialization = { module = "io.ktor:ktor-serialization", version.ref = "ktor" }
+ktor.serialization.gson = { module = "io.ktor:ktor-serialization-gson", version.ref = "ktor" }
+ktor.serialization.jackson = { module = "io.ktor:ktor-serialization-jackson", version.ref = "ktor" }
+ktor.serialization.kotlinx = { module = "io.ktor:ktor-serialization-kotlinx", version.ref = "ktor" }
+ktor.serialization.kotlinx.cbor = { module = "io.ktor:ktor-serialization-kotlinx-cbor", version.ref = "ktor" }
 ktor.serialization.kotlinx.json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
-ktor.serialization.kotlinx.protobuf = "io.ktor:ktor-serialization-kotlinx-protobuf"
-ktor.serialization.kotlinx.xml = "io.ktor:ktor-serialization-kotlinx-xml"
+ktor.serialization.kotlinx.protobuf = { module = "io.ktor:ktor-serialization-kotlinx-protobuf", version.ref = "ktor" }
+ktor.serialization.kotlinx.xml = { module = "io.ktor:ktor-serialization-kotlinx-xml", version.ref = "ktor" }
 ktor.server.auth = { module = "io.ktor:ktor-server-auth", version.ref = "ktor" }
 ktor.server.auth.jwt = { module = "io.ktor:ktor-server-auth-jwt", version.ref = "ktor" }
-ktor.server.auth.ldap = "io.ktor:ktor-server-auth-ldap"
-ktor.server.autoHeadResponse = "io.ktor:ktor-server-auto-head-response"
-ktor.server.bodyLimit = "io.ktor:ktor-server-body-limit"
-ktor.server.cachingHeaders = "io.ktor:ktor-server-caching-headers"
-ktor.server.callId = "io.ktor:ktor-server-call-id"
-ktor.server.callLogging = "io.ktor:ktor-server-call-logging"
-ktor.server.cio = "io.ktor:ktor-server-cio"
-ktor.server.compression = "io.ktor:ktor-server-compression"
-ktor.server.conditionalHeaders = "io.ktor:ktor-server-conditional-headers"
+ktor.server.auth.ldap = { module = "io.ktor:ktor-server-auth-ldap", version.ref = "ktor" }
+ktor.server.autoHeadResponse = { module = "io.ktor:ktor-server-auto-head-response", version.ref = "ktor" }
+ktor.server.bodyLimit = { module = "io.ktor:ktor-server-body-limit", version.ref = "ktor" }
+ktor.server.cachingHeaders = { module = "io.ktor:ktor-server-caching-headers", version.ref = "ktor" }
+ktor.server.callId = { module = "io.ktor:ktor-server-call-id", version.ref = "ktor" }
+ktor.server.callLogging = { module = "io.ktor:ktor-server-call-logging", version.ref = "ktor" }
+ktor.server.cio = { module = "io.ktor:ktor-server-cio", version.ref = "ktor" }
+ktor.server.compression = { module = "io.ktor:ktor-server-compression", version.ref = "ktor" }
+ktor.server.conditionalHeaders = { module = "io.ktor:ktor-server-conditional-headers", version.ref = "ktor" }
 ktor.server.config.yaml = { module = "io.ktor:ktor-server-config-yaml", version.ref = "ktor" }
 ktor.server.content.negotiation = { module = "io.ktor:ktor-server-content-negotiation", version.ref = "ktor" }
 ktor.server.core = { module = "io.ktor:ktor-server-core", version.ref = "ktor" }
 ktor.server.core.jvm = { module = "io.ktor:ktor-server-core-jvm", version.ref = "ktor" }
-ktor.server.cors = "io.ktor:ktor-server-cors"
-ktor.server.csrf = "io.ktor:ktor-server-csrf"
-ktor.server.dataConversion = "io.ktor:ktor-server-data-conversion"
-ktor.server.defaultHeaders = "io.ktor:ktor-server-default-headers"
-ktor.server.doubleReceive = "io.ktor:ktor-server-double-receive"
-ktor.server.forwardedHeader = "io.ktor:ktor-server-forwarded-header"
-ktor.server.freemarker = "io.ktor:ktor-server-freemarker"
-ktor.server.hsts = "io.ktor:ktor-server-hsts"
-ktor.server.htmlBuilder = "io.ktor:ktor-server-html-builder"
-ktor.server.httpRedirect = "io.ktor:ktor-server-http-redirect"
-ktor.server.i18n = "io.ktor:ktor-server-i18n"
-ktor.server.jetty = "io.ktor:ktor-server-jetty"
-ktor.server.jetty.jakarta = "io.ktor:ktor-server-jetty-jakarta"
-ktor.server.jte = "io.ktor:ktor-server-jte"
-ktor.server.locations = "io.ktor:ktor-server-locations"
-ktor.server.methodOverride = "io.ktor:ktor-server-method-override"
-ktor.server.metrics = "io.ktor:ktor-server-metrics"
-ktor.server.metrics.micrometer = "io.ktor:ktor-server-metrics-micrometer"
-ktor.server.mustache = "io.ktor:ktor-server-mustache"
-ktor.server.netty.jvm = { module = "io.ktor:ktor-server-netty-jvm", version.ref = "ktor" }
+ktor.server.cors = { module = "io.ktor:ktor-server-cors", version.ref = "ktor" }
+ktor.server.csrf = { module = "io.ktor:ktor-server-csrf", version.ref = "ktor" }
+ktor.server.dataConversion = { module = "io.ktor:ktor-server-data-conversion", version.ref = "ktor" }
+ktor.server.defaultHeaders = { module = "io.ktor:ktor-server-default-headers", version.ref = "ktor" }
+ktor.server.doubleReceive = { module = "io.ktor:ktor-server-double-receive", version.ref = "ktor" }
+ktor.server.forwardedHeader = { module = "io.ktor:ktor-server-forwarded-header", version.ref = "ktor" }
+ktor.server.freemarker = { module = "io.ktor:ktor-server-freemarker", version.ref = "ktor" }
+ktor.server.hsts = { module = "io.ktor:ktor-server-hsts", version.ref = "ktor" }
+ktor.server.htmlBuilder = { module = "io.ktor:ktor-server-html-builder", version.ref = "ktor" }
+ktor.server.httpRedirect = { module = "io.ktor:ktor-server-http-redirect", version.ref = "ktor" }
+ktor.server.i18n = { module = "io.ktor:ktor-server-i18n", version.ref = "ktor" }
+ktor.server.jetty = { module = "io.ktor:ktor-server-jetty", version.ref = "ktor" }
+ktor.server.jetty.jakarta = { module = "io.ktor:ktor-server-jetty-jakarta", version.ref = "ktor" }
+ktor.server.jte = { module = "io.ktor:ktor-server-jte", version.ref = "ktor" }
+ktor.server.locations = { module = "io.ktor:ktor-server-locations", version.ref = "ktor" }
+ktor.server.methodOverride = { module = "io.ktor:ktor-server-method-override", version.ref = "ktor" }
+ktor.server.metrics = { module = "io.ktor:ktor-server-metrics", version.ref = "ktor" }
+ktor.server.metrics.micrometer = { module = "io.ktor:ktor-server-metrics-micrometer", version.ref = "ktor" }
+ktor.server.mustache = { module = "io.ktor:ktor-server-mustache", version.ref = "ktor" }
 ktor.server.netty = { module = "io.ktor:ktor-server-netty", version.ref = "ktor" }
-ktor.server.openapi = "io.ktor:ktor-server-openapi"
-ktor.server.partialContent = "io.ktor:ktor-server-partial-content"
-ktor.server.pebble = "io.ktor:ktor-server-pebble"
-ktor.server.plugins = "io.ktor:ktor-server-plugins"
-ktor.server.rateLimit = "io.ktor:ktor-server-rate-limit"
-ktor.server.requestValidation = "io.ktor:ktor-server-request-validation"
-ktor.server.resources = "io.ktor:ktor-server-resources"
-ktor.server.servlet = "io.ktor:ktor-server-servlet"
-ktor.server.servlet.jakarta = "io.ktor:ktor-server-servlet-jakarta"
-ktor.server.sessions = "io.ktor:ktor-server-sessions"
-ktor.server.sse = "io.ktor:ktor-server-sse"
-ktor.server.statusPages = "io.ktor:ktor-server-status-pages"
-ktor.server.swagger = "io.ktor:ktor-server-swagger"
+ktor.server.openapi = { module = "io.ktor:ktor-server-openapi", version.ref = "ktor" }
+ktor.server.partialContent = { module = "io.ktor:ktor-server-partial-content", version.ref = "ktor" }
+ktor.server.pebble = { module = "io.ktor:ktor-server-pebble", version.ref = "ktor" }
+ktor.server.plugins = { module = "io.ktor:ktor-server-plugins", version.ref = "ktor" }
+ktor.server.rateLimit = { module = "io.ktor:ktor-server-rate-limit", version.ref = "ktor" }
+ktor.server.requestValidation = { module = "io.ktor:ktor-server-request-validation", version.ref = "ktor" }
+ktor.server.resources = { module = "io.ktor:ktor-server-resources", version.ref = "ktor" }
+ktor.server.servlet = { module = "io.ktor:ktor-server-servlet", version.ref = "ktor" }
+ktor.server.servlet.jakarta = { module = "io.ktor:ktor-server-servlet-jakarta", version.ref = "ktor" }
+ktor.server.sessions = { module = "io.ktor:ktor-server-sessions", version.ref = "ktor" }
+ktor.server.sse = { module = "io.ktor:ktor-server-sse", version.ref = "ktor" }
+ktor.server.statusPages = { module = "io.ktor:ktor-server-status-pages", version.ref = "ktor" }
+ktor.server.swagger = { module = "io.ktor:ktor-server-swagger", version.ref = "ktor" }
 ktor.server.test.host = { module = "io.ktor:ktor-server-test-host", version.ref = "ktor" }
 ktor.server.test.host.jvm = { module = "io.ktor:ktor-server-test-host-jvm", version.ref = "ktor" }
-ktor.server.thymeleaf = "io.ktor:ktor-server-thymeleaf"
-ktor.server.tomcat = "io.ktor:ktor-server-tomcat"
-ktor.server.tomcat.jakarta = "io.ktor:ktor-server-tomcat-jakarta"
-ktor.server.velocity = "io.ktor:ktor-server-velocity"
-ktor.server.webjars = "io.ktor:ktor-server-webjars"
-ktor.server.websockets = "io.ktor:ktor-server-websockets"
-ktor.sse = "io.ktor:ktor-sse"
-ktor.thymeleaf = "io.ktor:ktor-thymeleaf"
-ktor.utils = "io.ktor:ktor-utils"
-ktor.velocity = "io.ktor:ktor-velocity"
-ktor.webjars = "io.ktor:ktor-webjars"
-ktor.websocket.serialization = "io.ktor:ktor-websocket-serialization"
-ktor.websockets = "io.ktor:ktor-websockets"
+ktor.server.thymeleaf = { module = "io.ktor:ktor-server-thymeleaf", version.ref = "ktor" }
+ktor.server.tomcat = { module = "io.ktor:ktor-server-tomcat", version.ref = "ktor" }
+ktor.server.tomcat.jakarta = { module = "io.ktor:ktor-server-tomcat-jakarta", version.ref = "ktor" }
+ktor.server.velocity = { module = "io.ktor:ktor-server-velocity", version.ref = "ktor" }
+ktor.server.webjars = { module = "io.ktor:ktor-server-webjars", version.ref = "ktor" }
+ktor.server.websockets = { module = "io.ktor:ktor-server-websockets", version.ref = "ktor" }
+ktor.sse = { module = "io.ktor:ktor-sse", version.ref = "ktor" }
+ktor.thymeleaf = { module = "io.ktor:ktor-thymeleaf", version.ref = "ktor" }
+ktor.utils = { module = "io.ktor:ktor-utils", version.ref = "ktor" }
+ktor.velocity = { module = "io.ktor:ktor-velocity", version.ref = "ktor" }
+ktor.webjars = { module = "io.ktor:ktor-webjars", version.ref = "ktor" }
+ktor.websocket.serialization = { module = "io.ktor:ktor-websocket-serialization", version.ref = "ktor" }
+ktor.websockets = { module = "io.ktor:ktor-websockets", version.ref = "ktor" }
 
 multiplatform.settings = { module = "com.russhwolf:multiplatform-settings", version.ref = "multiplatformSettings" }
 multiplatform.settings.serialization = { module = "com.russhwolf:multiplatform-settings-serialization", version.ref = "multiplatformSettings" }
-multiplatform.settings.datastore ={ module = "com.russhwolf:multiplatform-settings-datastore", version.ref = "multiplatformSettings" }
-multiplatform.settings.coroutines={ module = "com.russhwolf:multiplatform-settings-coroutines", version.ref = "multiplatformSettings" }
+multiplatform.settings.datastore = { module = "com.russhwolf:multiplatform-settings-datastore", version.ref = "multiplatformSettings" }
+multiplatform.settings.coroutines = { module = "com.russhwolf:multiplatform-settings-coroutines", version.ref = "multiplatformSettings" }
 
 logback.classic = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
 postgresql = { module = "org.postgresql:postgresql", version.ref = "postgres" }

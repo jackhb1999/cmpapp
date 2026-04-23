@@ -7,7 +7,7 @@ import di.otherModule
 import org.koin.core.context.startKoin
 import screen.HomeScreen
 
-actual fun getWorld() = "JVM World"
+actual fun getWorld() = "JVM World ok"
 
 @Composable
 actual fun getMain() {

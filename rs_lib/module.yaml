@@ -9,6 +9,10 @@ dependencies:
   - $libs.kotlinx.coroutines.core
   - net.java.dev.jna:jna:5.14.0
 
+plugins:
+  rs_build:
+    enabled: true
+
 
 
 settings:

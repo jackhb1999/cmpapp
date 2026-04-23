@@ -5,5 +5,9 @@ modules:
   - shared
   - rs_lib
   - common
+  - rs_build
+
+plugins:
+  - ./rs_build
 
 
