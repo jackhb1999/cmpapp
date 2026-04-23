@@ -4,6 +4,7 @@
 # IntelliJ project files
 .idea
 *.iml
+.gradle
 out
 gen
 build
@@ -11,4 +12,5 @@ rs_lib/target
 
 /rs_lib/lib/
 /rs_lib/generated-java
+/rs_lib/resources
 

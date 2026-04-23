@@ -99,6 +99,13 @@ class HomeViewModel(
         )
     }
 
+    private fun loadMorePosts() {
+        if (postsFeedUiState.endReached) return
+        viewModelScope.launch {
+            pagingManage.loadItems()
+        }
+    }
+
     private fun handleOnBoardingResult(result: Result<List<FollowUserData>>) {
         when (result) {
             is Result.Success -> {
@@ -138,7 +145,7 @@ class HomeViewModel(
         if (!hasFollowing) {
 
         } else {
-            onBoardingUiState =  onBoardingUiState.copy(followableUsers = emptyList(), shouldShowOnBoarding = false)
+            onBoardingUiState = onBoardingUiState.copy(followableUsers = emptyList(), shouldShowOnBoarding = false)
             fetchData()
         }
     }
@@ -146,7 +153,7 @@ class HomeViewModel(
     fun onUiAction(uiAction: HomeUiAction) {
         when (uiAction) {
             is HomeUiAction.FollowUserAction -> followUser(uiAction.user)
-            is HomeUiAction.LoadMorePostsAction -> Unit
+            is HomeUiAction.LoadMorePostsAction -> loadMorePosts()
             is HomeUiAction.PostLikeAction -> Unit
             is HomeUiAction.RefreshAction -> fetchData()
             is HomeUiAction.RemoveOnboardingAction -> dismissOnboarding()

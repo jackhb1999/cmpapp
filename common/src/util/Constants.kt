@@ -1,6 +1,7 @@
 package util
 
 object Constants {
+    const val LOADING_MORE_ITEM_KEY = "LoadingMoreItem"
     const val DEFAULT_REQUEST_PAGE_SIZE = 5
     const val UNEXPECTED_ERROR_MESSAGE = "Oops, something went wrong."
     const val INITIAL_PAGE_NUMBER = 1

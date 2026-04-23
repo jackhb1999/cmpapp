@@ -2,15 +2,27 @@ package view
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.pulltorefresh.pullToRefresh
 import androidx.compose.material3.pulltorefresh.rememberPullToRefreshState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import components.LargeSpacing
+import components.MediumSpacing
 import components.PostListItem
 import components.onboarding.OnBoardingSection
 import org.koin.compose.viewmodel.koinViewModel
+import util.Constants
 import viewmodel.HomeUiAction
 import viewmodel.HomeViewModel
 
@@ -28,7 +40,25 @@ fun HomeView(
             isRefreshing = vm.homeRefreshState.isRefreshing,
             onRefresh = { vm.onUiAction(HomeUiAction.RefreshAction) }
         )) {
-        LazyColumn(modifier = modifier.fillMaxSize()) {
+
+        val listState = rememberLazyListState()
+        val shouldFetchMore by remember {
+            derivedStateOf {
+                val layoutInfo = listState.layoutInfo
+                if (layoutInfo.totalItemsCount == 0) {
+                    false
+                } else {
+                    val visibleItemsInfo = layoutInfo.visibleItemsInfo
+                    val lastVisibleItem = visibleItemsInfo.last()
+                    (lastVisibleItem.index + 1 == layoutInfo.totalItemsCount)
+                }
+            }
+        }
+
+        LazyColumn(
+            modifier = modifier.fillMaxSize(),
+            state = listState
+        ) {
             if (vm.onBoardingUiState.shouldShowOnBoarding) {
                 item(key = "followableUsers") {
                     OnBoardingSection(
@@ -55,6 +85,18 @@ fun HomeView(
                     },
                     onCommentClick = { goPostDetail(post.postId) })
             }
+
+            if (vm.postsFeedUiState.isLoading && vm.postsFeedUiState.posts.isNotEmpty()) {
+                item(key = Constants.LOADING_MORE_ITEM_KEY) {
+                    Box(
+                        modifier = Modifier.fillMaxSize()
+                            .padding(vertical = MediumSpacing, horizontal = LargeSpacing),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        CircularProgressIndicator()
+                    }
+                }
+            }
         }
 
 //        PullRefreshIndicator(
@@ -62,6 +104,12 @@ fun HomeView(
 //            state = pullRefreshState,
 //            modifier = modifier.align(Alignment.TopCenter)
 //        )
+
+        LaunchedEffect(key1 = shouldFetchMore) {
+            if (shouldFetchMore && !vm.postsFeedUiState.endReached) {
+                vm.onUiAction(HomeUiAction.LoadMorePostsAction)
+            }
+        }
     }
 
 }
