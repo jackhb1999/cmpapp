@@ -40,7 +40,7 @@ class PostRepositoryImpl(
         val followingUsersList = ArrayList<String>()
         followingUsersList.addAll(followingUsers)
         followingUsersList.add(userId)
-        val postsRows = postDao.getFeedsPost(userId, followingUsersList, pageNumber, pageSize)
+        val postsRows = postDao.getFeedsPost(userId, followingUsersList.distinct(), pageNumber, pageSize)
         val posts = postsRows.map {
             toPost(
                 postRow = it,

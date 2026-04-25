@@ -8,6 +8,8 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AddAPhoto
 import androidx.compose.material.icons.filled.AddComment
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.LiveTv
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -17,6 +19,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -28,7 +31,6 @@ import kotlinx.datetime.format
 import kotlinx.datetime.format.DateTimeFormat
 
 import model.Post
-
 
 
 @Composable
@@ -49,7 +51,7 @@ fun PostListItem(
             }
             .padding(bottom = ExtraLargeSpacing)
     ) {
-        PostItemHeader(name = post.username, profileUrl = post.imageUrl, date = post.createdAt) {
+        PostItemHeader(name = post.username, profileUrl = post.userImageUrl, date = post.createdAt) {
             onProfileClick(post.userId)
         }
 
@@ -64,7 +66,9 @@ fun PostListItem(
 //
 //            }
         )
+
         PostLikesRow(
+            isLiked = post.isLiked,
             likesCount = post.likesCount,
             commentsCount = post.commentsCount,
             onLikeClick = { onLikeClick(post.postId) },
@@ -91,7 +95,7 @@ fun PostListItem(
 fun PostItemHeader(
     modifier: Modifier = Modifier,
     name: String,
-    profileUrl: String,
+    profileUrl: String?,
     date: LocalDateTime,
     onProfileClick: () -> Unit
 ) {
@@ -126,6 +130,7 @@ fun PostItemHeader(
 @Composable
 fun PostLikesRow(
     modifier: Modifier = Modifier,
+    isLiked: Boolean,
     likesCount: Int,
     commentsCount: Int,
     onLikeClick: () -> Unit,
@@ -137,11 +142,19 @@ fun PostLikesRow(
         verticalAlignment = Alignment.CenterVertically
     ) {
         IconButton(onClick = onLikeClick) {
-            Icon(
-                imageVector = Icons.Default.LiveTv,
-                contentDescription = null,
-
-            )
+            if (isLiked) {
+                Icon(
+                    imageVector = Icons.Default.Favorite,
+                    contentDescription = "Favorite",
+                    tint = Color.Red
+                )
+            } else {
+                Icon(
+                    imageVector = Icons.Default.FavoriteBorder,
+                    contentDescription = "FavoriteBorder",
+                    tint = Black24
+                )
+            }
         }
         Text(
             text = "$likesCount",

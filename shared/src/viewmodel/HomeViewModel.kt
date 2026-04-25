@@ -14,6 +14,7 @@ import model.Post
 import usecase.FollowOrUnfollowUseCase
 import usecase.GetFollowableUsersUseCase
 import usecase.GetPostUseCase
+import usecase.LikeOrUnLikePostUseCase
 import util.Constants
 import util.Constants.DEFAULT_REQUEST_PAGE_SIZE
 import util.DefaultPagingManage
@@ -25,7 +26,8 @@ private val logger = KotlinLogging.logger {}
 class HomeViewModel(
     private val getFollowableUsersUseCase: GetFollowableUsersUseCase,
     private val followOrUnfollowUseCase: FollowOrUnfollowUseCase,
-    private val getPostUseCase: GetPostUseCase
+    private val getPostUseCase: GetPostUseCase,
+    private val likeOrUnLikePostUseCase: LikeOrUnLikePostUseCase
 ) : ViewModel() {
 
     var postsFeedUiState by mutableStateOf(PostsFeedUiState())
@@ -142,11 +144,37 @@ class HomeViewModel(
 
     private fun dismissOnboarding() {
         val hasFollowing = onBoardingUiState.followableUsers.any { it.isFollowing }
-        if (!hasFollowing) {
+        logger.info { "hasFollowing: $hasFollowing" }
+        if (hasFollowing) {
 
         } else {
+            logger.info { "149" }
             onBoardingUiState = onBoardingUiState.copy(followableUsers = emptyList(), shouldShowOnBoarding = false)
             fetchData()
+        }
+    }
+
+    private fun likeOrUnlikePost(post: Post) {
+        viewModelScope.launch {
+            val count = if (post.isLiked) -1 else 1
+            val result = likeOrUnLikePostUseCase(likePostId = post.postId, isLiked = !post.isLiked)
+            when (result) {
+                is Result.Success -> {
+                    postsFeedUiState = postsFeedUiState.copy(
+                        posts = postsFeedUiState.posts.map {
+                            if (it.postId == post.postId) {
+                                it.copy(
+                                    isLiked = !post.isLiked,
+                                    likesCount = post.likesCount.plus(count)
+                                )
+                            } else it
+                        }
+                    )
+                }
+
+                else -> {}
+            }
+
         }
     }
 
@@ -154,7 +182,7 @@ class HomeViewModel(
         when (uiAction) {
             is HomeUiAction.FollowUserAction -> followUser(uiAction.user)
             is HomeUiAction.LoadMorePostsAction -> loadMorePosts()
-            is HomeUiAction.PostLikeAction -> Unit
+            is HomeUiAction.PostLikeAction -> likeOrUnlikePost(uiAction.post)
             is HomeUiAction.RefreshAction -> fetchData()
             is HomeUiAction.RemoveOnboardingAction -> dismissOnboarding()
         }
@@ -187,7 +215,7 @@ data class OnBoardingUiState(
 sealed interface HomeUiAction {
     data class FollowUserAction(val user: FollowUserData) : HomeUiAction
 
-    data class PostLikeAction(val likePostId: String) : HomeUiAction
+    data class PostLikeAction(val post: Post) : HomeUiAction
 
     data object RemoveOnboardingAction : HomeUiAction
 

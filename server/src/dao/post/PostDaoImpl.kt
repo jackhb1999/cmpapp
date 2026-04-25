@@ -2,26 +2,31 @@ package com.hb.dao.post
 
 import com.hb.dao.DatabaseFactory.dbQuery
 import com.hb.dao.user.UserTable
+import io.github.oshai.kotlinlogging.KotlinLogging
 import org.jetbrains.exposed.v1.core.JoinType
 import org.jetbrains.exposed.v1.core.ResultRow
 import org.jetbrains.exposed.v1.core.SortOrder
 import org.jetbrains.exposed.v1.core.eq
 import org.jetbrains.exposed.v1.core.inList
 import org.jetbrains.exposed.v1.core.plus
+import org.jetbrains.exposed.v1.jdbc.Query
 import org.jetbrains.exposed.v1.jdbc.deleteWhere
 import org.jetbrains.exposed.v1.jdbc.insert
 import org.jetbrains.exposed.v1.jdbc.selectAll
 import org.jetbrains.exposed.v1.jdbc.update
 import util.IdGenerator
 
+private val logger = KotlinLogging.logger {}
 class PostDaoImpl : PostDao {
-
-    val postJoinTableSelect = PostTable.join(
-        otherTable = UserTable,
-        onColumn = PostTable.userId,
-        otherColumn = UserTable.id,
-        joinType = JoinType.INNER
-    ).selectAll()
+    
+    private fun postJoinTableSelect(): Query {
+        return PostTable.join(
+            otherTable = UserTable,
+            onColumn = PostTable.userId,
+            otherColumn = UserTable.id,
+            joinType = JoinType.INNER
+        ).selectAll()
+    }
 
     override suspend fun createPost(
         caption: String,
@@ -49,12 +54,14 @@ class PostDaoImpl : PostDao {
     ): List<PostRow> {
         return dbQuery {
             if (follows.isNotEmpty()) {
-                postJoinTableSelect.where(PostTable.userId inList follows)
+                follows.forEach { logger.info { "Following: $it" } }
+                postJoinTableSelect().where(PostTable.userId inList follows)
                     .orderBy(column = PostTable.createdAt, order = SortOrder.DESC)
                     .limit(pageSize).offset(((pageNumber - 1) * pageSize).toLong())
                     .map { toPostRow(it) }
             } else {
-                postJoinTableSelect
+                logger.info { "No follows found for $userId" }
+                postJoinTableSelect()
                     .orderBy(column = PostTable.likesCount, order = SortOrder.DESC)
                     .limit(pageSize).offset(((pageNumber - 1) * pageSize).toLong())
                     .map { toPostRow(it) }
@@ -68,7 +75,7 @@ class PostDaoImpl : PostDao {
         pageSize: Int
     ): List<PostRow> {
         return dbQuery {
-            postJoinTableSelect
+            postJoinTableSelect()
                 .where(PostTable.userId.eq(userId))
                 .orderBy(column = PostTable.createdAt, order = SortOrder.DESC)
                 .limit(pageSize).offset(((pageNumber - 1) * pageSize).toLong())
@@ -78,7 +85,7 @@ class PostDaoImpl : PostDao {
 
     override suspend fun getPost(postId: String): PostRow? {
         return dbQuery {
-            postJoinTableSelect.where { PostTable.postId eq postId }
+            postJoinTableSelect().where { PostTable.postId eq postId }
                 .singleOrNull()?.let { toPostRow(it) }
         }
     }

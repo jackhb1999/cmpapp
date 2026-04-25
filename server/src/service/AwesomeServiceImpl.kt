@@ -17,7 +17,7 @@ class AwesomeServiceImpl(
         }
     }
 
-    override suspend fun daysUntilStableRelease(): Int {
+    override suspend fun daysUntilStableRelease():Int {
         return 0
     }
 }

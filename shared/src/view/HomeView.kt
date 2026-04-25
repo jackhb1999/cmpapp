@@ -1,7 +1,9 @@
 package view
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -20,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import components.LargeSpacing
 import components.MediumSpacing
 import components.PostListItem
+import components.SmallSpacing
 import components.onboarding.OnBoardingSection
 import org.koin.compose.viewmodel.koinViewModel
 import util.Constants
@@ -80,7 +83,7 @@ fun HomeView(
                     },
                     onLikeClick = {
                         vm.onUiAction(
-                            HomeUiAction.PostLikeAction(post.postId)
+                            HomeUiAction.PostLikeAction(post)
                         )
                     },
                     onCommentClick = { goPostDetail(post.postId) })
@@ -96,8 +99,14 @@ fun HomeView(
                         CircularProgressIndicator()
                     }
                 }
+            }else {
+                item(key = Constants.LOADING_MORE_ITEM_KEY) {
+                    // 底部tab遮挡，需要垫起
+                    Spacer(Modifier.height(LargeSpacing + SmallSpacing))
+                }
             }
         }
+
 
 //        PullRefreshIndicator(
 //            refreshing = vm.onBoardingUiState.isLoading && vm.postsUiState.isLoading,

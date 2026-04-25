@@ -1,5 +1,6 @@
 package com.hb.route
 
+import io.github.oshai.kotlinlogging.KotlinLogging
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.auth.authenticate
 import io.ktor.server.request.receive
@@ -12,7 +13,7 @@ import io.ktor.server.routing.route
 import model.LikeParams
 import org.koin.ktor.ext.inject
 import repository.PostLikesRepository
-
+private val logger = KotlinLogging.logger {}
 fun Routing.postLikesRouting() {
 
     val repository by inject<PostLikesRepository>()
@@ -30,8 +31,13 @@ fun Routing.postLikesRouting() {
                         return@post
                     }
                     val result = repository.addLike(params)
-                    call.respond(HttpStatusCode.OK, result)
+                    if (result.isSuccess) {
+                        call.respond(HttpStatusCode.OK, result.data!!)
+                    }else{
+                        call.respond(HttpStatusCode.BadRequest, result.message!!)
+                    }
                 } catch (error: Throwable) {
+                    error.printStackTrace()
                     call.respond(
                         status = HttpStatusCode.InternalServerError,
                         message = "请求失败"
@@ -50,8 +56,13 @@ fun Routing.postLikesRouting() {
                         return@delete
                     }
                     val result = repository.removeLike(params)
-                    call.respond(HttpStatusCode.OK, result)
+                    if (result.isSuccess) {
+                        call.respond(HttpStatusCode.OK, result.data!!)
+                    }else{
+                        call.respond(HttpStatusCode.BadRequest, result.message!!)
+                    }
                 } catch (error: Throwable) {
+                    error.printStackTrace()
                     call.respond(
                         status = HttpStatusCode.InternalServerError,
                         message = "请求失败"

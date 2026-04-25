@@ -25,7 +25,7 @@ data class DetailsScreen(val str: String) : Screen {
         Scaffold(
             topBar = {
                 TopAppBar(
-                    title = { Text("详情页") },
+                    title = { Text("DetailsScreen 详情页") },
                     navigationIcon = {
                         IconButton(
                             onClick = {
@@ -41,12 +41,13 @@ data class DetailsScreen(val str: String) : Screen {
                     }
                 )
             }
-        ) {}
-        Box(
-            contentAlignment = Alignment.Center,
-            modifier = Modifier.fillMaxSize()
         ) {
-            BasicText(text = "详情页 $str")
+            Box(
+                contentAlignment = Alignment.Center,
+                modifier = Modifier.fillMaxSize()
+            ) {
+                BasicText(text = "详情页 $str")
+            }
         }
     }
 }

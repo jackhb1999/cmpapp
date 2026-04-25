@@ -9,15 +9,17 @@ import viewmodel.MainActivityViewModel
 import viewmodel.PostDetailViewModel
 import viewmodel.ProfileViewModel
 
-val otherModule= module {
+val otherModule = module {
 //    single { SettingsWrapper().createSettings() }
-    viewModel { HomeViewModel(get(),get(),get()) }
+    viewModel { HomeViewModel(get(), get(), get(), get()) }
     viewModel { PostDetailViewModel() }
     viewModel { ProfileViewModel() }
     viewModel { EditProfileViewModel() }
     viewModel { FollowsViewModel() }
-    viewModel { MainActivityViewModel(
-        get(),
-        userSettingUseCase = get()
-    ) }
+    viewModel {
+        MainActivityViewModel(
+            get(),
+            userSettingUseCase = get()
+        )
+    }
 }

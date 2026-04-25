@@ -4,6 +4,7 @@ import util.Constants
 import com.hb.util.getIntParameter
 import com.hb.util.getParameter
 import com.hb.util.saveFile
+import io.github.oshai.kotlinlogging.KotlinLogging
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.content.*
 import io.ktor.server.auth.*
@@ -18,6 +19,8 @@ import org.koin.ktor.ext.inject
 import repository.PostRepository
 import util.Result
 import java.io.File
+
+private val logger = KotlinLogging.logger {}
 
 fun Routing.postRoutes() {
     val postRepository by inject<PostRepository>()
@@ -96,18 +99,31 @@ fun Routing.postRoutes() {
         route("/posts") {
             get(path = "/feed") {
                 try {
-                    val currentUserId = call.getParameter(name = Constants.CURRENT_USER_ID_PARAMETER, isQueryParameter = true)
-                    val page = call.getIntParameter(name = Constants.PAGE_QUERY_PARAMETER, isQueryParameter = true, defaultVal = 0)
-                    val limit = call.getIntParameter(name = Constants.PAGE_SIZE_QUERY_PARAMETER, isQueryParameter = true, defaultVal = 10)
+                    logger.info { "102" }
+                    val currentUserId =
+                        call.getParameter(name = Constants.CURRENT_USER_ID_PARAMETER, isQueryParameter = true)
+                    val page = call.getIntParameter(
+                        name = Constants.PAGE_QUERY_PARAMETER,
+                        isQueryParameter = true,
+                        defaultVal = 0
+                    )
+                    val limit = call.getIntParameter(
+                        name = Constants.PAGE_SIZE_QUERY_PARAMETER,
+                        isQueryParameter = true,
+                        defaultVal = 10
+                    )
                     val result =
                         postRepository.getFeedPosts(userId = currentUserId, pageNumber = page, pageSize = limit)
-                    call.respond<Result<List<Post>>>(result)
+                    logger.info { "108 $result" }
+                    call.respond<List<Post>>(result.data!!)
                 } catch (badRequestException: BadRequestException) {
+                    badRequestException.printStackTrace()
                     return@get
                 } catch (anyError: Throwable) {
+                    anyError.printStackTrace()
                     call.respond(
                         status = HttpStatusCode.InternalServerError,
-                        message = Result.Error<Any>(message = "An unexpected error occurred")
+                        message = "An unexpected error occurred"
                     )
                 }
             }
@@ -115,7 +131,8 @@ fun Routing.postRoutes() {
             get(path = "/{userId}") {
                 try {
                     val userId = call.getParameter(name = "userId")
-                    val currentUserId = call.getParameter(name = Constants.CURRENT_USER_ID_PARAMETER, isQueryParameter = true)
+                    val currentUserId =
+                        call.getParameter(name = Constants.CURRENT_USER_ID_PARAMETER, isQueryParameter = true)
                     val page = call.getIntParameter(name = "page", isQueryParameter = true, defaultVal = 0)
                     val limit = call.getIntParameter(name = "limit", isQueryParameter = true, defaultVal = 10)
                     val result =
