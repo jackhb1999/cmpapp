@@ -3,6 +3,7 @@ package com.hb.route
 
 import com.hb.util.getIntParameter
 import com.hb.util.getParameter
+import com.hb.util.sendResult
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.auth.authenticate
 import io.ktor.server.request.receiveNullable
@@ -12,7 +13,7 @@ import model.FollowsParams
 import org.koin.ktor.ext.inject
 import repository.FollowsRepository
 import util.Constants
-import util.Result
+import util.send
 
 fun Routing.followsRoute() {
     val repository by inject<FollowsRepository>()
@@ -22,10 +23,9 @@ fun Routing.followsRoute() {
             post("/follow") {
                 val params = call.receiveNullable<FollowsParams>()
                 if (params == null) {
-//                    call.respond<Result<Any>>(
                     call.respond(
                         status = HttpStatusCode.BadRequest,
-                        message = Result.Error<Any>(message = "Bad Request")
+                        message = "Bad Request"
                     )
                     return@post
                 }
@@ -34,7 +34,7 @@ fun Routing.followsRoute() {
                 } else {
                     repository.unfollowUser(follower = params.follower, following = params.following)
                 }
-                call.respond<Boolean>(result.data!!)
+                call.sendResult(result)
             }
 
             get("/followers") {
@@ -43,7 +43,7 @@ fun Routing.followsRoute() {
                 val limit = call.getIntParameter(name = "limit", isQueryParameter = true, defaultVal = 10)
 
                 val result = repository.getFollowers(userId, page, limit)
-                call.respond(status = HttpStatusCode.fromValue(result.code), message = result)
+                call.sendResult(result)
 
             }
 
@@ -53,13 +53,13 @@ fun Routing.followsRoute() {
                 val limit = call.getIntParameter(name = "limit", isQueryParameter = true, defaultVal = 10)
 
                 val result = repository.getFollowing(userId, page, limit)
-                call.respond(status = HttpStatusCode.fromValue(result.code), message = result)
+                call.sendResult(result)
             }
 
             get("/suggestions") {
                 val userId = call.getParameter(name = Constants.USER_ID_PARAMETER)
                 val result = repository.getFollowingSuggestions(userId)
-                call.respond(status = HttpStatusCode.fromValue(result.code), message = result.data!!)
+                call.sendResult(result)
             }
         }
     }

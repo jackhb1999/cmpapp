@@ -6,9 +6,35 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.Serializer
 import kotlin.reflect.KClass
 
+fun <T : @Serializable Any> kotlin.Result<T>.send(message: String? = null): ActionResult<T> {
+    val result = this
+    return when (result.isSuccess) {
+        true -> ActionResult(
+            isSuccess = true,
+            data = result.getOrNull(),
+            message = message
+        )
+
+        false -> ActionResult(
+            isSuccess = false,
+            data = result.getOrNull(),
+            message = message?.run { result.exceptionOrNull()?.message }
+        )
+    }
+}
+
+
+
+
+
+
+
+
+
+
 
 @Serializable
-sealed class Result<T : @Serializable Any>(
+private sealed class Result<T : @Serializable Any>(
     open val code: Int = HttpStatusCode.OK.value,
     open val data: T? = null,
     open val message: String? = null
@@ -24,7 +50,7 @@ sealed class Result<T : @Serializable Any>(
             get() = true
 
         companion object {
-            fun <T:@Serializable Any> serializer(type: KSerializer<T>)= Result.serializer(type)
+            fun <T : @Serializable Any> serializer(type: KSerializer<T>) = Result.serializer(type)
         }
     }
 
@@ -37,10 +63,11 @@ sealed class Result<T : @Serializable Any>(
             get() = false
 
         companion object {
-            fun <T:@Serializable Any> serializer(type: KSerializer<T>)= Result.serializer(type)
+            fun <T : @Serializable Any> serializer(type: KSerializer<T>) = Result.serializer(type)
         }
     }
 }
+
 
 
 @Serializable

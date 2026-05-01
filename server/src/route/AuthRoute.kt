@@ -1,6 +1,7 @@
 package com.hb.route
 
 import com.hb.repository.DeptRepositoryImpl
+import com.hb.util.sendResult
 import com.hb.util.toStatus
 import model.AuthResponse
 import model.SignInParams
@@ -12,6 +13,7 @@ import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import org.koin.ktor.ext.get
 import org.koin.ktor.ext.inject
+import util.send
 
 
 fun Routing.authRouting() {
@@ -31,11 +33,7 @@ fun Routing.authRouting() {
                 return@post
             }
             val result = repository.signUp(params = params)
-            println(result.toString())
-            call.respond<AuthResponse>(
-                status = result.code.toStatus(),
-                message = result.data!!
-            )
+            call.sendResult(result)
         }
     }
     route(path = "list") {
@@ -59,10 +57,7 @@ fun Routing.authRouting() {
                 return@post
             }
             val result = repository.signIn(params = params)
-            call.respond(
-                status = HttpStatusCode.fromValue(result.code),
-                message = result.data!!
-            )
+            call.sendResult(result)
         }
     }
 }

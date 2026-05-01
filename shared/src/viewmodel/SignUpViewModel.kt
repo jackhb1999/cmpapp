@@ -7,14 +7,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import usecase.SignUpUseCase
-import util.Result
 
 class SignUpViewModel(
     private val signUpUseCase: SignUpUseCase
 ) : ViewModel() {
     var uiState by mutableStateOf(SignUpUiState())
         private set
-
 
 
     fun signUp() {
@@ -25,16 +23,20 @@ class SignUpViewModel(
                 name = uiState.username,
                 password = uiState.password,
             )
-            uiState = when (authResultData) {
-                is Result.Error -> uiState.copy(
-                    isAuthenticating = false,
-                    authErrorMessage = authResultData.message,
-                )
+            when {
+                authResultData.isFailure -> {
+                    uiState = uiState.copy(
+                        isAuthenticating = false,
+                        authErrorMessage = authResultData.exceptionOrNull()?.message,
+                    )
+                }
 
-                is Result.Success<*> -> uiState.copy(
-                    isAuthenticating = false,
-                    authenticationSucceed = true,
-                )
+                authResultData.isSuccess -> {
+                    uiState = uiState.copy(
+                        isAuthenticating = false,
+                        authenticationSucceed = true,
+                    )
+                }
             }
         }
     }

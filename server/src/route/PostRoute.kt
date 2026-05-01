@@ -4,6 +4,7 @@ import util.Constants
 import com.hb.util.getIntParameter
 import com.hb.util.getParameter
 import com.hb.util.saveFile
+import com.hb.util.sendResult
 import io.github.oshai.kotlinlogging.KotlinLogging
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.content.*
@@ -17,7 +18,7 @@ import model.Post
 import model.PostTextParams
 import org.koin.ktor.ext.inject
 import repository.PostRepository
-import util.Result
+
 import java.io.File
 
 private val logger = KotlinLogging.logger {}
@@ -52,14 +53,11 @@ fun Routing.postRoutes() {
                     File("${Constants.POST_IMAGES_FOLDER_PATH}/$fileName").delete()
                     call.respond(
                         status = HttpStatusCode.BadRequest,
-                        message = Result.Error<Any>(message = "Bad Request")
+                        message = "Bad Request"
                     )
                 } else {
                     val result = postRepository.createPost(imageUrl = imageUrl, postTextParams = postTextParams!!)
-                    call.respond<Result<Any>>(
-                        status = HttpStatusCode.fromValue(result.code),
-                        message = result
-                    )
+                    call.sendResult(result)
                 }
             }
 
@@ -68,13 +66,13 @@ fun Routing.postRoutes() {
                     val postId = call.getParameter(name = "postId")
                     val currentUserId = call.getParameter(name = "currentUserId", isQueryParameter = true)
                     val result = postRepository.getPost(postId, currentUserId)
-                    call.respond<Result<Post>>(result)
+                    call.sendResult(result)
                 } catch (badRequestException: BadRequestException) {
                     return@get
                 } catch (anyError: Throwable) {
                     call.respond(
                         status = HttpStatusCode.InternalServerError,
-                        message = Result.Error<Any>(message = "An unexpected error occurred")
+                        message = "An unexpected error occurred"
                     )
                 }
 
@@ -84,13 +82,13 @@ fun Routing.postRoutes() {
                 try {
                     val postId = call.getParameter(name = "postId")
                     val result = postRepository.deletePost(postId)
-                    call.respond<Result<Any>>(result)
+                    call.sendResult(result)
                 } catch (badRequestException: BadRequestException) {
                     return@delete
                 } catch (anyError: Throwable) {
                     call.respond(
                         status = HttpStatusCode.InternalServerError,
-                        message = Result.Error<Any>(message = "An unexpected error occurred")
+                        message = "An unexpected error occurred"
                     )
                 }
             }
@@ -114,8 +112,7 @@ fun Routing.postRoutes() {
                     )
                     val result =
                         postRepository.getFeedPosts(userId = currentUserId, pageNumber = page, pageSize = limit)
-                    logger.info { "108 $result" }
-                    call.respond<List<Post>>(result.data!!)
+                    call.sendResult(result)
                 } catch (badRequestException: BadRequestException) {
                     badRequestException.printStackTrace()
                     return@get
@@ -142,13 +139,13 @@ fun Routing.postRoutes() {
                             pageNumber = page,
                             pageSize = limit
                         )
-                    call.respond<Result<List<Post>>>(result)
+                    call.sendResult(result)
                 } catch (badRequestException: BadRequestException) {
                     return@get
                 } catch (anyError: Throwable) {
                     call.respond(
                         status = HttpStatusCode.InternalServerError,
-                        message = Result.Error<Any>(message = "An unexpected error occurred")
+                        message = "An unexpected error occurred"
                     )
                 }
             }

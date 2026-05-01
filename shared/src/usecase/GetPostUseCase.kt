@@ -5,7 +5,7 @@ import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import repository.PostRepository
 import util.Constants
-import util.Result
+
 
 class GetPostUseCase : KoinComponent {
 

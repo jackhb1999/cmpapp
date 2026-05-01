@@ -5,7 +5,7 @@ import model.SignInParams
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import repository.UserRepository
-import util.Result
+
 import kotlin.getValue
 
 class SignInUseCase : KoinComponent {
@@ -16,7 +16,7 @@ class SignInUseCase : KoinComponent {
         password: String,
     ): Result<AuthResponse> {
         if (email.isBlank() || password.isBlank()) {
-            return Result.Error(message = "Invalid params")
+            throw Throwable(message = "Invalid params")
         }
         val params = SignInParams(
             email = email,

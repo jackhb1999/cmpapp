@@ -19,7 +19,7 @@ import util.Constants
 import util.Constants.DEFAULT_REQUEST_PAGE_SIZE
 import util.DefaultPagingManage
 import util.PagingManage
-import util.Result
+
 
 private val logger = KotlinLogging.logger {}
 
@@ -109,9 +109,9 @@ class HomeViewModel(
     }
 
     private fun handleOnBoardingResult(result: Result<List<FollowUserData>>) {
-        when (result) {
-            is Result.Success -> {
-                result.data?.let { followsUsers ->
+        when (result.isSuccess) {
+            true -> {
+                result.map { followsUsers ->
                     onBoardingUiState = onBoardingUiState.copy(
                         shouldShowOnBoarding = followsUsers.isNotEmpty(),
                         followableUsers = followsUsers
@@ -119,7 +119,7 @@ class HomeViewModel(
                 }
             }
 
-            is Result.Error -> Unit
+            false -> Unit
         }
     }
 
@@ -132,7 +132,7 @@ class HomeViewModel(
             logger.info { "78followUser: $result" }
             onBoardingUiState = onBoardingUiState.copy(
                 followableUsers = onBoardingUiState.followableUsers.map {
-                    if (it.id == followUserData.id && result is Result.Success && result.data == true) {
+                    if (it.id == followUserData.id && result.isSuccess && result.getOrNull() == true) {
                         it.copy(isFollowing = !followUserData.isFollowing) // 满足条件时更新
                     } else {
                         it // 其他所有情况返回原对象
@@ -158,8 +158,8 @@ class HomeViewModel(
         viewModelScope.launch {
             val count = if (post.isLiked) -1 else 1
             val result = likeOrUnLikePostUseCase(likePostId = post.postId, isLiked = !post.isLiked)
-            when (result) {
-                is Result.Success -> {
+            when {
+                result.getOrNull() == true -> {
                     postsFeedUiState = postsFeedUiState.copy(
                         posts = postsFeedUiState.posts.map {
                             if (it.postId == post.postId) {

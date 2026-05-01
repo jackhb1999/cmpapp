@@ -1,5 +1,6 @@
 package com.hb.route
 
+import com.hb.util.sendResult
 import io.github.oshai.kotlinlogging.KotlinLogging
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.auth.authenticate
@@ -31,11 +32,7 @@ fun Routing.postLikesRouting() {
                         return@post
                     }
                     val result = repository.addLike(params)
-                    if (result.isSuccess) {
-                        call.respond(HttpStatusCode.OK, result.data!!)
-                    }else{
-                        call.respond(HttpStatusCode.BadRequest, result.message!!)
-                    }
+                    call.sendResult(result)
                 } catch (error: Throwable) {
                     error.printStackTrace()
                     call.respond(
@@ -56,11 +53,7 @@ fun Routing.postLikesRouting() {
                         return@delete
                     }
                     val result = repository.removeLike(params)
-                    if (result.isSuccess) {
-                        call.respond(HttpStatusCode.OK, result.data!!)
-                    }else{
-                        call.respond(HttpStatusCode.BadRequest, result.message!!)
-                    }
+                    call.sendResult(result)
                 } catch (error: Throwable) {
                     error.printStackTrace()
                     call.respond(

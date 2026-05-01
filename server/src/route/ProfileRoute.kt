@@ -3,6 +3,7 @@ package com.hb.route
 import util.Constants
 import com.hb.util.getParameter
 import com.hb.util.saveFile
+import com.hb.util.sendResult
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.content.PartData
 import io.ktor.http.content.forEachPart
@@ -18,7 +19,6 @@ import kotlinx.serialization.json.Json
 import model.UpdateUserParams
 import org.koin.ktor.ext.inject
 import repository.ProfileRepository
-import util.Result
 
 
 fun Routing.profileRoutes() {
@@ -35,9 +35,9 @@ fun Routing.profileRoutes() {
                 } catch (badRequestError: BadRequestException) {
                     return@get
                 } catch (anyException: Throwable) {
-                    call.respond<Result<Any>>(
+                    call.respond(
                         status = HttpStatusCode.InternalServerError,
-                        message = Result.Error(message = anyException.message ?: "Unknown error")
+                       message = anyException.message ?: "Unknown error"
                     )
                 }
             }
@@ -69,11 +69,11 @@ fun Routing.profileRoutes() {
                             imageUrl = imageUrl
                         )
                     )
-                    call.respond(result)
+                    call.sendResult(result)
                 }catch (anyError: Throwable) {
-                    call.respond<Result<Any>>(
+                    call.respond(
                         status = HttpStatusCode.InternalServerError,
-                        message = Result.Error(message = anyError.message ?: "Unknown error")
+                        message = anyError.message ?: "Unknown error"
                     )
                 }
             }

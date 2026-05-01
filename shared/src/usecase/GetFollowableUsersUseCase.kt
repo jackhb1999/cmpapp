@@ -5,7 +5,7 @@ import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import repository.FollowsRepository
 import util.Constants
-import util.Result
+
 
 class GetFollowableUsersUseCase : KoinComponent {
     private val repository by inject<FollowsRepository>()

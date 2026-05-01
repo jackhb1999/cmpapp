@@ -25,14 +25,16 @@ class DefaultPagingManage<Model>(
         isLoading = false
         onLoadStateChange(false)
 
-        when (result) {
-            is Result.Success -> {
-                onSuccess(result.data!!, currentPage)
-                currentPage += 1
+        when (result.isSuccess) {
+            true -> {
+                result.map {
+                    onSuccess(it, currentPage)
+                    currentPage += 1
+                }
             }
 
-            is Result.Error<*> -> {
-                onError(result.message ?: Constants.UNEXPECTED_ERROR_MESSAGE, currentPage)
+            false -> {
+                onError(result.exceptionOrNull()?.message ?: Constants.UNEXPECTED_ERROR_MESSAGE, currentPage)
             }
         }
 

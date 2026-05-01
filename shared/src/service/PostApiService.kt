@@ -10,8 +10,8 @@ import io.ktor.client.request.post
 import io.ktor.client.request.setBody
 import model.LikeParams
 import model.Post
+import util.ActionResult
 import util.Constants
-import util.Result
 
 private val logger = KotlinLogging.logger {}
 
@@ -23,7 +23,7 @@ internal class PostApiService : KtorApi() {
         currentUserId: String,
         page: Int,
         pageSize: Int,
-    ): Result<List<Post>> {
+    ): ActionResult<List<Post>> {
         val httpResponse = client.get {
             endPoint(path = "/posts/feed")
             parameter(key = Constants.CURRENT_USER_ID_PARAMETER, value = currentUserId)
@@ -31,14 +31,13 @@ internal class PostApiService : KtorApi() {
             parameter(key = Constants.PAGE_SIZE_QUERY_PARAMETER, value = pageSize)
             setToken(token = userToken)
         }
-        logger.info { "30 $httpResponse" }
-        return Result.Success(httpResponse.body())
+        return httpResponse.getBody()
     }
 
     suspend fun likePost(
         userToken: String,
         likeParams: LikeParams
-    ): Result<Boolean> {
+    ): ActionResult<Boolean> {
         val httpResponse = client.post {
             endPoint(path = "/post/likes/add")
             setBody(
@@ -46,14 +45,13 @@ internal class PostApiService : KtorApi() {
             )
             setToken(token = userToken)
         }
-        logger.info { "49 $httpResponse" }
-        return Result.Success(httpResponse.body())
+        return httpResponse.getBody()
     }
 
     suspend fun unlikePost(
         userToken: String,
         likeParams: LikeParams
-    ): Result<Boolean> {
+    ): ActionResult<Boolean> {
         val httpResponse = client.delete {
             endPoint(path = "/post/likes/remove")
             setBody(
@@ -61,7 +59,6 @@ internal class PostApiService : KtorApi() {
             )
             setToken(token = userToken)
         }
-        logger.info { "64 $httpResponse" }
-        return Result.Success(httpResponse.body())
+        return httpResponse.getBody()
     }
 }

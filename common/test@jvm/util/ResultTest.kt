@@ -10,28 +10,28 @@ import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
 
 class ResultTest {
-    private fun getResult(): Result<String> {
-        return if (true) {
-            Result.Error(message = "error")
-        } else {
-            Result.Success(message = "aa", data = "aa")
-        }
-    }
+//    private fun getResult(): Result<String> {
+//        return if (true) {
+//            Result.Error(message = "error")
+//        } else {
+//            Result.Success(message = "aa", data = "aa")
+//        }
+//    }
 
     @Test
     fun jsonTest() {
-        val error: Result<String> = getResult()
-        val string = Json.encodeToString(error)
-        println(string)
-
-        // 反序列化回对象
-        val obj = Json.decodeFromString<Result<String>>(string)
-        if (obj.isSuccess) {
-            println(obj)
-        }else{
-            print(obj)
-            println()
-        }
+//        val error: Result<String> = getResult()
+//        val string = Json.encodeToString(error)
+//        println(string)
+//
+//        // 反序列化回对象
+//        val obj = Json.decodeFromString<Result<String>>(string)
+//        if (obj.isSuccess) {
+//            println(obj)
+//        }else{
+//            print(obj)
+//            println()
+//        }
     }
 
 

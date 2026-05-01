@@ -43,7 +43,7 @@ import androidx.compose.ui.window.application
 
 fun main() = application {
     getDI()
-    Window(onCloseRequest = ::exitApplication) {
+    Window(onCloseRequest = ::exitApplication, title = "rustob") {
         MaterialTheme {
             getMain()
         }

@@ -3,10 +3,9 @@ package com.hb.repository
 import com.hb.dao.follows.FollowsDao
 import com.hb.dao.user.UserDao
 import com.hb.dao.user.UserRow
-import io.ktor.http.HttpStatusCode
 import model.FollowUserData
 import repository.FollowsRepository
-import util.Result
+import util.error
 
 class FollowsRepositoryImpl(
     private val userDao: UserDao,
@@ -14,18 +13,14 @@ class FollowsRepositoryImpl(
 ) : FollowsRepository {
     override suspend fun followUser(follower: String, following: String): Result<Boolean> {
         return if (followsDao.isAlreadyFollowing(follower, following)) {
-            Result.Error<Boolean>(code = HttpStatusCode.Forbidden.value, message = "已经关注过了", data = false)
+            Result.failure(Throwable("Following $following is already followed"))
         } else {
             val success = followsDao.followUser(follower, following)
             if (success) {
                 userDao.updateFollowsCount(follower, following, isFollowing = true)
-                Result.Success(message = "添加关注成功！", data = true)
+                Result.success(true)
             } else {
-                Result.Error<Boolean>(
-                    code = HttpStatusCode.ServiceUnavailable.value,
-                    message = "添加关注失败！",
-                    data = false
-                )
+                Result.failure(Throwable("Following $following is follow failed"))
             }
         }
     }
@@ -35,12 +30,12 @@ class FollowsRepositoryImpl(
             val success = followsDao.unfollowUser(follower, following)
             if (success) {
                 userDao.updateFollowsCount(follower, following, isFollowing = false)
-                Result.Success(message = "取关成功！", data = true)
+                Result.success(true)
             } else {
-                Result.Error(code = HttpStatusCode.ServiceUnavailable.value, message = "取关失败！", data = false)
+                Result.failure(Throwable("Following $following is follow failed"))
             }
         } else {
-            Result.Error(code = HttpStatusCode.Forbidden.value, message = "未曾关注！", data = false)
+            Result.failure(Throwable("Following $following is unfollow failed"))
         }
     }
 
@@ -56,7 +51,7 @@ class FollowsRepositoryImpl(
             val isFollowing = followsDao.isAlreadyFollowing(follower = userId, following = it.id)
             toFollowUserData(it, isFollowing)
         }
-        return Result.Success(followers)
+        return Result.success(followers)
     }
 
     override suspend fun getFollowing(
@@ -69,21 +64,18 @@ class FollowsRepositoryImpl(
         val following = followingRows.map {
             toFollowUserData(it, true)
         }
-        return Result.Success(following)
+        return Result.success(following)
     }
 
     override suspend fun getFollowingSuggestions(userId: String): Result<List<FollowUserData>> {
         val hasFollowing = followsDao.getFollowing(userId, pageNumber = 0, pageSize = 1)
         return if (hasFollowing.isNotEmpty()) {
-            Result.Error(
-                code = HttpStatusCode.Forbidden.value,
-                data = listOf()
-            )
+            Result.success(listOf())
         } else {
             val popularUsersRows = userDao.getPopularUsers(10)
             val popularUsers = popularUsersRows.filter { it.id != userId }
                 .map { toFollowUserData(it, false) }
-            return Result.Success(popularUsers)
+            Result.success(popularUsers)
         }
     }
 

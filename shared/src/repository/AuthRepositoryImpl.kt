@@ -7,7 +7,6 @@ import model.SignUpParams
 import kotlinx.coroutines.withContext
 import service.AuthService
 import util.DispatcherProvider
-import util.Result
 
 internal class AuthRepositoryImpl(
     private val dispatcher: DispatcherProvider,
@@ -16,37 +15,27 @@ internal class AuthRepositoryImpl(
 ) : UserRepository {
     override suspend fun signUp(params: SignUpParams): Result<AuthResponse> {
         return withContext(dispatcher.io) {
-            try {
-                val response = authService.signUp(params)
-                if (response.data == null) {
-                    Result.Error(message = response.errorMessage)
-                } else {
-                    userPreferences.setUserData(
-                        response.data!!
-                    )
-                    Result.Success(response)
+            val response = authService.signUp(params)
+            val result = response.toResult()
+            if (result.isSuccess) {
+                result.map {
+                    userPreferences.setUserData(it.data!!)
                 }
-            } catch (e: Exception) {
-                Result.Error(message = e.message)
             }
+            result
         }
     }
 
     override suspend fun signIn(params: SignInParams): Result<AuthResponse> {
         return withContext(dispatcher.io) {
-            try {
-                val response = authService.signIn(params)
-                if (response.data == null) {
-                    Result.Error(message = response.errorMessage)
-                } else {
-                    userPreferences.setUserData(
-                        response.data!!
-                    )
-                    Result.Success(response)
+            val response = authService.signIn(params)
+            val result = response.toResult()
+            if (result.isSuccess) {
+                result.map {
+                    userPreferences.setUserData(it.data!!)
                 }
-            } catch (e: Exception) {
-                Result.Error(message = e.message)
             }
+            result
         }
     }
 

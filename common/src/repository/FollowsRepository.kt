@@ -1,7 +1,6 @@
 package repository
 
 import model.FollowUserData
-import util.Result
 
 interface FollowsRepository {
     suspend fun followUser(follower: String, following: String): Result<Boolean>

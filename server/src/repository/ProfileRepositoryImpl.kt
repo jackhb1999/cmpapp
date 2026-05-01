@@ -6,7 +6,7 @@ import com.hb.dao.user.UserRow
 import model.Profile
 import model.UpdateUserParams
 import repository.ProfileRepository
-import util.Result
+
 
 class ProfileRepositoryImpl(
     private val userDao: UserDao,
@@ -17,13 +17,13 @@ class ProfileRepositoryImpl(
         return if (userRow != null) {
             val isFollowing = followsDao.isAlreadyFollowing(userId, currentUserId)
             val isOwnProfile = userId == currentUserId
-            Result.Success(toProfile(userRow, isFollowing, isOwnProfile))
+            Result.success(toProfile(userRow, isFollowing, isOwnProfile))
         } else {
-            Result.Error(message = "User not found")
+            throw Throwable("找不到用户")
         }
     }
 
-    override suspend fun updateUser(updateUserParams: UpdateUserParams): Result<Any> {
+    override suspend fun updateUser(updateUserParams: UpdateUserParams): Result<Boolean> {
         val userExists = userDao.findById(updateUserParams.userId) != null
         if (userExists) {
             val userUpdated = userDao.updateUser(
@@ -33,10 +33,10 @@ class ProfileRepositoryImpl(
                 imageUrl = updateUserParams.imageUrl
             )
             if (userUpdated) {
-                return Result.Success("User updated")
+                return Result.success(true)
             }
         }
-        return Result.Error(message = "Could not update")
+        return Result.success(false)
     }
 
     private fun toProfile(userRow: UserRow, isFollowing: Boolean, isOwnProfile: Boolean): Profile {

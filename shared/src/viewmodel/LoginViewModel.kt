@@ -11,9 +11,7 @@ import repository.UserRepository
 import service.AwesomeServiceImpl
 import usecase.AwesomeUseCase
 import usecase.SignInUseCase
-import usecase.SignUpUseCase
-import util.Result
-import kotlin.getValue
+
 
 class LoginViewModel(
     private val signInUseCase: SignInUseCase,
@@ -31,20 +29,20 @@ class LoginViewModel(
                 email = uiState.email,
                 password = uiState.password,
             )
-            println(authResultData.toString())
+            when {
+                authResultData.isFailure -> {
+                    uiState = uiState.copy(
+                        isAuthenticating = false,
+                        authErrorMessage = authResultData.exceptionOrNull()?.message,
+                    )
+                }
 
-            println(authResultData.message)
-            println("37 :" + awesomeUseCase.daysUntilStableRelease())
-            uiState = when (authResultData) {
-                is Result.Error<*> -> uiState.copy(
-                    isAuthenticating = false,
-                    authErrorMessage = authResultData.message,
-                )
-
-                is Result.Success<*> -> uiState.copy(
-                    isAuthenticating = false,
-                    authenticationSucceed = true,
-                )
+                authResultData.isSuccess -> {
+                    uiState = uiState.copy(
+                        isAuthenticating = false,
+                        authenticationSucceed = true,
+                    )
+                }
             }
         }
     }

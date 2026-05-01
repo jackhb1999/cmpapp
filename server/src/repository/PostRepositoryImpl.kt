@@ -8,26 +8,23 @@ import io.ktor.http.HttpStatusCode
 import model.Post
 import model.PostTextParams
 import repository.PostRepository
-import util.Result
+
 
 class PostRepositoryImpl(
     private val postDao: PostDao,
     private val followsDao: FollowsDao,
     private val postLikesDao: PostLikesDao
 ) : PostRepository {
-    override suspend fun createPost(imageUrl: String, postTextParams: PostTextParams): Result<Any> {
+    override suspend fun createPost(imageUrl: String, postTextParams: PostTextParams): Result<Boolean> {
         val postIsCreated = postDao.createPost(
             caption = postTextParams.caption,
             imageUrl = imageUrl,
             userId = postTextParams.userId
         )
         return if (postIsCreated) {
-            Result.Success(message = "Post created")
+            Result.success(true)
         } else {
-            Result.Error(
-                code = HttpStatusCode.InternalServerError.value,
-                message = "Post creation failed"
-            )
+            throw Throwable("帖子已经存在")
         }
     }
 
@@ -48,7 +45,7 @@ class PostRepositoryImpl(
                 isOwnPost = it.userId == userId
             )
         }
-        return Result.Success(posts)
+        return Result.success(posts)
     }
 
     override suspend fun getPostsByUser(
@@ -65,7 +62,7 @@ class PostRepositoryImpl(
                 isOwnPost = it.userId == currentUserId
             )
         }
-        return Result.Success(posts)
+        return Result.success(posts)
     }
 
     override suspend fun getPost(postId: String, currentUserId: String): Result<Post> {
@@ -73,21 +70,18 @@ class PostRepositoryImpl(
         return if (postRow != null) {
             val isPostLiked = postLikesDao.isPostLiked(postId, currentUserId)
             val isOwnPost = postRow.userId == currentUserId
-            Result.Success<Post>(data = toPost(postRow, isPostLiked, isOwnPost))
+            Result.success<Post>(toPost(postRow, isPostLiked, isOwnPost))
         } else {
-            Result.Error(message = "not get post")
+            throw Throwable("找不到帖子")
         }
     }
 
-    override suspend fun deletePost(postId: String): Result<Any> {
+    override suspend fun deletePost(postId: String): Result<Boolean> {
         val postIsDeleted = postDao.deletePost(postId)
         return if (postIsDeleted) {
-            Result.Success(message = "deleted Post '${postId}' successfully")
+            Result.success(true)
         } else {
-            Result.Error(
-                code = HttpStatusCode.InternalServerError.value,
-                message = "fail"
-            )
+          throw Throwable("帖子已删除")
         }
     }
 

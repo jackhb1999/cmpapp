@@ -1,14 +1,9 @@
 package usecase
 
 import data.UserPreferences
-import model.AuthResponse
-import model.SignInParams
 import model.UserSettingsData
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
-import repository.UserRepository
-import util.Result
-import kotlin.getValue
 
 class UserSettingUseCase : KoinComponent {
 

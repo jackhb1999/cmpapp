@@ -6,7 +6,7 @@ import com.hb.dao.post_comments.PostCommentsDao
 import model.NewCommentParams
 import model.PostComment
 import repository.PostCommentsRepository
-import util.Result
+
 
 class PostCommentsRepositoryImpl(
     private val postCommentsDao: PostCommentsDao,
@@ -20,27 +20,27 @@ class PostCommentsRepositoryImpl(
         )?.let { toPostComment(it) }
         return if (postComment != null) {
             postDao.updateCommentsCount(params.postId, true)
-            Result.Success(postComment)
+            Result.success(postComment)
         } else {
-            Result.Error(message = "Something went wrong")
+            Result.failure(Throwable("Failed to add comment"))
         }
     }
 
-    override suspend fun removeComment(commentId: String, postId: String, userId: String): Result<Any> {
+    override suspend fun removeComment(commentId: String, postId: String, userId: String): Result<Boolean> {
         val commentRow = postCommentsDao.findComment(commentId, postId)
         return if (commentRow != null) {
             val postRow = postDao.getPost(postId)
             if ((userId != commentRow.userId) && (userId != postRow?.userId)) {
-                Result.Error<Any>(message = "没权限进行删除！")
+                Result.failure<Unit>(Throwable(message = "没权限进行删除！"))
             }
             val removeComment = postCommentsDao.removeComment(commentId, postId)
             if (removeComment) {
-                Result.Success(Unit)
+                Result.success(true)
             } else {
-                Result.Error(message = "删除失败！")
+                Result.failure(Throwable(message = "删除失败！"))
             }
         } else {
-            Result.Error(message = "评论不存在！")
+            Result.failure(Throwable(message = "评论不存在！"))
         }
     }
 
@@ -51,9 +51,9 @@ class PostCommentsRepositoryImpl(
     ): Result<List<PostComment>> {
         val list = postCommentsDao.getComments(postId, pageNumber, pageSize)?.map { toPostComment(it) }
         return if (!list.isNullOrEmpty()) {
-            Result.Success(list)
+            Result.success(list)
         } else {
-            Result.Error(message = "No comments were found")
+            Result.failure(Throwable(message = "No comments were found"))
         }
     }
 
