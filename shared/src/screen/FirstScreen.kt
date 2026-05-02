@@ -9,13 +9,13 @@ class FirstScreen: Screen {
     @Composable
     override fun Content() {
         val navigator = LocalNavigator.current
-        fun goPostDetailFun(postId: String) {
-            navigator?.push(DetailsScreen(postId))
+        val postClick = fun(postId: String) {
+            navigator?.push(PostDetailScreen(postId))
         }
 
         fun goProfileClickFn(userId: String) {
             navigator?.push(ProfileScreen(userId))
         }
-        HomeView(goPostDetail = ::goPostDetailFun, goProfileClick = ::goProfileClickFn, )
+        HomeView(goPostDetail = postClick, goProfileClick = ::goProfileClickFn, )
     }
 }

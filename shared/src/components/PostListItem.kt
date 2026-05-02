@@ -39,7 +39,7 @@ fun PostListItem(
     post: Post,
     onPostClick: (Post) -> Unit,
     onProfileClick: (String) -> Unit,
-    onLikeClick: (String) -> Unit,
+    onLikeClick: (Post) -> Unit,
     onCommentClick: (String) -> Unit,
     isDetailScreen: Boolean = false
 ) {
@@ -71,8 +71,9 @@ fun PostListItem(
             isLiked = post.isLiked,
             likesCount = post.likesCount,
             commentsCount = post.commentsCount,
-            onLikeClick = { onLikeClick(post.postId) },
-            onCommentClick = { onCommentClick(post.postId) }
+            onLikeClick = { onLikeClick(post) },
+            onCommentClick = { onCommentClick(post.postId) },
+            isDetailScreen = isDetailScreen
         )
 
         Text(
@@ -134,7 +135,8 @@ fun PostLikesRow(
     likesCount: Int,
     commentsCount: Int,
     onLikeClick: () -> Unit,
-    onCommentClick: () -> Unit
+    onCommentClick: () -> Unit,
+    isDetailScreen: Boolean = false
 ) {
 
     Row(
@@ -160,17 +162,19 @@ fun PostLikesRow(
             text = "$likesCount",
             style = MaterialTheme.typography.titleSmall.copy(fontSize = 18.sp)
         )
-        Spacer(modifier = modifier.width(MediumSpacing))
-        IconButton(onClick = onCommentClick) {
-            Icon(
-                imageVector = Icons.Default.AddComment,
-                contentDescription = null,
+        if (!isDetailScreen) {
+            Spacer(modifier = modifier.width(MediumSpacing))
+            IconButton(onClick = onCommentClick) {
+                Icon(
+                    imageVector = Icons.Default.AddComment,
+                    contentDescription = null,
+                )
+            }
+            Text(
+                text = "$commentsCount",
+                style = MaterialTheme.typography.titleSmall.copy(fontSize = 18.sp)
             )
         }
-        Text(
-            text = "$commentsCount",
-            style = MaterialTheme.typography.titleSmall.copy(fontSize = 18.sp)
-        )
     }
 
 }

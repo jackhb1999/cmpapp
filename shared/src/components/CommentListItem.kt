@@ -11,12 +11,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import fake_data.Comment
+import model.PostComment
 
 @Composable
 fun CommentListItem(
     modifier: Modifier = Modifier,
-    comment: Comment,
+    comment: PostComment,
     onProfileClick: (String) -> Unit,
     onMoreIconClick: () -> Unit
 ) {
@@ -26,23 +26,23 @@ fun CommentListItem(
         horizontalArrangement = Arrangement.spacedBy(MediumSpacing)
     ) {
         CircleImage(
-            imageUrl = comment.authorImageUrl,
+            imageUrl = comment.userImageUrl,
             modifier = modifier.size(30.dp)
         ) {
-            onProfileClick(comment.authorId)
+            onProfileClick(comment.userId)
         }
         Column(modifier = modifier.weight(1f)) {
             Row(
                 horizontalArrangement = Arrangement.spacedBy(MediumSpacing)
             ) {
                 Text(
-                    text = comment.authorName,
+                    text = comment.username,
                     style = MaterialTheme.typography.titleSmall,
                     modifier = modifier.alignByBaseline()
                 )
 
                 Text(
-                    text = comment.date,
+                    text = comment.createdAt.toString(),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.surface,
                     modifier = modifier.alignByBaseline().weight(1f)
@@ -55,7 +55,7 @@ fun CommentListItem(
                 )
             }
             Text(
-                text = comment.comment,
+                text = comment.content,
                 style = MaterialTheme.typography.bodySmall
             )
         }

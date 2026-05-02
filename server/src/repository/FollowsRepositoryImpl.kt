@@ -70,7 +70,8 @@ class FollowsRepositoryImpl(
     override suspend fun getFollowingSuggestions(userId: String): Result<List<FollowUserData>> {
         val hasFollowing = followsDao.getFollowing(userId, pageNumber = 0, pageSize = 1)
         return if (hasFollowing.isNotEmpty()) {
-            Result.success(listOf())
+            val list: List<FollowUserData> = listOf()
+            Result.success(list)
         } else {
             val popularUsersRows = userDao.getPopularUsers(10)
             val popularUsers = popularUsersRows.filter { it.id != userId }

@@ -1,9 +1,11 @@
 package usecase
 
 import model.FollowUserData
+import model.PostComment
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import repository.FollowsRepository
+import repository.PostCommentsRepository
 import util.Constants
 
 

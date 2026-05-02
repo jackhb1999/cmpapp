@@ -61,4 +61,18 @@ internal class PostApiService : KtorApi() {
         }
         return httpResponse.getBody()
     }
+
+    suspend fun getPost(
+        userToken: String,
+        postId: String,
+        currentUserId: String,
+    ): ActionResult<Post> {
+        val httpResponse = client.get {
+            endPoint(path = "/post/$postId")
+            parameter(key = Constants.CURRENT_USER_ID_PARAMETER, value = currentUserId)
+            setToken(token = userToken)
+        }
+        return httpResponse.getBody()
+    }
+
 }

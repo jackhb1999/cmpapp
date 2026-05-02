@@ -52,7 +52,7 @@ class PostCommentsDaoImpl : PostCommentsDao {
         postId: String,
         pageNumber: Int,
         pageSize: Int
-    ): List<PostCommentRow>? {
+    ): List<PostCommentRow> {
         return dbQuery {
             PostCommentsTable.join(
                 otherTable = UserTable,
@@ -61,7 +61,7 @@ class PostCommentsDaoImpl : PostCommentsDao {
                 joinType = JoinType.INNER
             ).selectAll().where {
                 (PostCommentsTable.postId eq postId)
-            }.orderBy(column = PostCommentsTable.createAt, SortOrder.DESC)
+            }.orderBy(column = PostCommentsTable.commentId, SortOrder.DESC)
                 .limit(pageSize).offset(((pageNumber - 1) * pageSize).toLong())
                 .map { toPostCommentRow(it) }
         }

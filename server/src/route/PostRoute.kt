@@ -64,7 +64,7 @@ fun Routing.postRoutes() {
             get("/{postId}") {
                 try {
                     val postId = call.getParameter(name = "postId")
-                    val currentUserId = call.getParameter(name = "currentUserId", isQueryParameter = true)
+                    val currentUserId = call.getParameter(name = Constants.CURRENT_USER_ID_PARAMETER, isQueryParameter = true)
                     val result = postRepository.getPost(postId, currentUserId)
                     call.sendResult(result)
                 } catch (badRequestException: BadRequestException) {

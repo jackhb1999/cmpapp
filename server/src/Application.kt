@@ -8,6 +8,7 @@ import com.hb.plugins.configureRouting
 import com.hb.plugins.configureSecurity
 import com.hb.plugins.configureSerialization
 
+
 fun main(args: Array<String>) {
     io.ktor.server.netty.EngineMain.main(args)
 }

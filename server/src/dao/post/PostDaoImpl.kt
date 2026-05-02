@@ -56,7 +56,7 @@ class PostDaoImpl : PostDao {
             if (follows.isNotEmpty()) {
                 follows.forEach { logger.info { "Following: $it" } }
                 postJoinTableSelect().where(PostTable.userId inList follows)
-                    .orderBy(column = PostTable.createdAt, order = SortOrder.DESC)
+                    .orderBy(column = PostTable.postId, order = SortOrder.DESC)
                     .limit(pageSize).offset(((pageNumber - 1) * pageSize).toLong())
                     .map { toPostRow(it) }
             } else {

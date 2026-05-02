@@ -68,7 +68,7 @@ fun ProfileView(
                     post = it,
                     onPostClick = { onPostClick(postId) },
                     onProfileClick = {},
-                    onLikeClick = { vm.onLikesClick(postId = postId) },
+                    onLikeClick = { vm.onLikesClick(it.postId) },
                     onCommentClick = onCommentClick
                 )
             }

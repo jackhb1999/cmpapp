@@ -11,6 +11,7 @@ import io.ktor.server.routing.*
 import model.NewCommentParams
 import org.koin.ktor.ext.inject
 import repository.PostCommentsRepository
+import util.Constants
 import util.send
 
 fun Routing.postCommentsRoute() {
@@ -42,8 +43,8 @@ fun Routing.postCommentsRoute() {
 
             get(path = "/{postId}") {
                 val postId = call.getParameter(name = "postId")
-                val page = call.getIntParameter(name = "page", isQueryParameter = true, defaultVal = 0)
-                val limit = call.getIntParameter(name = "limit", isQueryParameter = true, defaultVal = 10)
+                val page = call.getIntParameter(name = Constants.PAGE_QUERY_PARAMETER, isQueryParameter = true, defaultVal = 0)
+                val limit = call.getIntParameter(name = Constants.PAGE_SIZE_QUERY_PARAMETER, isQueryParameter = true, defaultVal = 10)
                 val result =  repository.getPostComments(postId,page,limit)
                 call.sendResult(result)
             }

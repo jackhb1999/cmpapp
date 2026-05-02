@@ -13,7 +13,7 @@ import model.FollowUserData
 import model.Post
 import usecase.FollowOrUnfollowUseCase
 import usecase.GetFollowableUsersUseCase
-import usecase.GetPostUseCase
+import usecase.GetPostsUseCase
 import usecase.LikeOrUnLikePostUseCase
 import util.Constants
 import util.Constants.DEFAULT_REQUEST_PAGE_SIZE
@@ -26,7 +26,7 @@ private val logger = KotlinLogging.logger {}
 class HomeViewModel(
     private val getFollowableUsersUseCase: GetFollowableUsersUseCase,
     private val followOrUnfollowUseCase: FollowOrUnfollowUseCase,
-    private val getPostUseCase: GetPostUseCase,
+    private val getPostsUseCase: GetPostsUseCase,
     private val likeOrUnLikePostUseCase: LikeOrUnLikePostUseCase
 ) : ViewModel() {
 
@@ -63,7 +63,7 @@ class HomeViewModel(
     private fun createPagingManager(): PagingManage<Post> {
         return DefaultPagingManage<Post>(
             onRequest = { page ->
-                getPostUseCase(page, DEFAULT_REQUEST_PAGE_SIZE)
+                getPostsUseCase(page, DEFAULT_REQUEST_PAGE_SIZE)
             },
             onSuccess = { posts, page ->
                 postsFeedUiState = if (posts.isEmpty()) {

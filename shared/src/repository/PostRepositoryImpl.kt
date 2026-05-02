@@ -48,7 +48,15 @@ internal class PostRepositoryImpl(
     }
 
     override suspend fun getPost(postId: String, currentUserId: String): Result<Post> {
-        TODO("Not yet implemented")
+        return withContext(dispatcher.io) {
+            val userData = userPreferences.getUserData()
+            val apiResponse = postApiService.getPost(
+                postId = postId,
+                userToken = userData.token,
+                currentUserId = userData.id
+            )
+            apiResponse.toResult()
+        }
     }
 
     override suspend fun deletePost(postId: String): Result<Boolean> {

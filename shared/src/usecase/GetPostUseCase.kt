@@ -6,17 +6,10 @@ import org.koin.core.component.inject
 import repository.PostRepository
 import util.Constants
 
-
 class GetPostUseCase : KoinComponent {
+    private val postRepository: PostRepository by inject()
 
-    private val repository by inject<PostRepository>()
-
-
-    suspend operator fun invoke(page: Int, pageSize: Int): Result<List<Post>> {
-        return repository.getFeedPosts(
-            userId = Constants.EMPTY_STR,
-            pageNumber = page, pageSize = pageSize
-        )
+    suspend operator fun invoke(postId: String): Result<Post> {
+        return postRepository.getPost(postId, currentUserId = Constants.EMPTY_STR)
     }
-
 }

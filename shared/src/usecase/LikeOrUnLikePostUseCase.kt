@@ -13,9 +13,9 @@ class LikeOrUnLikePostUseCase : KoinComponent {
     suspend operator fun invoke(likePostId: String, isLiked: Boolean): Result<Boolean> {
         val params = LikeParams(postId = likePostId, userId = Constants.EMPTY_STR)
         return if (isLiked) {
-            repository.removeLike(params)
-        } else {
             repository.addLike(params)
+        } else {
+            repository.removeLike(params)
         }
     }
 

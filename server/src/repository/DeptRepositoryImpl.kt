@@ -9,7 +9,7 @@ class DeptRepositoryImpl(
     private val deptDao: DeptDao
 ) {
     suspend fun selectDeptList():List<DeptEntity>{
-      var  dept: DeptParams = DeptParams(
+      val dept: DeptParams = DeptParams(
           deptId = 1,
           deptName = "Dept",
           parentId = null,
