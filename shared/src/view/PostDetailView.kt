@@ -1,30 +1,45 @@
 package view
 
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.derivedStateOf
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.material3.Divider
+import androidx.compose.material3.DividerDefaults
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.LocalContentColor
+import androidx.compose.material3.LocalTextStyle
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.input.key.Key.Companion.R
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.min
 import components.CommentListItem
 import components.CommentsSectionHeader
 import components.LargeSpacing
 import components.MediumSpacing
 import components.PostListItem
+import components.ScreenLevelLoadingView
+import components.SmallSpacing
+import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
-import util.Constants
+import util.loadingMoreItem
 import viewmodel.PostDetailUiAction
 import viewmodel.PostDetailViewModel
 
@@ -51,9 +66,7 @@ fun PostDetailView(
     }
 
     if (vm.postUiState.isLoading) {
-        Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-            CircularProgressIndicator()
-        }
+        ScreenLevelLoadingView()
     } else if (vm.postUiState.post != null) {
         LazyColumn(
             modifier = modifier.fillMaxSize().background(color = MaterialTheme.colorScheme.background),
@@ -83,28 +96,13 @@ fun PostDetailView(
                 )
             }
             if (vm.commentsUiState.isLoading) {
-                item(key = Constants.LOADING_MORE_ITEM_KEY) {
-                    Box(
-                        modifier = modifier.fillMaxWidth().padding(
-                            vertical = MediumSpacing,
-                            horizontal = LargeSpacing
-                        ), contentAlignment = Alignment.Center
-                    ) {
-                        CircularProgressIndicator()
-                    }
-                }
+                loadingMoreItem()
             }
         }
     } else {
-        Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-            Column(verticalArrangement = Arrangement.spacedBy(LargeSpacing)) {
-                Text(text = "点击", style = MaterialTheme.typography.bodyMedium)
-
-                OutlinedButton(onClick = { vm.onUiAction(PostDetailUiAction.FetchPostAction(postId)) }) {
-                    Text(text = "按钮")
-                }
-            }
-        }
+        ScreenLevelLoadingView(
+            modifier = modifier,
+            onRetry = { vm.onUiAction(PostDetailUiAction.FetchPostAction(postId)) })
     }
 
     LaunchedEffect(key1 = Unit, block = {
@@ -116,4 +114,76 @@ fun PostDetailView(
             vm.onUiAction(PostDetailUiAction.LoadMoreCommentsAction)
         }
     }
+}
+
+@Composable
+private fun CommentsHeaderSection(modifier: Modifier = Modifier) {
+    Row(
+        modifier = modifier.fillMaxWidth().padding(all = LargeSpacing),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Text(
+            text = "评论",
+            style = MaterialTheme.typography.titleSmall,
+            modifier = Modifier.weight(1f),
+        )
+    }
+}
+
+@Composable
+private fun CommentInput(
+    modifier: Modifier = Modifier,
+    commentText: String,
+    onCommentChange: (String) -> Unit,
+    onSendClick: (String) -> Unit,
+) {
+    Column(
+        modifier.fillMaxWidth().background(color = MaterialTheme.colorScheme.background)
+            .animateContentSize(),
+    ) {
+        HorizontalDivider()
+        Row(
+            modifier = modifier.padding(
+                horizontal = LargeSpacing,
+                vertical = MediumSpacing
+            ), verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(LargeSpacing)
+        ) {
+            Box(
+                modifier.heightIn(min = 35.dp, max = 70.dp)
+                    .background(
+                        color = MaterialTheme.colorScheme.background,
+                        shape = RoundedCornerShape(percent = 25)
+                    ).padding(
+                        horizontal = MediumSpacing,
+                        vertical = SmallSpacing
+                    ).weight(1f),
+            ) {
+                BasicTextField(
+                    value = commentText,
+                    onValueChange = onCommentChange,
+                    modifier = modifier.fillMaxWidth().align(Alignment.CenterStart),
+                    textStyle = LocalTextStyle.current.copy(
+                        color = LocalContentColor.current,
+                    ),
+                    cursorBrush = SolidColor(LocalContentColor.current)
+                )
+
+                if (commentText.isEmpty()) {
+                    Text(
+                        modifier = modifier.align(Alignment.CenterStart)
+                            .padding(SmallSpacing), text = "评论吧",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.3f)
+                    )
+                }
+            }
+        }
+    }
+}
+
+
+@Composable
+private fun SendCommentButton(modifier: Modifier = Modifier) {
+    
 }
