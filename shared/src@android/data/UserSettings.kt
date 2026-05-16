@@ -6,6 +6,8 @@ import kotlinx.serialization.SerializationException
 import kotlinx.serialization.json.Json
 import java.io.InputStream
 import java.io.OutputStream
+import kotlin.text.decodeToString
+import kotlin.text.encodeToByteArray
 
 
 object UserSettingsSerializer : Serializer<UserSettingsData> {

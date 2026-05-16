@@ -6,6 +6,7 @@ modules:
   - rs_lib
   - common
   - rs_build
+  - js-app
 
 plugins:
   - ./rs_build

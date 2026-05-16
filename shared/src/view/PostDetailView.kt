@@ -1,59 +1,50 @@
 package view
 
 import androidx.compose.animation.animateContentSize
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
-import androidx.compose.material3.Divider
-import androidx.compose.material3.DividerDefaults
-import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.LocalContentColor
-import androidx.compose.material3.LocalTextStyle
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Delete
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.Saver
+import androidx.compose.runtime.saveable.autoSaver
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
-import androidx.compose.ui.input.key.Key.Companion.R
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.min
-import components.CommentListItem
-import components.CommentsSectionHeader
-import components.LargeSpacing
-import components.MediumSpacing
-import components.PostListItem
-import components.ScreenLevelLoadingView
-import components.SmallSpacing
-import org.jetbrains.compose.resources.stringResource
+import components.*
+import kotlinx.coroutines.launch
+import kotlinx.datetime.LocalDateTime
+import model.PostComment
 import org.koin.compose.viewmodel.koinViewModel
 import util.loadingMoreItem
 import viewmodel.PostDetailUiAction
 import viewmodel.PostDetailViewModel
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PostDetailView(
     modifier: Modifier = Modifier,
     vm: PostDetailViewModel = koinViewModel(),
-    postId: String
+    postId: String,
+    onProfileNavigation: (String) -> Unit,
 ) {
 
     val listState = rememberLazyListState()
 
     val shouldFetchMoreComments by remember {
-
         derivedStateOf {
             val layoutInfo = listState.layoutInfo
             if (layoutInfo.totalItemsCount == 0) {
@@ -65,39 +56,101 @@ fun PostDetailView(
         }
     }
 
+    var commentText by rememberSaveable { mutableStateOf<String>("") }
+    val keyboardController = LocalSoftwareKeyboardController.current
+
+//    val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
+    val scope = rememberCoroutineScope()
+    var selectedComment by rememberSaveable(stateSaver = postCommentSaver) {
+        mutableStateOf<PostComment?>(null)
+    }
+
+    var openBottomSheet by rememberSaveable { mutableStateOf(false) }
+    var skipPartiallyExpanded by rememberSaveable { mutableStateOf(false) }
+    val bottomSheetState = rememberModalBottomSheetState(skipPartiallyExpanded = skipPartiallyExpanded)
+    if (openBottomSheet) {
+        ModalBottomSheet(
+            onDismissRequest = { openBottomSheet = false },
+            sheetState = bottomSheetState,
+        ) {
+            selectedComment?.let { comment ->
+                CommentMoreActionsButtomSheetContent(
+                    comment = comment,
+                    canDeleteComment = comment.userId == vm.postUiState.post?.userId,
+                    onDeleteCommentClick = { comment ->
+                        scope.launch {
+                            bottomSheetState.hide()
+                        }.invokeOnCompletion {
+                            if (!bottomSheetState.isVisible) {
+                                vm.onUiAction(PostDetailUiAction.RemovePostCommentAction(comment))
+                                selectedComment = null
+                            }
+                        }
+                    },
+                    onNavigateToProfile = { userId ->
+                        scope.launch { bottomSheetState.hide() }.invokeOnCompletion {
+                            if (!bottomSheetState.isVisible) {
+                                selectedComment = null
+                                onProfileNavigation(userId)
+                            }
+                        }
+                    }
+                )
+            }
+        }
+    }
+
     if (vm.postUiState.isLoading) {
         ScreenLevelLoadingView()
     } else if (vm.postUiState.post != null) {
-        LazyColumn(
-            modifier = modifier.fillMaxSize().background(color = MaterialTheme.colorScheme.background),
-            state = listState,
-        ) {
-            item(key = "post_item") {
-                PostListItem(
-                    post = vm.postUiState.post!!,
-                    onPostClick = { _ -> },
-                    onProfileClick = { _ -> },
-                    onLikeClick = { vm.onUiAction(PostDetailUiAction.LikeOrUnLikePostAction(vm.postUiState.post!!)) },
-                    onCommentClick = {},
-                    isDetailScreen = true
-                )
-            }
-            item(key = "comments_header_section") {
-                CommentsSectionHeader {
-                    vm.onAddCommentClick()
+        Column(modifier = Modifier.fillMaxSize()) {
+            LazyColumn(
+                modifier = modifier.fillMaxSize().background(color = MaterialTheme.colorScheme.background).weight(1f),
+                state = listState,
+            ) {
+                item(key = "post_item") {
+                    PostListItem(
+                        post = vm.postUiState.post!!,
+                        onPostClick = { _ -> },
+                        onProfileClick = { _ -> },
+                        onLikeClick = { vm.onUiAction(PostDetailUiAction.LikeOrUnLikePostAction(vm.postUiState.post!!)) },
+                        onCommentClick = {},
+                        isDetailScreen = true
+                    )
+                }
+                item(key = "comments_header_section") {
+                    CommentsSectionHeader {
+                        vm.onAddCommentClick()
+                    }
+                }
+                if (vm.commentsUiState.isAddingNewComments) {
+                    loadingMoreItem()
+                }
+                items(items = vm.commentsUiState.comments, key = { comment -> comment.commentId }) {
+                    HorizontalDivider()
+                    CommentListItem(
+                        comment = it,
+                        onProfileClick = { _ -> },
+                        onMoreIconClick = {
+                            selectedComment = it
+                            openBottomSheet = true
+                            scope.launch { bottomSheetState.show()}
+                        }
+                    )
+                }
+                if (vm.commentsUiState.isLoading) {
+                    loadingMoreItem()
                 }
             }
-            items(items = vm.commentsUiState.comments, key = { comment -> comment.commentId }) {
-                HorizontalDivider()
-                CommentListItem(
-                    comment = it,
-                    onProfileClick = { _ -> },
-                    onMoreIconClick = {}
-                )
-            }
-            if (vm.commentsUiState.isLoading) {
-                loadingMoreItem()
-            }
+
+            CommentInput(
+                commentText = commentText,
+                onCommentChange = { commentText = it },
+                onSendClick = {
+                    keyboardController?.hide()
+                    vm.onUiAction(PostDetailUiAction.AddPostCommentAction(it))
+                    commentText = ""
+                })
         }
     } else {
         ScreenLevelLoadingView(
@@ -178,12 +231,127 @@ private fun CommentInput(
                     )
                 }
             }
+
+            SendCommentButton(
+                sendCommentEnable = commentText.isNotBlank(),
+                onSendClick = { onSendClick(commentText) })
         }
+    }
+}
+
+@Composable
+private fun CommentMoreActionsButtomSheetContent(
+    modifier: Modifier = Modifier,
+    comment: PostComment,
+    canDeleteComment: Boolean,
+    onDeleteCommentClick: (PostComment) -> Unit,
+    onNavigateToProfile: (iserId: String) -> Unit
+) {
+    Column {
+        Text(
+            text = "评论",
+            style = MaterialTheme.typography.titleSmall,
+            modifier = modifier.padding(all = LargeSpacing),
+        )
+        HorizontalDivider()
+        ListItem(
+            modifier = modifier.clickable(
+                enabled = canDeleteComment,
+                onClick = { onDeleteCommentClick(comment) }
+            ),
+            headlineContent = { Icon(Icons.Outlined.Delete, contentDescription = "Delete comment") },
+            overlineContent = {
+                Text(
+                    text = "删除评论",
+                    style = MaterialTheme.typography.bodySmall,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+            }
+        )
+        ListItem(
+            modifier = modifier.clickable {
+                onNavigateToProfile(comment.userId)
+            },
+            headlineContent = {
+                CircleImage(
+                    imageUrl = comment.userImageUrl,
+                    modifier = modifier.size(25.dp),
+                    onClick = {})
+            },
+            overlineContent = {
+                Text(
+                    text = "访问${comment.username}主页",
+                    style = MaterialTheme.typography.bodySmall,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+            }
+        )
+
     }
 }
 
 
 @Composable
-private fun SendCommentButton(modifier: Modifier = Modifier) {
-    
+private fun SendCommentButton(
+    modifier: Modifier = Modifier,
+    sendCommentEnable: Boolean,
+    onSendClick: () -> Unit,
+) {
+    val border = if (sendCommentEnable) {
+        null
+    } else {
+        BorderStroke(width = 1.dp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.3f))
+    }
+    Button(
+        modifier = modifier.height(34.dp),
+        enabled = sendCommentEnable,
+        onClick = onSendClick,
+        colors = ButtonDefaults.buttonColors(
+            disabledContentColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.3f),
+            disabledContainerColor = Color.Transparent,
+        ),
+        border = border,
+        shape = RoundedCornerShape(percent = 50),
+        contentPadding = PaddingValues(0.dp),
+        elevation = ButtonDefaults.buttonElevation(
+            defaultElevation = 0.dp,
+            pressedElevation = 0.dp,
+            disabledElevation = 0.dp,
+        )
+    ) {
+        Text("评论", modifier = Modifier.padding(horizontal = LargeSpacing))
+    }
 }
+
+//private val postCommentSaver = autoSaver<PostComment>()
+private val postCommentSaver = Saver<PostComment?, Any>(
+    save = { postComment ->
+        if (postComment != null) {
+            mapOf(
+                "commentId" to postComment.commentId,
+                "userId" to postComment.userId,
+                "content" to postComment.content,
+                "postId" to postComment.postId,
+                "username" to postComment.username,
+                "userImageUrl" to postComment.userImageUrl,
+                "createdAt" to postComment.createdAt
+            )
+        }
+
+
+    },
+    restore = { savedValue ->
+        val map = savedValue as Map<*, *>
+        PostComment(
+            commentId = map["commentId"] as String,
+            userId = map["userId"] as String,
+            content = map["content"] as String,
+            postId = map["postId"] as String,
+            username = map["username"] as String,
+            userImageUrl = map["userImageUrl"] as String?,
+            createdAt = map["createdAt"] as LocalDateTime,
+        )
+    }
+)

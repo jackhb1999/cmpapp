@@ -1,14 +1,14 @@
 package util
 
-import diglol.id.Id
-import diglol.id.Id.Companion.decodeToId
-import io.ktor.util.decodeBase64Bytes
-import io.ktor.util.encodeBase64
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
 
 object IdGenerator {
+    @OptIn(ExperimentalUuidApi::class)
     fun generateId(): String {
-        val generate = Id.generate()
-        return generate.encodeToString()
+
+        val generate =   Uuid.generateV7()
+        return generate.toString()
     }
 }

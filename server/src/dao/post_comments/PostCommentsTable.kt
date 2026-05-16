@@ -11,9 +11,9 @@ import org.jetbrains.exposed.v1.datetime.datetime
 
 
 object PostCommentsTable : Table(name = "post_comments") {
-    val commentId = varchar("comment_id", 21).uniqueIndex()
-    val postId = varchar("post_id", 21).references(PostTable.postId, onDelete = ReferenceOption.CASCADE)
-    val userId = varchar("user_id", 21).references(UserTable.id, onDelete = ReferenceOption.CASCADE)
+    val commentId = varchar("comment_id", 36).uniqueIndex()
+    val postId = varchar("post_id", 36).references(PostTable.postId, onDelete = ReferenceOption.CASCADE)
+    val userId = varchar("user_id", 36).references(UserTable.id, onDelete = ReferenceOption.CASCADE)
     val content = varchar("content", 200)
     val createAt = datetime("create_at").defaultExpression(CurrentDateTime)
 }

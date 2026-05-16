@@ -1,9 +1,6 @@
-product:
-  type: lib
-  platforms: [ jvm, android, wasmJs, ]
+product: js/app
 
 dependencies:
-  - ../common
   - $compose.hotReload.runtimeApi
   - $compose.components.resources
   - $libs.compose.preview: exported
@@ -45,56 +42,30 @@ dependencies:
   - $libs.kotlinx.rpc.krpc.ktor.client
 
 
-dependencies@jvm:
-  - ../rs_lib
-  - $libs.kotlinx.coroutines.swing
-  - $compose.desktop.currentOs: exported
-  - $compose.hotReload.runtimeApi: exported
-  - $libs.compose.uiTooling: exported
-  - $libs.coil.network.okhttp
-  - $libs.androidx.datastore
-  - $libs.multiplatform.settings.datastore
-
-dependencies@android:
-  - androidx.compose.remote:remote-core:1.0.0-alpha03
-  # Use to create Remote Compose documents
-  - androidx.compose.remote:remote-creation:1.0.0-alpha03
-  - androidx.compose.remote:remote-creation-core:1.0.0-alpha03
-  - androidx.compose.remote:remote-creation-compose:1.0.0-alpha03
-  # Use to render a Remote Compose document
-  - androidx.compose.remote:remote-player-core:1.0.0-alpha03
-  - androidx.compose.remote:remote-player-view:1.0.0-alpha03
-  - androidx.compose.remote:remote-tooling-preview:1.0.0-alpha03
-  - androidx.compose.remote:remote-creation-android:1.0.0-alpha03
-  - $libs.kotlinx.coroutines.android
-  - $libs.androidx.core.splashscreen: exported
-  - $libs.androidx.activity.compose: exported
-  - $libs.androidx.appcompat: exported
-  - $libs.compose.uiTooling: exported
-  - $libs.coil.network.okhttp
-  - $libs.androidx.datastore
-  - $libs.multiplatform.settings.datastore
-
-
 settings:
   jvm:
     jdk:
       version: 21
   compose:
     enabled: true
+    resources:
+      packageName: com.rustob.gen
     version: 1.10.3
-    experimental:
-      hotReload:
-        version: 1.0.0-rc03
   kotlin:
     serialization: enabled
-    rpc: enabled
+    freeCompilerArgs:
+      - -target=es2015
+      - -source-map
+      - -Xir-dce=true
+      - -Xgenerate-dts
+      - -Xes-long-as-bigint
+      - -Xir-per-file
+      # - -Xir-per-module
+    optIns:
+      - kotlin.js.ExperimentalJsExport
+      - kotlin.js.ExperimentalWasmJsInterop
 
-#settings@android:
-#  kotlin:
-#    ksp:
-#      processors:
-#        - androidx.room:room-compiler:2.7.0-alpha12
+
 
 repositories:
   - https://packages.jetbrains.team/maven/p/amper/amper
@@ -114,5 +85,3 @@ repositories:
   - url: 'https://maven.oscs.oschina.net/content/groups/public/'
   - url: 'https://maven.aliyun.com/repository/google'
   - url: 'https://repo1.maven.org/maven2/'
-
-

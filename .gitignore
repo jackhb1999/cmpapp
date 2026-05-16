@@ -14,3 +14,4 @@ rs_lib/target
 /rs_lib/generated-java
 /rs_lib/resources
 
+/server/resources/static

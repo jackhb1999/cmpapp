@@ -7,7 +7,6 @@ import data.UserPreferencesImpl
 import data.UserSettingsSerializer
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
-import kotlin.math.sin
 
 actual val platformModule = module {
     single<UserPreferences> { UserPreferencesImpl(get()) }

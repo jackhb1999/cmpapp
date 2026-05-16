@@ -20,7 +20,7 @@ class PostCommentsDaoImpl : PostCommentsDao {
                 it[PostCommentsTable.postId] = postId
                 it[PostCommentsTable.userId] = userId
                 it[PostCommentsTable.content] = content
-            }.singleOrNull()?.let { toPostCommentRow(it) }
+            }.singleOrNull()?.let{ findComment(it[PostCommentsTable.commentId], it[PostCommentsTable.postId]) }
         }
     }
 

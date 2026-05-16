@@ -18,6 +18,9 @@ class PostDetailScreen(val postId: String) : Screen {
     @Composable
     override fun Content() {
         val navigator = LocalNavigator.current
+        fun goProfileClickFn(userId: String) {
+            navigator?.push(ProfileScreen(userId))
+        }
         Scaffold(
             topBar = {
                 TopAppBar(
@@ -38,7 +41,7 @@ class PostDetailScreen(val postId: String) : Screen {
                 )
             }
         ) {
-            PostDetailView(postId = postId)
+            PostDetailView(postId = postId, onProfileNavigation = ::goProfileClickFn)
         }
 
     }

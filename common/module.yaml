@@ -1,6 +1,6 @@
 product:
   type: lib
-  platforms: [ jvm, android, ]
+  platforms: [ jvm, android,wasmJs ]
 
 dependencies:
   - $libs.kotlinx.serialization.json
@@ -9,7 +9,6 @@ dependencies:
   - $libs.kotlinx.coroutines.core
   - $libs.kotlin.test
   - $libs.kotlinx.datetime: exported
-  - com.diglol.id:id:0.3.0
   - io.github.oshai:kotlin-logging:8.0.01: exported
   - $libs.ktor.server.core
   - $libs.ktor.serialization.kotlinx.json
@@ -20,6 +19,7 @@ dependencies@android:
   - $libs.logback.classic: exported
   - $libs.slf4j.api: exported
   - $libs.slf4j.nop: exported
+  - $libs.mmkv: exported
 
 dependencies@jvm:
   - ../rs_lib
@@ -27,6 +27,7 @@ dependencies@jvm:
   - $libs.logback.classic: exported
   - $libs.slf4j.api: exported
   - $libs.slf4j.nop: exported
+  - $libs.mmkv: exported
 
 test-dependencies@jvm:
   - $libs.kotlin.test.junit5

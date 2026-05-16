@@ -12,7 +12,9 @@ import viewmodel.ProfileViewModel
 val otherModule = module {
 //    single { SettingsWrapper().createSettings() }
     viewModel { HomeViewModel(get(), get(), get(), get()) }
-    viewModel { PostDetailViewModel(get(),get(),get()) }
+    viewModel {
+        PostDetailViewModel(get(), get(), get(), get(), get())
+    }
     viewModel { ProfileViewModel() }
     viewModel { EditProfileViewModel() }
     viewModel { FollowsViewModel() }

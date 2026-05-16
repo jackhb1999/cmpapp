@@ -5,6 +5,7 @@
             android:usesCleartextTraffic="true">
 
         <activity android:name="hello.world.MainActivity"
+                  android:windowSoftInputMode="adjustResize"
                   android:theme="@style/Theme.AppCompat.Light"
                   android:exported="true">
             <intent-filter>
