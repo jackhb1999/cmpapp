@@ -37,6 +37,15 @@ internal class FollowsRepositoryImpl(
         }
     }
 
+
+    override suspend fun getFollowingSuggestions(userId: String): Result<List<FollowUserData>> {
+        return withContext(dispatcher.io) {
+            val userData = userPreferences.getUserData()
+            val apiResponse = followsApiService.getFollowableUser(userData.token, userData.id)
+            apiResponse.toResult()
+        }
+    }
+
     override suspend fun getFollowers(
         userId: String,
         pageNumber: Int,
@@ -53,11 +62,4 @@ internal class FollowsRepositoryImpl(
         TODO("Not yet implemented")
     }
 
-    override suspend fun getFollowingSuggestions(userId: String): Result<List<FollowUserData>> {
-        return withContext(dispatcher.io) {
-                val userData = userPreferences.getUserData()
-                val apiResponse = followsApiService.getFollowableUser(userData.token, userData.id)
-             apiResponse.toResult()
-        }
-    }
 }

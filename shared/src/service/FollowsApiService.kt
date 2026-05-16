@@ -14,22 +14,38 @@ import util.Constants
 private val logger = KotlinLogging.logger {}
 
 
-internal class FollowsApiService: KtorApi(){
+internal class FollowsApiService : KtorApi() {
 
-    suspend fun followUser(userToken:String,followsParams: FollowsParams): ActionResult<Boolean> {
+    suspend fun followUser(userToken: String, followsParams: FollowsParams): ActionResult<Boolean> {
         val httpResponse = client.post {
             endPoint(path = "/follows/follow")
             setBody(followsParams)
             setToken(token = userToken)
         }
-       return httpResponse.getBody()
+        return httpResponse.getBody()
     }
 
 
-    suspend fun getFollowableUser(userToken:String,userId:String): ActionResult<List<FollowUserData>>{
+    suspend fun getFollowableUser(userToken: String, userId: String): ActionResult<List<FollowUserData>> {
         val httpResponse = client.get {
             endPoint(path = "/follows/suggestions")
-            parameter(key = Constants.USER_ID_PARAMETER,value = userId)
+            parameter(key = Constants.USER_ID_PARAMETER, value = userId)
+            setToken(token = userToken)
+        }
+        return httpResponse.getBody()
+    }
+
+    suspend fun getFollows(
+        userToken: String,
+        userId: String,
+        page: Int,
+        pageSize: Int,
+    ): ActionResult<List<FollowUserData>> {
+        val httpResponse = client.get {
+            endPoint(path = "/follows/followers")
+            parameter(key = Constants.USER_ID_PARAMETER, value = userId)
+            parameter(key = Constants.PAGE_QUERY_PARAMETER, value = page)
+            parameter(key = Constants.PAGE_SIZE_QUERY_PARAMETER, value = pageSize)
             setToken(token = userToken)
         }
         return httpResponse.getBody()
