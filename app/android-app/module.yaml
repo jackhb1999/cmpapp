@@ -7,7 +7,7 @@ dependencies:
 settings:
   compose:
     enabled: true
-    version: 1.10.3
+    version: 1.11.0
   junit: junit-4
   kotlin:
     serialization: enabled

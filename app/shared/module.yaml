@@ -3,7 +3,7 @@ product:
   platforms: [ jvm, android, wasmJs, ]
 
 dependencies:
-  - ../common
+  - ../../core
   - $compose.hotReload.runtimeApi
   - $compose.components.resources
   - $libs.compose.preview: exported
@@ -46,7 +46,7 @@ dependencies:
 
 
 dependencies@jvm:
-  - ../rs_lib
+  - ../../rs_lib
   - $libs.kotlinx.coroutines.swing
   - $compose.desktop.currentOs: exported
   - $compose.hotReload.runtimeApi: exported
@@ -82,7 +82,7 @@ settings:
       version: 21
   compose:
     enabled: true
-    version: 1.10.3
+    version: 1.11.0
     experimental:
       hotReload:
         version: 1.0.0-rc03

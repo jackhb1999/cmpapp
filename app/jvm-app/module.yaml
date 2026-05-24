@@ -2,8 +2,8 @@ product: jvm/app
 
 dependencies:
   - ../shared
-  - ../common
-  - ../rs_lib
+  - ../../core
+  - ../../rs_lib
 
 
 
@@ -20,7 +20,7 @@ settings:
         version: 1.0.0-rc03
     resources:
       packageName: com.rustob.gen
-    version: 1.10.3
+    version: 1.11.0
   kotlin:
     serialization: enabled
 

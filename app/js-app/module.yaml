@@ -1,4 +1,6 @@
-product: js/app
+product: wasm-js/app
+#product: js/app
+#product: wasm-wasi/app
 
 dependencies:
   - $compose.hotReload.runtimeApi
@@ -50,7 +52,7 @@ settings:
     enabled: true
     resources:
       packageName: com.rustob.gen
-    version: 1.10.3
+    version: 1.11.0
   kotlin:
     serialization: enabled
     freeCompilerArgs:
@@ -60,6 +62,7 @@ settings:
       - -Xgenerate-dts
       - -Xes-long-as-bigint
       - -Xir-per-file
+      - -Xwasm-attach-js-exception
       # - -Xir-per-module
     optIns:
       - kotlin.js.ExperimentalJsExport

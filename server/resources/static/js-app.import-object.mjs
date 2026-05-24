@@ -1,6 +1,7 @@
 
 import * as Li9za2lrby5tanM from './skiko.mjs';
-import * as QGpzLWpvZGEvY29yZQ from './@js-joda/core/dist/js-joda.js';
+import * as QGpzLWpvZGEvY29yZQ from './@js-joda/core/dist/js-joda.min.js';
+// import * as bm9kZTpuZXQ from 'node:net';
 import * as d2FzbTpqcy1zdHJpbmc from './js-app.js-builtins.mjs';
 
 const wasmJsTag = WebAssembly.JSTag;
@@ -20,8 +21,10 @@ export function setWasmExports(exports) {
     wasmExports = exports;
 }
 
+const _ref_Li9za2lrby5tanM_ = Li9za2lrby5tanM;
 const _ref_Li9za2lrby5tanM_c2tpa29BcGk = Li9za2lrby5tanM.skikoApi;
 const _ref_QGpzLWpvZGEvY29yZQ_ = QGpzLWpvZGEvY29yZQ;
+// const _ref_bm9kZTpuZXQ_ = bm9kZTpuZXQ;
 
 const cachedJsObjects = new WeakMap();
 function getCachedJsObject(ref, ifNotCached) {
@@ -89,7 +92,6 @@ const js_code = {
     }
     })(),
     'kotlin.wasm.internal.isNullish' : (ref) => ref == null,
-    'kotlin.wasm.internal.externrefToInt' : (ref) => Number(ref),
     'kotlin.wasm.internal.kotlinUIntToJsNumberUnsafe' : (x) => x >>> 0,
     'kotlin.wasm.internal.kotlinULongToJsBigIntUnsafe' : (x) => x & 0xFFFFFFFFFFFFFFFFn,
     'kotlin.wasm.internal.getCachedJsObject_$external_fun' : (p0, p1) => getCachedJsObject(p0, p1),
@@ -97,8 +99,6 @@ const js_code = {
     'kotlin.wasm.internal.itoa64_$external_fun' : (p0) => String(p0),
     'kotlin.wasm.internal.utoa64_$external_fun' : (p0) => String(p0),
     'kotlin.wasm.internal.utoa32_$external_fun' : (p0) => String(p0),
-    'kotlin.js.jsArraySet' : (array, index, value) => { array[index] = value },
-    'kotlin.js.JsArray_$external_fun' : () => new Array(),
     'kotlin.js.stackPlaceHolder_js_code' : () => (''),
     'kotlin.js.message_$external_prop_getter' : (_this) => _this.message,
     'kotlin.js.name_$external_prop_setter' : (_this, v) => _this.name = v,
@@ -108,21 +108,18 @@ const js_code = {
     'kotlin.random.initialSeed' : () => ((Math.random() * Math.pow(2, 32)) | 0),
     'kotlin.wasm.internal.getJsClassName' : (jsKlass) => jsKlass.name,
     'kotlin.wasm.internal.getConstructor' : (obj) => obj.constructor,
-    'androidx.compose.runtime.internal.weakMap_js_code' : () => (new WeakMap()),
-    'androidx.compose.runtime.internal.set_$external_fun' : (_this, p0, p1) => _this.set(p0, p1),
-    'androidx.compose.runtime.internal.get_$external_fun' : (_this, p0) => _this.get(p0),
+    'org.w3c.dom.navigator_$external_prop_getter' : (_this) => _this.navigator,
+    'org.w3c.dom.MediaQueryList_$external_class_instanceof' : (x) => x instanceof MediaQueryList,
+    'org.w3c.dom.MediaQueryList_$external_class_get' : () => MediaQueryList,
+    'org.w3c.dom.userAgent_$external_prop_getter' : (_this) => _this.userAgent,
+    'org.w3c.dom.language_$external_prop_getter' : (_this) => _this.language,
+    'kotlinx.browser.window_$external_prop_getter' : () => window,
     'org.jetbrains.skia.impl.FinalizationRegistry_$external_fun' : (p0) => new FinalizationRegistry(p0),
     'org.jetbrains.skia.impl.__convertKotlinClosureToJsClosure_((Js)->Unit)' : (f) => getCachedJsObject(f, (p0) => wasmExports['__callFunction_((Js)->Unit)'](f, p0)),
-    'org.jetbrains.skia.impl.register_$external_fun' : (_this, p0, p1) => _this.register(p0, p1),
+    'org.jetbrains.skia.impl.register_$external_fun' : (_this, p0, p1, p2) => _this.register(p0, p1, p2),
     'org.jetbrains.skia.impl._releaseLocalCallbackScope_$external_fun' : () => _ref_Li9za2lrby5tanM_c2tpa29BcGk._releaseLocalCallbackScope(),
     'org.jetbrains.skiko.getNavigatorInfo' : () => navigator.userAgentData ? navigator.userAgentData.platform : navigator.platform,
-    'org.jetbrains.skiko.w3c.language_$external_prop_getter' : (_this) => _this.language,
-    'org.jetbrains.skiko.w3c.userAgent_$external_prop_getter' : (_this) => _this.userAgent,
-    'org.jetbrains.skiko.w3c.navigator_$external_prop_getter' : (_this) => _this.navigator,
-    'org.jetbrains.skiko.w3c.window_$external_object_getInstance' : () => window,
-    'androidx.compose.ui.platform.warn' : (text) => { console.warn(text) },
-    'androidx.compose.ui.platform.W3CTemporaryClipboard_$external_class_instanceof' : (x) => x instanceof Clipboard,
-    'androidx.compose.ui.platform.W3CTemporaryClipboard_$external_class_get' : () => Clipboard,
+    'androidx.compose.ui.platform.getW3CClipboard' : () => window.navigator.clipboard,
     'androidx.compose.ui.platform.isSecureContext' : () => window.isSecureContext === true,
     'androidx.compose.ui.platform.isFullClipboardApiSupported' : () => Boolean(
             window.navigator.clipboard && 
@@ -132,8 +129,12 @@ const js_code = {
             )
         ,
     'androidx.compose.ui.platform.isFallbackWriteTextApiAvailable' : () => Boolean(window.navigator.clipboard && window.navigator.clipboard.writeText),
-    'androidx.compose.ui.platform.getW3CClipboard' : () => window.navigator.clipboard,
+    'androidx.compose.ui.platform.W3CTemporaryClipboard_$external_class_instanceof' : (x) => x instanceof Clipboard,
+    'androidx.compose.ui.platform.W3CTemporaryClipboard_$external_class_get' : () => Clipboard,
     'kotlinx.io.node.sep_$external_prop_getter' : (_this) => _this.sep,
+    'kotlinx.io.getPlatformName' : 
+        () => (typeof navigator !== "undefined" && navigator.platform) || "unknown"
+    ,
     'kotlinx.io.node.persistModule' : 
         (globalThis.module = (typeof process !== 'undefined') && (process.release.name === 'node') ?
             await import(/* webpackIgnore: true */'node:module') : void 0, () => {})
@@ -165,8 +166,7 @@ const js_code = {
     ,
     'io.ktor.util.logging.getKtorLogLevel' : () => process ? process.env.KTOR_LOG_LEVEL : null,
     'io.ktor.util.logging.warn_$external_fun' : (_this, p0) => _this.warn(p0),
-    'io.ktor.util.logging.console_$external_prop_getter' : () => console,
-    'io.ktor.network.sockets.nodejs.nodeNet' : () => eval('require')('node:net')
+    'io.ktor.util.logging.console_$external_prop_getter' : () => console
 }
 
 const StringConstantsProxy = new Proxy({}, {

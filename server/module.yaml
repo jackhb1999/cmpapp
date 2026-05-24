@@ -12,7 +12,7 @@ settings:
     rpc: enabled
 
 dependencies:
-  - ../common
+  - ../core
   #  - ../rslib
   - $libs.logback.classic
   - $libs.koin.ktor
@@ -35,6 +35,7 @@ dependencies:
   - $libs.kotlinx.rpc.krpc.server
   - $libs.kotlinx.rpc.krpc.serialization.json
   - $libs.kotlinx.rpc.krpc.ktor.server
+  - $libs.js.joda.core
 
 
 

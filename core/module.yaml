@@ -44,7 +44,6 @@ test-settings:
   kotlin:
     serialization:
       enabled: true
-
   junit: junit-5
 
 repositories:

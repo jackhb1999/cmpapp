@@ -8,12 +8,14 @@ import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import cafe.adriel.voyager.navigator.LocalNavigator
 import view.LoginView
 import view.SignUpView
 
 @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
 @Composable
+@Preview
 actual fun SignUpScreenContext() {
     val navigator = LocalNavigator.current
         val size = calculateWindowSizeClass()

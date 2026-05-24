@@ -1,12 +1,12 @@
 modules:
-  - jvm-app
-  - android-app
-  - server
-  - shared
-  - rs_lib
-  - common
+  - app/android-app
+  - app/js-app
+  - app/jvm-app
+  - app/shared
+  - core
   - rs_build
-  - js-app
+  - rs_lib
+  - server
 
 plugins:
   - ./rs_build
