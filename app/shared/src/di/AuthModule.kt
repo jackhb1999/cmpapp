@@ -21,6 +21,7 @@ import usecase.AddPostCommentUseCase
 import usecase.AwesomeUseCase
 import usecase.FollowOrUnfollowUseCase
 import usecase.GetFollowableUsersUseCase
+import usecase.GetFollowsUseCase
 import usecase.GetPostCommentsUserCase
 import usecase.GetPostUseCase
 import usecase.GetPostsUseCase
@@ -68,6 +69,7 @@ val authModule = module {
     factory { SignInUseCase() }
     factory { GetFollowableUsersUseCase() }
     factory { FollowOrUnfollowUseCase() }
+    factory { GetFollowsUseCase() }
 
     factory { GetPostsUseCase() }
     factory { LikeOrUnLikePostUseCase() }

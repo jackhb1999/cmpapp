@@ -17,7 +17,7 @@ val otherModule = module {
     }
     viewModel { ProfileViewModel() }
     viewModel { EditProfileViewModel() }
-    viewModel { FollowsViewModel() }
+    viewModel { FollowsViewModel(get()) }
     viewModel {
         MainActivityViewModel(
             get(),

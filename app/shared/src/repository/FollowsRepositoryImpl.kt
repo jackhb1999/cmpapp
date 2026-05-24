@@ -14,26 +14,26 @@ internal class FollowsRepositoryImpl(
 ) : FollowsRepository {
     override suspend fun followUser(follower: String, following: String): Result<Boolean> {
         return withContext(dispatcher.io) {
-                val userData = userPreferences.getUserData()
-                val followsParams = FollowsParams(
-                    userData.id,
-                    following, isFollowing = true
-                )
-                val apiResponse = followsApiService.followUser(userData.token, followsParams)
-              apiResponse.toResult()
+            val userData = userPreferences.getUserData()
+            val followsParams = FollowsParams(
+                userData.id,
+                following, isFollowing = true
+            )
+            val apiResponse = followsApiService.followUser(userData.token, followsParams)
+            apiResponse.toResult()
 
         }
     }
 
     override suspend fun unfollowUser(follower: String, following: String): Result<Boolean> {
         return withContext(dispatcher.io) {
-                val userData = userPreferences.getUserData()
-                val followsParams = FollowsParams(
-                    userData.id,
-                    following, isFollowing = false
-                )
-                val apiResponse = followsApiService.followUser(userData.token, followsParams)
-                apiResponse.toResult()
+            val userData = userPreferences.getUserData()
+            val followsParams = FollowsParams(
+                userData.id,
+                following, isFollowing = false
+            )
+            val apiResponse = followsApiService.followUser(userData.token, followsParams)
+            apiResponse.toResult()
         }
     }
 
@@ -51,7 +51,11 @@ internal class FollowsRepositoryImpl(
         pageNumber: Int,
         pageSize: Int
     ): Result<List<FollowUserData>> {
-        TODO("Not yet implemented")
+        return withContext(dispatcher.io) {
+            val userData = userPreferences.getUserData()
+            val apiResponse = followsApiService.getFollows(userData.token, userData.id, pageNumber, pageSize)
+            apiResponse.toResult()
+        }
     }
 
     override suspend fun getFollowing(
@@ -59,7 +63,11 @@ internal class FollowsRepositoryImpl(
         pageNumber: Int,
         pageSize: Int
     ): Result<List<FollowUserData>> {
-        TODO("Not yet implemented")
+        return withContext(dispatcher.io) {
+            val userData = userPreferences.getUserData()
+            val apiResponse = followsApiService.getFollowing(userData.token, userData.id, pageNumber, pageSize)
+            apiResponse.toResult()
+        }
     }
 
 }
