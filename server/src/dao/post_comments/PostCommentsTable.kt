@@ -20,10 +20,8 @@ object PostCommentsTable : Table(name = "post_comments") {
 
 data class PostCommentRow(
     val commentId: String,
-    val content: String,
     val postId: String,
     val userId: String,
-    val username: String,
-    val userImageUrl: String?,
+    val content: String,
     val createdAt: LocalDateTime
 )

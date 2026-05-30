@@ -1,18 +1,10 @@
 package com.hb.dao.user
 
-import model.SignUpParams
+import model.SignParams
 
 interface UserDao {
-    suspend fun inert(params: SignUpParams): UserRow?
+    suspend fun inert(params: SignParams): UserRow?
     suspend fun findByEmail(email: String): UserRow?
 
     suspend fun findById(userId: String): UserRow?
-
-    suspend fun updateUser(userId: String, name: String, bio: String, imageUrl: String?): Boolean
-
-    suspend fun updateFollowsCount(follower: String, following: String, isFollowing: Boolean): Boolean
-
-    suspend fun getUsers(ids:List<String>): List<UserRow>
-
-    suspend fun getPopularUsers(limit:Int): List<UserRow>
 }

@@ -73,8 +73,6 @@ class PostCommentsDaoImpl : PostCommentsDao {
             content = row[PostCommentsTable.content],
             postId = row[PostCommentsTable.postId],
             userId = row[PostCommentsTable.userId],
-            username = row[UserTable.name],
-            userImageUrl = row[UserTable.imageUrl],
             createdAt = row[PostCommentsTable.createAt]
         )
     }

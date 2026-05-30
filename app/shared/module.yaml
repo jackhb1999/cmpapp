@@ -1,79 +1,28 @@
 product:
   type: lib
-  platforms: [ jvm, android, wasmJs, ]
+  platforms: [ jvm, android ]
 
 dependencies:
   - ../../core
-  - $compose.hotReload.runtimeApi
-  - $compose.components.resources
-  - $libs.compose.preview: exported
-  - $libs.compose.material3: exported
-  - $libs.compose.foundation: exported
-  - $libs.compose.materialIconsCore
-  - $libs.compose.materialIconsExtended
-  - $libs.coil.compose
-  - $libs.compose.material3.windows
-  - $libs.kotlinx.serialization.json
-  - $libs.ktor.serialization.kotlinx.json
-  - $libs.kotlinx.serialization.core
-  - $libs.kotlinx.serialization.json
-  - $libs.koin.core
-  - $libs.kotlinx.coroutines.core
-  - $libs.androidx.datastore.core
-  - $libs.multiplatform.settings
-  - $libs.multiplatform.settings.serialization
-  - $libs.multiplatform.settings.coroutines: exported
-  - $libs.voyager.navigator
-  - $libs.voyager.tab.navigator
-  - $libs.voyager.transitions
-  - $libs.androidx.lifecycle.viewmodel.compose
-  - $libs.androidx.lifecycle.runtimeCompose
-  - $libs.ktor.client.core
-  - $libs.ktor.client.cio
-  - $libs.ktor.client.json
-  - $libs.ktor.client.contentNegotiation
-  - $libs.ktor.serialization.kotlinx.json
-  - $libs.ktor.client.logging
-  - $libs.koin.core
-  - $libs.koin.compose
-  - $libs.koin.compose.viewModel
-  - $libs.kotlinx.coroutines.core
-  - $libs.sonner
-  - $libs.config
-  - $libs.kotlinx.rpc.krpc.client
-  - $libs.kotlinx.rpc.krpc.serialization.json
-  - $libs.kotlinx.rpc.krpc.ktor.client
+  - ../jvmAndAndroid: exported
+
 
 
 dependencies@jvm:
-  - ../../rs_lib
   - $libs.kotlinx.coroutines.swing
-  - $compose.desktop.currentOs: exported
-  - $compose.hotReload.runtimeApi: exported
-  - $libs.compose.uiTooling: exported
-  - $libs.coil.network.okhttp
-  - $libs.androidx.datastore
-  - $libs.multiplatform.settings.datastore
+  - $compose.desktop.currentOs
+  - $libs.logback.classic: exported
+  - $libs.slf4j.api: exported
+  - $libs.slf4j.nop: exported
+
 
 dependencies@android:
-  - androidx.compose.remote:remote-core:1.0.0-alpha03
-  # Use to create Remote Compose documents
-  - androidx.compose.remote:remote-creation:1.0.0-alpha03
-  - androidx.compose.remote:remote-creation-core:1.0.0-alpha03
-  - androidx.compose.remote:remote-creation-compose:1.0.0-alpha03
-  # Use to render a Remote Compose document
-  - androidx.compose.remote:remote-player-core:1.0.0-alpha03
-  - androidx.compose.remote:remote-player-view:1.0.0-alpha03
-  - androidx.compose.remote:remote-tooling-preview:1.0.0-alpha03
-  - androidx.compose.remote:remote-creation-android:1.0.0-alpha03
   - $libs.kotlinx.coroutines.android
-  - $libs.androidx.core.splashscreen: exported
+  - $libs.androidx.core.splashscreen
   - $libs.androidx.activity.compose: exported
-  - $libs.androidx.appcompat: exported
-  - $libs.compose.uiTooling: exported
-  - $libs.coil.network.okhttp
-  - $libs.androidx.datastore
-  - $libs.multiplatform.settings.datastore
+  - $libs.androidx.appcompat
+  - $libs.androidx.compose.livedata
+  - $libs.voyager.livedata
 
 
 settings:

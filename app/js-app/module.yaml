@@ -23,7 +23,7 @@ dependencies:
   - $libs.multiplatform.settings.serialization
   - $libs.multiplatform.settings.coroutines: exported
   - $libs.voyager.navigator
-  - $libs.voyager.tab.navigator
+  - $libs.voyager.tabNavigator
   - $libs.voyager.transitions
   - $libs.androidx.lifecycle.viewmodel.compose
   - $libs.androidx.lifecycle.runtimeCompose

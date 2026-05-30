@@ -7,16 +7,9 @@ import data.UserPreferencesImpl
 import data.UserSettingsSerializer
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
+import ui.screenmodel.HomeScreenModel
 
 actual val platformModule = module {
     single<UserPreferences> { UserPreferencesImpl(get()) }
-
-    single {
-        DataStoreFactory.create(
-            serializer = UserSettingsSerializer,
-            produceFile = {
-                androidContext().dataStoreFile("user_settings")
-            }
-        )
-    }
+    factory { HomeScreenModel(get()) }
 }

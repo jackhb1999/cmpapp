@@ -1,0 +1,84 @@
+product:
+  type: lib
+  platforms: [ jvm, android ]
+
+dependencies:
+  - ../../core
+  - com:diamondedge:logging:2.1.1: exported
+  - $compose.components.resources: exported
+  - $compose.hotReload.runtimeApi: exported
+
+  - $libs.androidx.compose.runtime: exported
+  - $libs.androidx.datastore.core
+  - $libs.androidx.datastore: exported
+  - $libs.androidx.lifecycle.liveData: exported
+  - $libs.androidx.lifecycle.runtime: exported
+  - $libs.androidx.lifecycle.runtimeCompose: exported
+  - $libs.androidx.lifecycle.viewmodel.compose: exported
+  - $libs.coil.compose: exported
+  - $libs.coil.network.okhttp
+  - $libs.compose.foundation: exported
+  - $libs.compose.material3.windows: exported
+  - $libs.compose.material3: exported
+  - $libs.compose.materialIconsCore: exported
+  - $libs.compose.materialIconsExtended: exported
+  - $libs.compose.preview: exported
+  - $libs.compose.uiTooling: exported
+  - $libs.config: exported
+  - $libs.koin.compose: exported
+  - $libs.koin.compose.viewModel: exported
+  - $libs.koin.core: exported
+  - $libs.kotlinx.rpc.krpc.client: exported
+  - $libs.kotlinx.rpc.krpc.ktor.client: exported
+  - $libs.kotlinx.rpc.krpc.serialization.json: exported
+  - $libs.ktor.client.cio: exported
+  - $libs.ktor.client.contentNegotiation: exported
+  - $libs.ktor.client.core: exported
+  - $libs.ktor.client.json: exported
+  - $libs.ktor.client.logging: exported
+  - $libs.multiplatform.settings
+  - $libs.multiplatform.settings.serialization: exported
+  - $libs.multiplatform.settings: exported
+  - $libs.sonner: exported
+  - $libs.voyager.koin: exported
+  - $libs.voyager.navigator: exported
+  - $libs.voyager.screenModel: exported
+  - $libs.voyager.transitions: exported
+  - $libs.androidx.compose.livedata: exported
+  - $libs.voyager.livedata: exported
+#  - io.github.oshai:kotlin-logging-jvm:8.0.01: exported
+
+
+settings:
+  jvm:
+    jdk:
+      version: 21
+  compose:
+    enabled: true
+    version: 1.11.0
+  kotlin:
+    serialization:
+      enabled: true
+      version: 1.11.0
+
+
+repositories:
+  - https://packages.jetbrains.team/maven/p/amper/amper
+  - https://repo.spring.io/ui/native/release
+  - url: https://dl.google.com/dl/android/maven2/
+  - id: jitpack
+    url: https://jitpack.io
+  - url: https://mirrors.tencent.com/nexus/repository/maven-tencent/
+  - url: https://mirrors.tencent.com/nexus/repository/maven-public/
+  - url: 'https://maven.aliyun.com/repository/public'
+  - url: https://maven.aliyun.com/repository/google
+  - url: 'https://maven.aliyun.com/repository/gradle-plugin'
+  - url: 'https://maven.aliyun.com/repository/central'
+  - url: 'https://repo.huaweicloud.com/repository/maven/'
+  - url: 'https://mirrors.cloud.tencent.com/nexus/repository/maven-public/'
+  - url: 'https://mirrors.163.com/maven/repository/maven-public/'
+  - url: 'https://maven.oscs.oschina.net/content/groups/public/'
+  - url: 'https://maven.aliyun.com/repository/google'
+  - url: 'https://repo1.maven.org/maven2/'
+
+

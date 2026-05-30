@@ -22,7 +22,9 @@ settings:
       packageName: com.rustob.gen
     version: 1.11.0
   kotlin:
-    serialization: enabled
+    serialization:
+      enabled: true
+      version: 1.11.0
 
 repositories:
   - https://packages.jetbrains.team/maven/p/amper/amper

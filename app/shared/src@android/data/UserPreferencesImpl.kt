@@ -1,17 +1,20 @@
 package data
 
 import androidx.datastore.core.DataStore
+import androidx.datastore.core.DataStoreFactory
+import androidx.datastore.dataStore
 import kotlinx.coroutines.flow.first
-import model.UserSettingsData
+import model.User
+import java.io.File
 
 internal class UserPreferencesImpl(
-    private val dataStore: DataStore<UserSettingsData>
+    private val dataStore: DataStore<User>
 ) : UserPreferences {
-    override suspend fun getUserData(): UserSettingsData {
+    override suspend fun getUserData(): User {
         return dataStore.data.first()
     }
 
-    override suspend fun setUserData(userSettingsData: UserSettingsData) {
-        dataStore.updateData { userSettingsData }
+    override suspend fun setUserData(user: User) {
+        dataStore.updateData { user }
     }
 }

@@ -8,7 +8,9 @@ settings:
       version: 21
     mainClass: com.hb.ApplicationKt
   kotlin:
-    serialization: enabled
+    serialization:
+      enabled: true
+      version: 1.11.0
     rpc: enabled
 
 dependencies:
@@ -36,6 +38,10 @@ dependencies:
   - $libs.kotlinx.rpc.krpc.serialization.json
   - $libs.kotlinx.rpc.krpc.ktor.server
   - $libs.js.joda.core
+  - io.github.oshai:kotlin-logging:8.0.01: exported
+  - $libs.logback.classic: exported
+  - $libs.slf4j.api: exported
+  - $libs.slf4j.nop: exported
 
 
 

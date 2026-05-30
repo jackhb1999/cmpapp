@@ -1,31 +1,18 @@
 package com.hb.plugins
 
-import com.hb.route.authRouting
-import com.hb.route.followsRoute
-import com.hb.route.postCommentsRoute
-import com.hb.route.postLikesRouting
-import com.hb.route.postRoutes
-import com.hb.route.profileRoutes
+
 import com.hb.route.rpaRoutes
 import io.ktor.server.application.*
-import io.ktor.server.http.content.resources
-import io.ktor.server.http.content.static
-import io.ktor.server.http.content.staticResources
+import io.ktor.server.http.content.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 
 fun Application.configureRouting() {
     routing {
-        get("/") {
-            call.respondText("Hello World!")
+        get("/ping") {
+            call.respondText("pong")
         }
         rpaRoutes()
-        authRouting()
-        followsRoute()
-        postRoutes()
-        profileRoutes()
-        postCommentsRoute()
-        postLikesRouting()
         staticResources(
             remotePath = "/resources",
             basePackage = "static"
