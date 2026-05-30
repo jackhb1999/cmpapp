@@ -10,7 +10,9 @@ settings:
     version: 1.11.0
   junit: junit-4
   kotlin:
-    serialization: enabled
+    serialization:
+      enabled: true
+      version: 1.11.0
   android:
     minSdk: 27
 

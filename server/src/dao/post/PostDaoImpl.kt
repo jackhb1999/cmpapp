@@ -36,9 +36,10 @@ class PostDaoImpl : PostDao {
         return dbQuery {
             val insertStatement = PostTable.insert {
                 it[postId] = IdGenerator.generateId()
-                it[PostTable.caption] = caption
-                it[PostTable.imageUrl] = imageUrl
+                it[PostTable.content] = content
+                it[PostTable.url] = url
                 it[likesCount] = 0
+                it[notLikesCount] = 0
                 it[commentsCount] = 0
                 it[PostTable.userId] = userId
             }
@@ -117,13 +118,12 @@ class PostDaoImpl : PostDao {
     private fun toPostRow(row: ResultRow): PostRow {
         return PostRow(
             postId = row[PostTable.postId],
-            caption = row[PostTable.caption],
-            imageUrl = row[PostTable.imageUrl],
+            content = row[PostTable.content],
+            url = row[PostTable.url],
             likesCount = row[PostTable.likesCount],
+            notLikesCount = row[PostTable.notLikesCount],
             commentsCount = row[PostTable.commentsCount],
             userId = row[PostTable.userId],
-            username = row[UserTable.name],
-            userImageUrl = row[UserTable.imageUrl],
             createdAt = row[PostTable.createdAt],
         )
     }

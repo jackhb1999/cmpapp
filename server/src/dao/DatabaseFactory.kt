@@ -1,7 +1,5 @@
 package com.hb.dao
 
-import com.hb.model.DeptTable
-import com.hb.dao.follows.FollowsTable
 import com.hb.dao.post.PostTable
 import com.hb.dao.post_comments.PostCommentsTable
 import com.hb.dao.post_likes.PostLikesTable
@@ -20,17 +18,9 @@ import org.jetbrains.exposed.v1.jdbc.transactions.transaction
 object DatabaseFactory {
     fun init() {
         Database.connect(createHikariDataSource())
-        // print sql to std-out
-//        addLogger(StdOutSqlLogger)
         transaction {
             if (!UserTable.exists()) {
                 SchemaUtils.create(UserTable)
-            }
-            if (!DeptTable.exists()) {
-                SchemaUtils.create(DeptTable)
-            }
-            if (!FollowsTable.exists()) {
-                SchemaUtils.create(FollowsTable)
             }
             if (!PostTable.exists()) {
                 SchemaUtils.create(PostTable)
@@ -46,7 +36,7 @@ object DatabaseFactory {
 
     private fun createHikariDataSource(): HikariDataSource {
         val driverClass = "org.postgresql.Driver"
-        val jdbcUrl = "jdbc:postgresql://localhost:5432/socialmediadb"
+        val jdbcUrl = "jdbc:postgresql://localhost:5432/rustob"
         val username = "postgres"
         val password = "fackpg"
 

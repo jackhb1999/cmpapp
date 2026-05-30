@@ -1,12 +1,11 @@
 package com.hb
 
-import io.ktor.server.application.*
 import com.hb.dao.DatabaseFactory
 import com.hb.di.configureDI
 import com.hb.plugins.configureKrpc
 import com.hb.plugins.configureRouting
-import com.hb.plugins.configureSecurity
 import com.hb.plugins.configureSerialization
+import io.ktor.server.application.*
 
 
 fun main(args: Array<String>) {
@@ -17,8 +16,6 @@ fun Application.module() {
     DatabaseFactory.init()
     configureSerialization()
     configureDI()
-    configureSecurity()
     configureKrpc()
     configureRouting()
-
 }

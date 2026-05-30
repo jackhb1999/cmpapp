@@ -3,33 +3,18 @@ product:
   platforms: [ jvm, android,wasmJs ]
 
 dependencies:
-  - $libs.kotlinx.serialization.json
-  - $libs.kotlinx.serialization.core
-  - $libs.kotlinx.serialization.json
-  - $libs.kotlinx.coroutines.core
-  - $libs.kotlin.test
+  - $libs.kotlinx.coroutines.core: exported
   - $libs.kotlinx.datetime: exported
-  - io.github.oshai:kotlin-logging:8.0.01: exported
+  - $libs.kotlinx.rpc.core: exported
+  - $libs.kotlinx.serialization.core: exported
+  - $libs.kotlinx.serialization.json: exported
+  - $libs.ktor.serialization.kotlinx.json: exported
   - $libs.ktor.server.core
-  - $libs.ktor.serialization.kotlinx.json
-  - $libs.kotlinx.rpc.core
 
-dependencies@android:
-  - io.github.oshai:kotlin-logging-jvm:8.0.01: exported
-  - $libs.logback.classic: exported
-  - $libs.slf4j.api: exported
-  - $libs.slf4j.nop: exported
-  - $libs.mmkv: exported
 
-dependencies@jvm:
-  - ../rs_lib
-  - io.github.oshai:kotlin-logging-jvm:8.0.01: exported
-  - $libs.logback.classic: exported
-  - $libs.slf4j.api: exported
-  - $libs.slf4j.nop: exported
-  - $libs.mmkv: exported
 
 test-dependencies@jvm:
+  - $libs.kotlin.test
   - $libs.kotlin.test.junit5
   - org.junit.jupiter:junit-jupiter:5.14.0
   - org.junit.jupiter:junit-jupiter-api:5.14.0

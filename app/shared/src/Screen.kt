@@ -12,11 +12,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 
+
 val lightRedColor = Color(color = 0xFFF57D88)
 val darkRedColor = Color(color = 0xFF77000B)
 
 @Composable
 fun Screen() {
+
     val lightColors = lightColorScheme(
         primary = lightRedColor,
         onPrimary = darkRedColor,

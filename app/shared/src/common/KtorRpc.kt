@@ -8,6 +8,7 @@ import kotlinx.rpc.krpc.ktor.client.rpcConfig
 import kotlinx.rpc.krpc.serialization.json.json
 
 internal abstract class KtorRpc : AutoCloseable {
+
     val rpcClient = HttpClient { installKrpc() }.rpc {
         url("ws://localhost:8088/rpc")
 
@@ -21,6 +22,4 @@ internal abstract class KtorRpc : AutoCloseable {
     override fun close() {
         rpcClient.close()
     }
-
-
 }
