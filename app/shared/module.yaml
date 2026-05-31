@@ -11,10 +11,10 @@ dependencies:
 dependencies@jvm:
   - $libs.kotlinx.coroutines.swing
   - $compose.desktop.currentOs
-  - $libs.logback.classic: exported
-  - $libs.slf4j.api: exported
-  - $libs.slf4j.nop: exported
-
+  - $libs.logback.classic
+  - $libs.slf4j.api
+  - $libs.slf4j.nop
+  - ../jvmAndAndroid: exported
 
 dependencies@android:
   - $libs.kotlinx.coroutines.android

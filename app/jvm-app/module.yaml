@@ -2,7 +2,6 @@ product: jvm/app
 
 dependencies:
   - ../shared
-  - ../../core
   - ../../rs_lib
 
 

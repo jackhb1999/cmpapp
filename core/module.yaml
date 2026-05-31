@@ -10,7 +10,7 @@ dependencies:
   - $libs.kotlinx.serialization.json: exported
   - $libs.ktor.serialization.kotlinx.json: exported
   - $libs.ktor.server.core
-
+  - $libs.config: exported
 
 
 test-dependencies@jvm:

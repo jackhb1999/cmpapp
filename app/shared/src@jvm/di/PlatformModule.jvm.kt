@@ -1,6 +1,5 @@
 package di
 
-import cafe.adriel.voyager.core.registry.screenModule
 import data.UserPreferences
 import data.UserPreferencesImpl
 import data.createDatastore

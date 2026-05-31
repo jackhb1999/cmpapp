@@ -4,10 +4,10 @@ product:
 
 dependencies:
   - ../../core
-  - com:diamondedge:logging:2.1.1: exported
+  - org.lighthousegames:logging:2.0.3: exported
+#  - com:diamondedge:logging:2.1.0: exported
   - $compose.components.resources: exported
   - $compose.hotReload.runtimeApi: exported
-
   - $libs.androidx.compose.runtime: exported
   - $libs.androidx.datastore.core
   - $libs.androidx.datastore: exported
@@ -24,7 +24,6 @@ dependencies:
   - $libs.compose.materialIconsExtended: exported
   - $libs.compose.preview: exported
   - $libs.compose.uiTooling: exported
-  - $libs.config: exported
   - $libs.koin.compose: exported
   - $libs.koin.compose.viewModel: exported
   - $libs.koin.core: exported
@@ -44,8 +43,6 @@ dependencies:
   - $libs.voyager.navigator: exported
   - $libs.voyager.screenModel: exported
   - $libs.voyager.transitions: exported
-  - $libs.androidx.compose.livedata: exported
-  - $libs.voyager.livedata: exported
 #  - io.github.oshai:kotlin-logging-jvm:8.0.01: exported
 
 

@@ -5,6 +5,6 @@ expect fun getWorld(): String
 @Composable
 expect fun getMain()
 
-expect fun getDI(): Unit
+// Main.kt 中只允许有 expect
 
 
