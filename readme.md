@@ -34,6 +34,7 @@ dao
 - kn 原生模块开发
 - koin 注解使用
 - mmkv 使用
+- DataStore 使用
 
 
 ### 启动命令
