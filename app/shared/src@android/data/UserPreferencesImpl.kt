@@ -18,3 +18,14 @@ internal class UserPreferencesImpl(
         dataStore.updateData { user }
     }
 }
+
+
+internal fun createDatastore(): DataStore<User> {
+    return DataStoreFactory.create(
+        serializer = UserSettingsSerializer,
+        produceFile = {
+            File(PREFERENCES_NAME)
+        },
+        corruptionHandler = null
+    )
+}
