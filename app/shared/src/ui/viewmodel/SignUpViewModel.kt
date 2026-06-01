@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import model.SignParams
 import service.UserService
+import ui.viewmodel.LoginViewModel.Companion.log
 
 class SignUpViewModel(
     private val userService: UserService
@@ -18,7 +19,27 @@ class SignUpViewModel(
 
     fun signUp() {
         viewModelScope.launch {
+            val result =    userService.signUp(
+                SignParams(
+                    email = uiState.email,
+                    password = uiState.password
+                )
+            ).toResult()
+            when {
+                result.isFailure -> {
+                    log.info { "Sign In Failed" }
 
+                }
+
+                result.isSuccess -> {
+                    result.getOrNull()?.let { user ->
+                        uiState = uiState.copy(
+                            email = user.email,
+                            id = user.id
+                        )
+                    }
+                }
+            }
         }
     }
 
@@ -37,4 +58,5 @@ class SignUpViewModel(
 data class SignUpUiState(
     var email: String = "",
     var password: String = "",
+    var id: String = "",
 )

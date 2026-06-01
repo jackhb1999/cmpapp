@@ -6,13 +6,14 @@ import model.SignParams
 import model.User
 import service.AwesomeService
 import service.UserService
+import util.ActionResult
 
 internal class UserServiceImpl : UserService, KtorRpc() {
 
     val service = rpcClient.withService<UserService>()
 
-    override suspend fun signUp(params: SignParams): Result<User> = service.signUp(params)
+    override suspend fun signUp(params: SignParams): ActionResult<User> = service.signUp(params)
 
 
-    override suspend fun signIn(params: SignParams): Result<User> = service.signIn(params)
+    override suspend fun signIn(params: SignParams): ActionResult<User> = service.signIn(params)
 }

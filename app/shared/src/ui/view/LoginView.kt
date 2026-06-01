@@ -89,7 +89,7 @@ fun LoginView(
         key1 = vm.uiState.id,
         block = {
             if (vm.uiState.id.isNotEmpty()) {
-                // 跳转登录页面
+                // 跳转首页
                 gotoHome()
             }
         })

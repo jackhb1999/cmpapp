@@ -83,4 +83,14 @@ fun SignUpView(
 
     }
 
+
+    LaunchedEffect(
+        key1 = vm.uiState.id,
+        block = {
+            if (vm.uiState.id.isNotEmpty()) {
+                // 跳转登录页面
+                gotoLogin()
+            }
+        })
+
 }

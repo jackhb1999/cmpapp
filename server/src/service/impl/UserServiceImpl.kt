@@ -5,12 +5,14 @@ import com.hb.security.hashPassword
 import model.SignParams
 import model.User
 import service.UserService
+import util.ActionResult
+import util.send
 
 class UserServiceImpl(
     private val userDao: UserDao
 ) : UserService {
-    override suspend fun signUp(params: SignParams): Result<User> {
-        return if (userAlreadyExist(params.email)) {
+    override suspend fun signUp(params: SignParams): ActionResult<User> {
+        val result = if (userAlreadyExist(params.email)) {
             throw Throwable("用户已存在")
         } else {
             val insertedUser = userDao.inert(params)
@@ -25,11 +27,12 @@ class UserServiceImpl(
                 )
             }
         }
+       return result.send()
     }
 
-    override suspend fun signIn(params: SignParams): Result<User> {
+    override suspend fun signIn(params: SignParams): ActionResult<User> {
         val user = userDao.findByEmail(params.email)
-        return if (user == null) {
+        val result = if (user == null) {
             throw Throwable("当前账号未注册！")
         } else {
             if (user.password == hashPassword(params.password)) {
@@ -43,6 +46,7 @@ class UserServiceImpl(
                 throw Throwable("密码有误，请检查")
             }
         }
+        return result.send()
     }
 
     private suspend fun userAlreadyExist(email: String): Boolean {
