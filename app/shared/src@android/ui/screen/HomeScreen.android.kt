@@ -31,26 +31,12 @@ class HomeScreen() : Screen {
         LaunchedEffect(state) {
             when (val state = state) {
                 is HomeScreenModel.State.Result -> {
-
-
+                    navigator?.popUntilRoot()
                 }
 
-//                is MainActivityUiState.Success -> {
-//                    println(25)
-//                    navigator?.popUntilRoot()
-//                }
-//
-//                is MainActivityUiState.Loading -> {
-//                    println(29)
-//                }
-//
-//                is MainActivityUiState.Error -> {
-//                    println(33)
-//                    navigator?.popUntilRoot()
-//                    navigator?.push(LoginScreen())
-//                }
                 HomeScreenModel.State.Error -> {
-
+                    navigator?.popUntilRoot()
+                    navigator?.push(LoginScreen())
                 }
                 HomeScreenModel.State.Loading -> {
 

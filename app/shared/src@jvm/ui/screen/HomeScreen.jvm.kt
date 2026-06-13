@@ -11,6 +11,7 @@ import cafe.adriel.voyager.navigator.LocalNavigator
 import getWorld
 import ui.screenmodel.HomeScreenModel
 import ui.screenmodel.State
+import ui.view.HomeView
 
 
 actual val homeScreen: Screen
@@ -22,23 +23,20 @@ class HomeScreen() : Screen {
         val screenModel = koinScreenModel<HomeScreenModel>()
         val uiState by screenModel.uiState.collectAsStateWithLifecycle()
         val navigator = LocalNavigator.current
-        BasicText("Hello, ${getWorld()}!")
+        HomeView()
 
         LaunchedEffect(uiState) {
             when (val state = uiState) {
                 is State.Result -> {
                     println(25)
-                    navigator?.popUntilRoot()
                 }
 
                 is State.Loading -> {
                     println(29)
                 }
 
-                is State.Error -> {
+                is State.NotLogin -> {
                     println(33)
-                    navigator?.popUntilRoot()
-                    navigator?.push(LoginScreen())
                 }
             }
         }

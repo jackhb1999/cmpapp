@@ -42,7 +42,7 @@ androidxWork = "2.10.0"
 brComDevsrsouzaComposeIcons = "1.1.1"
 coil = "3.3.0"
 composeHotReload = "1.1.1"
-composeMultiplatform = "1.11.0"
+composeMultiplatform = "1.11.1"
 composeRemote = "1.0.0-alpha03"
 config = "1.4.8"
 datastore = "1.2.0-rc01"
@@ -61,7 +61,7 @@ hiltExt = "1.2.0"
 jacoco = "0.8.12"
 junit4 = "4.13.2"
 koin = "4.1.1"
-kotlin = "2.3.21"
+kotlin = "2.4.0"
 kotlinSerialization = "1.11.0"
 kotlinxCcoroutines = "1.11.0"
 kotlinxCoroutines = "1.11.0"
@@ -86,7 +86,8 @@ retrofit = "2.11.0"
 retrofitKotlinxSerializationJson = "1.0.0"
 robolectric = "4.16"
 roborazzi = "1.56.0"
-room = "2.8.3"
+room = "2.8.4"
+room3 = "3.0.0-alpha06"
 slf4j = "2.0.18"
 sonner = "0.3.9"
 spotless = "8.3.0"
@@ -137,7 +138,13 @@ androidx.navigation3.ui = { module = "androidx.navigation3:navigation3-ui", vers
 androidx.paging.common = { module = "androidx.paging:paging-common", version.ref = "androidxPaging" }
 androidx.paging.compose = { module = "androidx.paging:paging-compose", version.ref = "androidxPaging" }
 androidx.testExt.junit = { module = "androidx.test.ext:junit", version.ref = "androidxTestExt" }
+androidx.room.compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
+androidx.room.ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
+androidx.room.paging = { module = "androidx.room:room-paging", version.ref = "room" }
 
+androidx.room3.common = { module = "androidx.room3:room3-common", version.ref = "room3" }
+androidx.room3.runtime = { module = "androidx.room3:room3-runtime", version.ref = "room3" }
+androidx.room3.paging = { module = "androidx.room3:room3-paging", version.ref = "room3" }
 
 coil.compose = { group = "io.coil-kt.coil3", name = "coil-compose", version.ref = "coil" }
 coil.network.okhttp = { group = "io.coil-kt.coil3", name = "coil-network-okhttp", version.ref = "coil" }

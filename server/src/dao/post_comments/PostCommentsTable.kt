@@ -1,7 +1,6 @@
 package com.hb.dao.post_comments
 
 import com.hb.dao.post.PostTable
-import com.hb.dao.post_likes.PostLikesTable
 import com.hb.dao.user.UserTable
 import kotlinx.datetime.LocalDateTime
 import org.jetbrains.exposed.v1.core.ReferenceOption

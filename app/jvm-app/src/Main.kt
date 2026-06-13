@@ -18,7 +18,7 @@ fun main() {
             MaterialTheme {
                 getMain()
             }
-        Screen()
+//        Screen()
         }
     }
 }

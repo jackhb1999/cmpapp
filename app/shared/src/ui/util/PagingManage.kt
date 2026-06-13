@@ -1,14 +1,14 @@
 package ui.util
 
+import io.github.oshai.kotlinlogging.KotlinLogging
 import util.Constants
 
 interface PagingManage<Model> {
-
     suspend fun loadItems()
-
     fun reset()
 }
 
+private val logger = KotlinLogging.logger {}
 class DefaultPagingManage<Model>(
     private val onRequest: suspend (page: Int) -> Result<List<Model>>,
     private val onSuccess: (items: List<Model>, page: Int) -> Unit,
@@ -20,6 +20,7 @@ class DefaultPagingManage<Model>(
     private var isLoading = false
 
     override suspend fun loadItems() {
+        logger.info { 47 }
         if (isLoading) return
         isLoading = true
         onLoadStateChange(true)

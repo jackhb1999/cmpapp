@@ -7,10 +7,12 @@ import kotlinx.rpc.krpc.ktor.client.rpc
 import kotlinx.rpc.krpc.ktor.client.rpcConfig
 import kotlinx.rpc.krpc.serialization.json.json
 
+internal expect val BASE_IP: String
+
 internal abstract class KtorRpc : AutoCloseable {
 
     val rpcClient = HttpClient { installKrpc() }.rpc {
-        url("ws://localhost:8088/rpc")
+        url("ws://${BASE_IP}/rpc")
 
         rpcConfig {
             serialization {

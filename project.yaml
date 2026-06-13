@@ -2,8 +2,8 @@ modules:
   - app/android-app
   - app/js-app
   - app/jvm-app
-  - app/shared
   - app/jvmAndAndroid
+  - app/shared
   - core
   - rs_build
   - rs_lib

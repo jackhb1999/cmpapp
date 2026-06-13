@@ -11,10 +11,15 @@ dependencies:
   - $libs.androidx.compose.runtime: exported
   - $libs.androidx.datastore.core
   - $libs.androidx.datastore: exported
+  - $libs.androidx.paging.common: exported
+  - $libs.androidx.paging.compose: exported
   - $libs.androidx.lifecycle.liveData: exported
   - $libs.androidx.lifecycle.runtime: exported
   - $libs.androidx.lifecycle.runtimeCompose: exported
   - $libs.androidx.lifecycle.viewmodel.compose: exported
+  - $libs.androidx.room3.common: exported
+  - $libs.androidx.room3.runtime: exported
+  - $libs.androidx.room3.paging: exported
   - $libs.coil.compose: exported
   - $libs.coil.network.okhttp
   - $libs.compose.foundation: exported
@@ -52,7 +57,7 @@ settings:
       version: 21
   compose:
     enabled: true
-    version: 1.11.0
+    version: 1.11.1
   kotlin:
     serialization:
       enabled: true

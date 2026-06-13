@@ -5,7 +5,11 @@ product:
 dependencies:
   - ../../core
   - ../jvmAndAndroid: exported
-
+  - $libs.androidx.paging.common
+  - $libs.androidx.paging.compose
+  - $libs.androidx.room3.common
+  - $libs.androidx.room3.runtime
+  - $libs.androidx.room3.paging
 
 
 dependencies@jvm:
@@ -14,6 +18,7 @@ dependencies@jvm:
   - $libs.logback.classic
   - $libs.slf4j.api
   - $libs.slf4j.nop
+  - io.github.oshai:kotlin-logging:8.0.01
   - ../jvmAndAndroid: exported
 
 dependencies@android:
@@ -36,7 +41,9 @@ settings:
       hotReload:
         version: 1.0.0-rc03
   kotlin:
-    serialization: enabled
+    serialization:
+      enabled: true
+      version: 1.11.0
     rpc: enabled
 
 #settings@android:

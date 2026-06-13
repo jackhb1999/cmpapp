@@ -1,4 +1,5 @@
 product: android/app
+description: 安卓端应用
 
 dependencies:
   - ../shared

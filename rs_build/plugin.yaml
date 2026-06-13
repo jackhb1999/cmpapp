@@ -3,7 +3,11 @@ tasks:
     action: !generateLibSources
       libsDir: ${module.rootDir}
       resourcesDir: ${taskOutputDir}
-    markOutputsAs:
-      - path: ${action.resourcesDir}
-        kind: jvm-resources
+generated:
+  resources:
+    - directory: ${tasks.generate.action.resourcesDir}
+    
+#    markOutputsAs:
+#      - path: ${action.resourcesDir}
+#        kind: jvm-resources
 

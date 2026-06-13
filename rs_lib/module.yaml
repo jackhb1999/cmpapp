@@ -5,7 +5,6 @@ product:
 dependencies:
   - $libs.kotlinx.serialization.json
   - $libs.kotlinx.serialization.core
-  - $libs.kotlinx.serialization.json
   - $libs.kotlinx.coroutines.core
   - net.java.dev.jna:jna:5.14.0
 

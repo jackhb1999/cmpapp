@@ -8,7 +8,7 @@ import model.User
 
 
 class HomeScreenModel(
-    private val   dataStore: DataStore<User>
+    private val dataStore: DataStore<User>
 ) : ScreenModel {
 
     val uiState: StateFlow<State> = dataStore.data.catch { e ->
@@ -20,7 +20,7 @@ class HomeScreenModel(
             // 将 DataStore 的数据映射为 UI 状态
             // 注意：这里不需要 copy，直接传进去即可，除非你需要转换字段
             if (userSettings.id.isEmpty()) {
-                State.Error
+                State.NotLogin
             } else {
                 State.Result(userSettings)
             }
@@ -40,5 +40,5 @@ class HomeScreenModel(
 sealed interface State {
     object Loading : State
     data class Result(val user: User) : State
-    object Error : State
+    object NotLogin : State
 }

@@ -48,12 +48,12 @@ fun PostListItem(
             }
             .padding(bottom = ExtraLargeSpacing)
     ) {
-        PostItemHeader(name = post.username, profileUrl = post.userImageUrl, date = post.createdAt) {
-            onProfileClick(post.userId)
-        }
+//        PostItemHeader(name = post.username, profileUrl = post.userImageUrl, date = post.createdAt) {
+//            onProfileClick(post.userId)
+//        }
 
         AsyncImage(
-            model = post.imageUrl,
+            model = post.url,
             contentDescription = null,
             modifier = modifier.fillMaxWidth().aspectRatio(ratio = 1.0f),
             contentScale = ContentScale.Crop,
@@ -64,17 +64,17 @@ fun PostListItem(
 //            }
         )
 
-        PostLikesRow(
-            isLiked = post.isLiked,
-            likesCount = post.likesCount,
-            commentsCount = post.commentsCount,
-            onLikeClick = { onLikeClick(post) },
-            onCommentClick = { onCommentClick(post.postId) },
-            isDetailScreen = isDetailScreen
-        )
+//        PostLikesRow(
+//
+//            likesCount = post.likesCount,
+//            commentsCount = post.commentsCount,
+//            onLikeClick = { onLikeClick(post) },
+//            onCommentClick = { onCommentClick(post.postId) },
+//            isDetailScreen = isDetailScreen
+//        )
 
         Text(
-            text = post.caption,
+            text = post.content,
             style = MaterialTheme.typography.bodySmall,
             modifier = modifier.padding(horizontal = LargeSpacing),
             maxLines = if (isDetailScreen) {

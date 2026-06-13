@@ -1,8 +1,8 @@
 package com.hb.dao
 
+import com.hb.dao.plate.PlateTable
 import com.hb.dao.post.PostTable
 import com.hb.dao.post_comments.PostCommentsTable
-import com.hb.dao.post_likes.PostLikesTable
 import com.hb.dao.user.UserTable
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
@@ -26,8 +26,8 @@ object DatabaseFactory {
             if (!PostTable.exists()) {
                 SchemaUtils.create(PostTable)
             }
-            if (!PostLikesTable.exists()) {
-                SchemaUtils.create(PostLikesTable)
+            if (!PlateTable.exists()) {
+                SchemaUtils.create(PlateTable)
             }
             if (!PostCommentsTable.exists()) {
                 SchemaUtils.create(PostCommentsTable)
